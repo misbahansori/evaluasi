@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTable extends Migration
+class CreateAspekTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateUnitTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit', function (Blueprint $table) {
+        Schema::create('aspek', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('nama', 150);
+            $table->string('kategori', 25);
+            $table->unsignedInteger('bagian_id');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateUnitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit');
+        Schema::dropIfExists('aspek');
     }
 }

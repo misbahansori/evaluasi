@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Bagian extends Model
 {
     /**
     * The table associated with the model.
     *
     * @var string
     */
-    protected $table = 'unit';
+    protected $table = 'bagian';
 
     /**
     * The table associated with the model.
@@ -21,9 +21,10 @@ class Unit extends Model
     public $timestamps = false;
 
     /**
-    * The table garded attribute
-    *
-    * @var string
+    * aspek relationship
     */
-    protected $guarded = [];
+    public function aspek()
+    {
+       return $this->hasMany(Aspek::class);
+    }
 }

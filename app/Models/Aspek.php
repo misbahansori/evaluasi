@@ -4,26 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Aspek extends Model
 {
     /**
     * The table associated with the model.
     *
     * @var string
     */
-    protected $table = 'unit';
+    protected $table = 'aspek';
 
     /**
-    * The table associated with the model.
+    * Disable timestamps attribute.
     *
     * @var string
     */
     public $timestamps = false;
 
     /**
-    * The table garded attribute
-    *
-    * @var string
+    * bagian relationship
     */
-    protected $guarded = [];
+    public function bagian()
+    {
+       return $this->belongsTo(Bagian::class);
+    }
 }
