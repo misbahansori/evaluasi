@@ -25,6 +25,6 @@ class Bagian extends Model
     */
     public function aspek()
     {
-       return $this->hasMany(Aspek::class);
+       return $this->hasMany(Aspek::class)->orderBy('nama');
     }
 }

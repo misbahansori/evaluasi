@@ -1,12 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-borderless table-sm">
+                    <table class="table table-bordered">
                         <tr>
                             <td>NBM</td>
                             <td>:</td>
@@ -16,9 +15,9 @@
                             <td>:</td>
                             <td>
                                 @if ($periode->verif_kabag)
-                                    <span class="label label-success">Terverifikasi</span>
+                                    <span class="badge badge-success">Terverifikasi</span>
                                 @else
-                                    <span class="label label-default">Belum Diverifikasi</span>
+                                    <span class="badge badge-default">Belum Diverifikasi</span>
                                 @endif
                             </td>
                         </tr>
@@ -31,9 +30,9 @@
                             <td>:</td>
                             <td>
                                 @if ($periode->verif_wadir)
-                                    <span class="label label-success">Terverifikasi</span>
+                                    <span class="badge badge-success">Terverifikasi</span>
                                 @else
-                                    <span class="label label-default">Belum Diverifikasi</span>
+                                    <span class="badge badge-default">Belum Diverifikasi</span>
                                 @endif
                             </td>
                         </tr>
@@ -67,7 +66,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($periode->nilai->groupBy('kategori') as $grouped)
+                                @foreach ($periode->nilai->groupBy('kategori')->sortKeys() as $grouped)
+                                    
                                     <tr>
                                         <th colspan="9"> {{ $grouped->first()->kategori }}</th>
                                     </tr>
@@ -107,7 +107,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="7">
-                                            <button type="submit" class="btn btn-info btn-block">
+                                            <button type="submit" class="btn btn-info btn-block btn-lg">
                                                 <i class="fa fa-save"></i> Simpan
                                             </button>
                                     </td>
@@ -119,5 +119,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

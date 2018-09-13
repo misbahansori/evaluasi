@@ -1,8 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Periode Penilaian</div>
@@ -14,9 +13,8 @@
                             <label for="bulan" class="col-sm-4 col-form-label text-md-right">Bulan</label>
                             <div class="col-md-6">
                                 <select name="bulan" id="bulan" class="form-control{{ $errors->has('bulan') ? ' is-invalid' : '' }}">
-                                    <option value="">Silahkan pilih...</option>
                                     @foreach ($listBulan as $bulan)
-                                        <option {{ old('bulan') == $bulan->id }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
+                                        <option {{ old('bulan') == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('bulan'))
@@ -55,5 +53,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

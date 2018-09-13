@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header bg-white">
+                    <h4>Dashboard</h4>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,5 +20,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Biodata Pegawai</div>
+                <div class="card-header bg-white">
+                    <h4>Biodata Pegawai</h4>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -80,9 +81,11 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    Penilaian
-                    <a href="{{ route('periode.create', $pegawai->id) }}" class="btn btn-primary btn-sm">Tambah Periode</a>
+                <div class="card-header bg-white d-flex justify-content-between">
+                    <h4>Penilaian</h5>
+                    <a href="{{ route('periode.create', $pegawai->id) }}" class="btn btn-primary btn-sm">
+                        <i class="ti ti-pencil"></i> Tambah Periode
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -91,7 +94,9 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
                                 <td>
-                                    <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="btn btn-success btn-sm">Detail</a>
+                                    <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="btn btn-success btn-sm">
+                                        <i class="ti ti-view-list-alt"></i> Detail
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -100,5 +105,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

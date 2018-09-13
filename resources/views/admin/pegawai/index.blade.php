@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Daftar Pegawai</div>
+                <div class="card-header bg-white">
+                    <h4>Daftar Pegawai</h4>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -26,7 +27,9 @@
                                     <td>{{ $pegawai->tanggal_lahir }}</td>
                                     <td>{{ $pegawai->unit->nama }}</td>
                                     <th>
-                                        <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-success btn-sm">Biodata</a>
+                                        <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-success btn-sm">
+                                            <i class="ti ti-write"></i> Biodata
+                                        </a>
                                     </th>
                                 </tr>
                             @endforeach
@@ -36,5 +39,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

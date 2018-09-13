@@ -21,6 +21,13 @@ class Aspek extends Model
     public $timestamps = false;
 
     /**
+    * The guarded attribute.
+    *
+    * @var string
+    */
+    protected $guarded = [];    
+
+    /**
     * bagian relationship
     */
     public function bagian()

@@ -45,7 +45,16 @@ class PeriodeController extends Controller
             'bulan' => 'required|integer',
             'tahun' => 'required|integer|digits:4'
         ]);
-        
+
+        $bulan = Bulan::find($request->bulan);
+
+        if ($pegawai->periode()->where(['pegawai_id' => $pegawai->id, 'bulan_id' => $bulan->id, 'tahun' => $request->tahun])->exists()) {
+            return redirect()
+                ->back()
+                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.")
+                ->withInput();
+        }
+
         $periode = $pegawai->periode()->create([
             'bulan_id' => $request->bulan,
             'tahun' => $request->tahun

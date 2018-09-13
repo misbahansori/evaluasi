@@ -34,6 +34,6 @@ class Pegawai extends Model
     */
     public function periode()
     {
-       return $this->hasMany(Periode::class)->with('bulan');
+       return $this->hasMany(Periode::class)->with('bulan')->orderBy('created_at');
     }
 }
