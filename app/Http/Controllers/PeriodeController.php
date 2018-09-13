@@ -107,8 +107,13 @@ class PeriodeController extends Controller
      * @param  \App\Periode  $periode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Periode $periode)
+    public function destroy(Pegawai $pegawai, Periode $periode)
     {
-        //
+        $periode->aspek()->detach();
+
+        $periode->delete();
+
+        return redirect()->route('pegawai.show', $pegawai->id)
+            ->with('success', 'Periode '.$periode->bulan->nama .' '. $periode->tahun.' berhasil dihapus');
     }
 }

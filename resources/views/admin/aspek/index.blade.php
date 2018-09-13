@@ -42,7 +42,7 @@
                                                                 <i class="ti ti-pencil-alt"></i> Edit
                                                             </a>
                                                             
-                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus?');">
+                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
                                                                 <i class="ti ti-trash"></i> Hapus
                                                             </button>
                                                         </form>

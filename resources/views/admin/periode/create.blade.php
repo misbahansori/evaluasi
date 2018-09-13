@@ -4,7 +4,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Periode Penilaian</div>
+                <div class="card-header bg-white">
+                    <h4>Periode Penilaian</h4>
+                </div>
 
                 <div class="card-body">
                     <form action="{{ route('periode.store', $pegawai->id) }}" method="POST">

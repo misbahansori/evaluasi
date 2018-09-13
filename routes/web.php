@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/pegawai/{pegawai}/periode/create', 'PeriodeController@create')->name('periode.create');
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
     Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');
+    Route::delete('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@destroy')->name('periode.destroy');
     Route::put('/nilai', 'NilaiController@update')->name('nilai.update');
     Route::get('/master/aspek', 'AspekController@index')->name('aspek.index');
     Route::get('/master/aspek/create', 'AspekController@create')->name('aspek.create');
