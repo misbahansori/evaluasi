@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BagianTableSeeder::class);
         $this->call(AspekTableSeeder::class);
         $this->call(PegawaiTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
     }
 }

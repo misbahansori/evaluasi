@@ -4,6 +4,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header d-flex justify-content-end">
+                    <div class="button-group form-inline">
+                        @can('verif kabag')
+                            <form action="{{ route('verif.kabag', $periode->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Verifikasi Kabag/Kabid</button>
+                            </form>
+                        @endcan
+                        @can('verif wadir')
+                            <form action="{{ route('verif.wadir', $periode->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Verifikasi Wakil Direktur</button>
+                            </form>
+                        @endcan
+                    </div>
+                </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <tr>
@@ -15,9 +31,11 @@
                             <td>:</td>
                             <td>
                                 @if ($periode->verif_kabag)
-                                    <span class="badge badge-success">Terverifikasi</span>
+                                    <span class="badge badge-primary">Terverifikasi</span> 
+                                    <br>
+                                    <small>{{ $periode->verif_kabag->formatLocalized('%A, %d %B %Y') }}</small>
                                 @else
-                                    <span class="badge badge-default">Belum Diverifikasi</span>
+                                    <span class="badge badge-warning">Belum Diverifikasi</span>
                                 @endif
                             </td>
                         </tr>
@@ -30,9 +48,11 @@
                             <td>:</td>
                             <td>
                                 @if ($periode->verif_wadir)
-                                    <span class="badge badge-success">Terverifikasi</span>
+                                    <span class="badge badge-primary">Terverifikasi</span>
+                                    <br>
+                                    <small>{{ $periode->verif_wadir->formatLocalized('%A, %d %B %Y') }}</small>
                                 @else
-                                    <span class="badge badge-default">Belum Diverifikasi</span>
+                                    <span class="badge badge-warning">Belum Diverifikasi</span>
                                 @endif
                             </td>
                         </tr>
@@ -105,15 +125,13 @@
                                     <td colspan="2">Element Penilaian</td>
                                     <td colspan="6">{{ $periode->nilai->count() }}</td>
                                 </tr>
-                                <tr>
-                                    <td colspan="7">
-                                            <button type="submit" class="btn btn-info btn-block btn-lg">
-                                                <i class="fa fa-save"></i> Simpan
-                                            </button>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-success btn-block btn-lg">
+                                <i class="fa fa-save"></i> Simpan
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

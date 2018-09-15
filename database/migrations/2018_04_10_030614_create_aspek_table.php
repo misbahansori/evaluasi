@@ -15,7 +15,7 @@ class CreateAspekTable extends Migration
     {
         Schema::create('aspek', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama', 150);
+            $table->string('nama');
             $table->string('kategori', 25);
             $table->unsignedInteger('bagian_id');
         });

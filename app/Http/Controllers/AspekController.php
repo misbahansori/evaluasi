@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 class AspekController extends Controller
 {
     /**
+    * __construct method
+    */
+    public function __construct()
+    {
+       $this->middleware('permission:master aspek');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

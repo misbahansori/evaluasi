@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 class PeriodeController extends Controller
 {
     /**
+    * Construct method
+    */
+    public function __construct()
+    {
+        $this->middleware('permission:tambah periode')->only('create');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

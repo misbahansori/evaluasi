@@ -32,8 +32,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $aspek->nama }}</td>
-                                                <td> 
-                                                    <div class="btn-group">
+                                                <td style="width: 175px"> 
+                                                    <div class="button-group">
                                                         <form action="{{ route('aspek.destroy', $aspek->id) }}" method="post">
                                                             @csrf
                                                             @method('delete')

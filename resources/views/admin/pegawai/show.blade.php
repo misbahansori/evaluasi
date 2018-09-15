@@ -83,13 +83,15 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Penilaian</h5>
-                    <a href="{{ route('periode.create', $pegawai->id) }}" class="btn btn-primary btn-sm">
-                        <i class="ti ti-pencil"></i> Tambah Periode
-                    </a>
+                    @can('tambah periode')
+                        <a href="{{ route('periode.create', $pegawai->id) }}" class="btn btn-primary btn-sm">
+                            <i class="ti ti-pencil"></i> Tambah Periode
+                        </a>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <table class="table">
-                        @foreach ($pegawai->periode as $periode)
+                        @forelse ($pegawai->periode as $periode)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
@@ -106,7 +108,11 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="3" class="text-center"><i>Belum ada data</i></td>
+                            </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>

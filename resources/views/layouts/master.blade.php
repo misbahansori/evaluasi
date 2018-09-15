@@ -21,7 +21,7 @@
 
 <body class="skin-default-dark fixed-layout">
 
-    @include('layouts.loader')
+    {{-- @include('layouts.loader') --}}
 
     <div id="main-wrapper">
 
@@ -36,9 +36,6 @@
                 @yield('content')
             </div>
         </div>
-        <footer class="footer">
-            © 2018 Elegent Admin by wrappixel.com
-        </footer>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}"></script>

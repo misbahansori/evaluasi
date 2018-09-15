@@ -18,8 +18,8 @@ class CreatePeriodeTable extends Migration
             $table->unsignedInteger('pegawai_id');
             $table->unsignedInteger('bulan_id');
             $table->string('tahun', 4);
-            $table->boolean('verif_kabag')->default(0);
-            $table->boolean('verif_wadir')->default(0);
+            $table->timestamp('verif_kabag')->nullable();
+            $table->timestamp('verif_wadir')->nullable();
             $table->timestamps();
 
             $table->unique(['pegawai_id', 'bulan_id', 'tahun']);

@@ -31,6 +31,22 @@
                         <span class="hide-menu">Master Aspek Penilaian</span>
                     </a>
                 </li>
+                @can('master aspek')
+                    <li{{ Request::is( 'master/user*') ? ' class=selected' : '' }}>
+                        <a class="waves-effect waves-dark" href="{{ route('user.index') }}" aria-expanded="false">
+                            <i class="ti ti-id-badge"></i>
+                            <span class="hide-menu">Master User Account</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('master group')
+                    <li{{ Request::is( 'master/group*') ? ' class=selected' : '' }}>
+                        <a class="waves-effect waves-dark" href="{{ route('role.index') }}" aria-expanded="false">
+                            <i class="ti ti-menu-alt"></i>
+                            <span class="hide-menu">Master Group/Bagian</span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
