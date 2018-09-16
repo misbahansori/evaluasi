@@ -21,4 +21,12 @@ class UserRolesController extends Controller
         return redirect()->back()
             ->with('success', "Group $role->name berhasil ditambahkan");
     }
+
+    public function destroy(User $user, Role $role)
+    {
+        $user->removeRole($role);
+
+        return redirect()->back()
+            ->with('success', "Group $role->name berhasil dihapus");
+    }
 }

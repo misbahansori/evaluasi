@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-end">
+                <div class="card-header bg-white d-flex justify-content-between">
+                    <h4>Periode Penilaian {{ $periode->bulan->nama }} {{ $periode->tahun }}</h4>
                     <div class="button-group form-inline">
                         @can('verif kabag')
                             <form action="{{ route('verif.kabag', $periode->id) }}" method="POST">

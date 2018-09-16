@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Bulan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 
@@ -55,7 +57,10 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('admin.pegawai.show', compact('pegawai'));
+        $listBulan = Bulan::all();
+        $year = Carbon::now()->year;
+        
+        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'year'));
     }
 
     /**

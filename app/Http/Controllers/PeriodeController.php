@@ -16,6 +16,7 @@ class PeriodeController extends Controller
     public function __construct()
     {
         $this->middleware('permission:tambah periode')->only('create');
+        $this->middleware('permission:hapus periode')->only('destroy');
     }
 
     /**
@@ -35,10 +36,7 @@ class PeriodeController extends Controller
      */
     public function create(Pegawai $pegawai)
     {
-        $listBulan = Bulan::all();
-        $year = Carbon::now()->year;
-        
-        return view('admin.periode.create', compact('listBulan', 'year', 'pegawai'));
+        //
     }
 
     /**

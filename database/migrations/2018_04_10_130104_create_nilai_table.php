@@ -17,7 +17,7 @@ class CreateNilaiTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('periode_id');
             $table->foreign('periode_id')->references('id')->on('periode')->onDelete('cascade');
-            $table->string('aspek', 150);
+            $table->string('aspek');
             $table->string('kategori', 25);
             $table->integer('nilai')->nullable();
             $table->timestamps();

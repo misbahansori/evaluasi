@@ -47,9 +47,13 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="ti ti-trash"></i> Hapus
-                                        </button>
+                                        <form action="{{ route('user.role.destroy', [$user->id, $role->id]) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                <i class="ti ti-trash"></i> Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>  
                             @empty
@@ -81,7 +85,7 @@
                                 </tr>  
                             @empty
                                 <tr>
-                                    <td colspan="3">Tidak ada Grup untuk user ini</td>
+                                    <td colspan="3">Tidak ada hak akses untuk user ini</td>
                                 </tr>
                             @endforelse
                         </tbody>

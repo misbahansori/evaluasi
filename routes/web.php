@@ -24,7 +24,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/pegawai/{pegawai}', 'PegawaiController@show')->name('pegawai.show');
 
     Route::get('/pegawai/{pegawai}/periode', 'PeriodeController@index')->name('periode.index');
-    Route::get('/pegawai/{pegawai}/periode/create', 'PeriodeController@create')->name('periode.create');
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
     Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');
     Route::delete('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@destroy')->name('periode.destroy');
@@ -54,7 +53,9 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/master/role/{role}/permission', 'RolePermissionsController@store')->name('role.permission.store');
     Route::delete('/master/role/{role}/permission/{permission}', 'RolePermissionsController@destroy')->name('role.permission.destroy');
+
     Route::post('/master/user/{user}/role', 'UserRolesController@store')->name('user.role.store');
+    Route::delete('/master/user/{user}/role/{role}', 'UserRolesController@destroy')->name('user.role.destroy');
     
     Route::post('/verif/kabag/{periode}', 'VerifKabagController@store')->name('verif.kabag');
     Route::post('/verif/wadir/{periode}', 'VerifWadirController@store')->name('verif.wadir');
