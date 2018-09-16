@@ -38,7 +38,7 @@
                                                             @csrf
                                                             @method('delete')
                 
-                                                            <a href="{{ route('aspek.edit', $aspek->id) }}" class="btn btn-success btn-sm">
+                                                            <a href="{{ route('aspek.edit', $aspek->id) }}" class="btn btn-info btn-sm">
                                                                 <i class="ti ti-pencil-alt"></i> Edit
                                                             </a>
                                                             

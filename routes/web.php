@@ -52,7 +52,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/master/group/{role}/edit', 'RoleController@edit')->name('role.edit');
     Route::put('/master/group/{role}', 'RoleController@update')->name('role.update');
 
-    Route::post('/master/permission/{permission}', 'PermissionsController@store')->name('permission.store');
+    Route::post('/master/role/{role}/permission', 'RolePermissionsController@store')->name('role.permission.store');
+    Route::delete('/master/role/{role}/permission/{permission}', 'RolePermissionsController@destroy')->name('role.permission.destroy');
+    Route::post('/master/user/{user}/role', 'UserRolesController@store')->name('user.role.store');
     
     Route::post('/verif/kabag/{periode}', 'VerifKabagController@store')->name('verif.kabag');
     Route::post('/verif/wadir/{periode}', 'VerifWadirController@store')->name('verif.wadir');

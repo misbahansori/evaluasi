@@ -43,7 +43,7 @@
                     <li{{ Request::is( 'master/group*') ? ' class=selected' : '' }}>
                         <a class="waves-effect waves-dark" href="{{ route('role.index') }}" aria-expanded="false">
                             <i class="ti ti-menu-alt"></i>
-                            <span class="hide-menu">Master Group/Bagian</span>
+                            <span class="hide-menu">Master Group/Unit</span>
                         </a>
                     </li>
                 @endcan

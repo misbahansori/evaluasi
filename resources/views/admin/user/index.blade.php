@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar User</h4>
@@ -17,8 +17,6 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Group/Bagian</th>
-                                <th>Hak Akses</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -27,16 +25,6 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>
-                                        @foreach ($user->getRoleNames() as $role)
-                                            <span class="badge badge-primary">{{ $role }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach ($user->getAllPermissions() as $permission)
-                                            <span class="badge badge-cyan">{{ $permission->name }}</span>
-                                        @endforeach
-                                    </td>
                                     <th>
                                         <a href="{{ route('user.show', $user->id) }}" class="btn btn-success btn-sm">
                                             <i class="ti ti-write"></i> Detail

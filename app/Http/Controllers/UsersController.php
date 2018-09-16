@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -70,7 +71,9 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', compact('user'));
+        $roles = Role::all()->diff($user->roles);
+
+        return view('admin.user.show', compact('roles', 'user'));
     }
 
     /**

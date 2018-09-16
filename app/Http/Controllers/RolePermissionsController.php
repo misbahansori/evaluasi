@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class PermissionsController extends Controller
+class RolePermissionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,17 +34,18 @@ class PermissionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Permission $permission, Request $request)
+    public function store(Role $role, Request $request)
     {
         $this->validate($request, [
-            'role_id' => 'required|integer',
+            'permission_id' => 'required|integer|exists:permissions,id',
         ]);
 
-       $permission->assignRole($request->role_id);
+        $permission = Permission::findOrFail($request->permission_id);
+        
+        $role->givePermissionTo($permission);
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return redirect()->back()
+            ->with('success', "Hak akses $permission->name diberikan kepada $role->name");
     }
 
     /**
@@ -87,8 +88,11 @@ class PermissionsController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Role $role, Permission $permission)
     {
-        //
+        $role->revokePermissionTo($permission);
+
+        return redirect()->back()
+            ->with('success', "Hak akses $permission->name berhasil dihapus");
     }
 }

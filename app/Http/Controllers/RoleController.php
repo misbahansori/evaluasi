@@ -14,12 +14,15 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $selectedRole = Role::find($request->role);
+        
         $roles = Role::all();
         $permissions = Permission::all();
+        $permissions = $permissions->diff(optional($selectedRole)->permissions);
         
-        return view('admin.role.index', compact('roles', 'permissions'));
+        return view('admin.role.index', compact('selectedRole', 'roles', 'permissions'));
     }
 
     /**
