@@ -58,6 +58,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/master/user/{user}/role', 'UserRolesController@store')->name('user.role.store');
     Route::delete('/master/user/{user}/role/{role}', 'UserRolesController@destroy')->name('user.role.destroy');
     
-    Route::post('/verif/kabag/{periode}', 'VerifKabagController@store')->name('verif.kabag');
-    Route::post('/verif/wadir/{periode}', 'VerifWadirController@store')->name('verif.wadir');
+    Route::post('/verif/kabag/{periode}', 'VerifikasiController@kabag')->name('verif.kabag');
+    Route::post('/verif/wadir/{periode}', 'VerifikasiController@wadir')->name('verif.wadir');
 });
