@@ -17,13 +17,13 @@ class RolePermissionsController extends Controller
     public function store(Role $role, Request $request)
     {
         $this->validate($request, [
-            'permission_id' => 'required|integer|exists:permissions,id',
+            'hak_akses' => 'required',
         ]);
         
-        $permission = Permission::findOrFail($request->permission_id);
-        $role->givePermissionTo($permission);
+        $role->givePermissionTo($request->hak_akses);
 
-        return back()->with('success', "Hak akses $permission->name diberikan kepada $role->name");
+        return back()
+            ->with('success', "Hak akses berhasil diberikan kepada $role->name");
     }
 
     /**
@@ -36,6 +36,7 @@ class RolePermissionsController extends Controller
     {
         $role->revokePermissionTo($permission);
 
-        return back()->with('success', "Hak akses $permission->name berhasil dihapus");
+        return back()
+            ->with('success', "Hak akses $permission->name berhasil dihapus");
     }
 }

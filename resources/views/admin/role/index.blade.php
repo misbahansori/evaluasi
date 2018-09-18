@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar Group/Unit</h4>
-                    <a href="/master/group/create" class="btn btn-primary btn-sm">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal2">
                         <i class="ti ti-pencil"></i> Tambah Group
-                    </a>
+                    </button>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered table-hover">
@@ -20,10 +20,13 @@
                         </thead>
                         <tbody>
                             @foreach ($roles as $role)
-                                <tr {{ optional($selectedRole)->id == $role->id ? 'class=table-active' : ''}} onclick="window.location.href='{{ route('role.index', ['role' => $role->id]) }}'">
+                                <tr {{ optional($selectedRole)->id == $role->id ? 'class=table-success' : ''}} onclick="window.location.href='{{ route('role.index', ['role' => $role->id]) }}'">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <a href="{{ route('role.index', ['role' => $role->id]) }}">{{ $role->name }}</a>
+                                    <td class="d-flex justify-content-between">
+                                        {{ $role->name }}
+                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-info btn-xs">
+                                            <i class="ti-pencil-alt"></i> Edit
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -37,7 +40,7 @@
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between">
                         <h4>Hak Akses {{ $selectedRole->name }}</h4>
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
                             <i class="ti ti-pencil"></i> Tambah Hak Akses
                         </button>
                     </div>
@@ -67,24 +70,62 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Modal Tambah Group/Unit -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <form action="{{ route('role.permission.store', $selectedRole->id) }}" method="POST" class="modal-content">
+                    <form action="{{ route('role.store') }}" method="POST" class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambahkan Group</h5>
+                            <h5 class="modal-title" id="exampleModal2Label">Tambahkan Group/Unit</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             @csrf
-                            <select class="form-control mr-2" name="permission_id">
-                                <option value="" selected disabled>--- Silahkan pilih hak akses ---</option>
-                                @foreach ($permissions as $permission)
-                                    <option value="{{ $permission->id }}">{{ $permission->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group">
+                                <label for="name" class="">Nama Group</label>    
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required placeholder="Tuliskan nama group">
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="ti ti-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Modal Tambah Hak Akses Group -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form action="{{ route('role.permission.store', $selectedRole->id) }}" method="POST" class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambahkan Hak Akses</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @csrf
+                            <div class="form-group">
+                                <label for="hak_akses" class="">Silahkan pilih Group</label>
+                                <select class="form-control mr-2 select2{{ $errors->has('hak_akses') ? ' is-invalid' : '' }}" name="hak_akses[]" multiple="multiple">
+                                    @foreach ($permissions as $permission)
+                                        <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('hak_akses'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('hak_akses') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -98,3 +139,5 @@
         @endif
     </div>
 @endsection
+
+@include('includes.select2')

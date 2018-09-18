@@ -105,12 +105,20 @@
                     </div>
                     <div class="modal-body">
                         @csrf
-                        <select class="form-control mr-2" name="role">
-                            <option value="" selected disabled>--- Silahkan pilih Group/Unit ---</option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="form-group">
+                            <label for="role" class="">Silahkan pilih Group</label>
+                            <select class="form-control select2{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" multiple="multiple">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('role') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -123,3 +131,5 @@
         </div>
     </div>
 @endsection
+
+@include('includes.select2')

@@ -11,14 +11,12 @@ class UserRolesController extends Controller
     public function store(Request $request, User $user)
     {
         $this->validate($request, [
-            'role' => 'required|integer|exists:roles,id',
+            'role' => 'required',
         ]);
 
-        $role = Role::find($request->role);
+        $user->assignRole($request->role);
 
-        $user->assignRole($role);
-
-        return back()->with('success', "Group $role->name berhasil ditambahkan");
+        return back()->with('success', "Group berhasil ditambahkan");
     }
 
     public function destroy(User $user, Role $role)

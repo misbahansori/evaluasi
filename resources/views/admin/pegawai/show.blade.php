@@ -178,13 +178,3 @@
         </div>
     </div>
 @endsection
-
-@if(Session::has('errors'))
-    @push('js')
-        <script>
-            $(document).ready(function(){
-                $('#exampleModal').modal({show: true});
-            });
-        </script>
-    @endpush
-@endif
