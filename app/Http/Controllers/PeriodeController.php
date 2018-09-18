@@ -52,6 +52,12 @@ class PeriodeController extends Controller
             'tahun' => 'required|integer|digits:4'
         ]);
 
+        if (!$pegawai->bagian) {
+            return redirect()
+                ->back()
+                ->with('danger', "Pegawai tidak memiliki bagian");
+        }
+
         $bulan = Bulan::find($request->bulan);
 
         if ($pegawai->periode()->where(['pegawai_id' => $pegawai->id, 'bulan_id' => $bulan->id, 'tahun' => $request->tahun])->exists()) {

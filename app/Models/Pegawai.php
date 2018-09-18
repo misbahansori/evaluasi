@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pegawai extends Model
 {
+
+    protected $guarded = [];
     /**
     * The table associated with the model.
     *
@@ -19,6 +21,13 @@ class Pegawai extends Model
     public function unit()
     {
        return $this->belongsTo(Unit::class);
+    }
+    /**
+    * unit relationship
+    */
+    public function formasi()
+    {
+       return $this->belongsTo(Formasi::class);
     }
 
     /**

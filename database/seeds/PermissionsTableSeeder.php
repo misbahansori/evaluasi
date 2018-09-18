@@ -22,7 +22,5 @@ class PermissionsTableSeeder extends Seeder
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
-
-        User::first()->givePermissionTo(Permission::all());
     }
 }

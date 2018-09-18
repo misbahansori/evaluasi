@@ -11,22 +11,35 @@ class UnitTableSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('unit')->truncate();
-
-        $unit = [
-            'TU', 'Keuangan', 'Rumah Tangga', 'IPSRS', 'Fisioterapi', 'Pendaftaran', 'BPJS', 'Filling', 
-            'IGD', 'Radiologi', 'Customer Service', 'Poliklinik', 'Apotik', 'OK', 'Laboratorium', 'Shafa',
-            'Marwah', 'Cleaning Service', 'Bindatra', 'Loundry', 'Mina', 'Arafah', 'ICU', 'IT', 'Gizi',
-            'Teknisi', 'Elektromedis'
+        $listUnit = [
+            ['nama' => 'Bagian Keuangan'],
+            ['nama' => 'Bagian Umum'],
+            ['nama' => 'Bindatra'],
+            ['nama' => 'BPJS'],
+            ['nama' => 'Instalasi Farmasi'],
+            ['nama' => 'Instalasi Fisioterapi'],
+            ['nama' => 'Instalasi Gizi'],
+            ['nama' => 'Instalasi Laboratorium'],
+            ['nama' => 'Instalasi Radiologi'],
+            ['nama' => 'Instalasi Rekam Medis'],
+            ['nama' => 'IPSRS'],
+            ['nama' => 'Kabid Keperawatan & Kebidanan'],
+            ['nama' => 'Komite PPNI'],
+            ['nama' => 'Ruang Arafah'],
+            ['nama' => 'Ruang Assalam'],
+            ['nama' => 'Ruang Assyifa/Perianatalogi'],
+            ['nama' => 'Ruang CSSD'],
+            ['nama' => 'Ruang Hasanah'],
+            ['nama' => 'Ruang ICU'],
+            ['nama' => 'Ruang Marwah'],
+            ['nama' => 'Ruang Mina'],
+            ['nama' => 'Ruang OK'],
+            ['nama' => 'Ruang Poliklinik'],
+            ['nama' => 'Ruang Shafa'],
+            ['nama' => 'Ruang UGD'],
+            ['nama' => 'Tata Usaha dan Personalia'],
         ];
 
-        foreach ($unit as $key => $value) {
-            $unit[$key] = [
-                'id' => $key + 1,
-                'nama'  => $value,
-            ];
-        }
-
-        DB::table('unit')->insert($unit);
+        DB::table('unit')->insert($listUnit);
     }
 }

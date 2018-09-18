@@ -61,14 +61,19 @@
                         <td>{{ $pegawai->no_hp }}</td>
                     </tr>
                     <tr>
+                        <td>Formasi</td>
+                        <td>:</td>
+                        <td>{{ optional($pegawai->formasi)->nama }}</td>
+                    </tr>
+                    <tr>
                         <td>Unit</td>
                         <td>:</td>
-                        <td>{{ $pegawai->unit->nama }}</td>
+                        <td>{{ optional($pegawai->unit)->nama }}</td>
                     </tr>
                     <tr>
                         <td>Bagian</td>
                         <td>:</td>
-                        <td>{{ $pegawai->bagian->nama }}</td>
+                        <td>{{ optional($pegawai->bagian)->nama }}</td>
                     </tr>
                     <tr>
                         <td>Tanggal Masuk</td>
