@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Bulan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
@@ -16,12 +15,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $listPegawai = Pegawai::when(request('keyword'), function($query) {
-                $query->where('nama', 'like', '%'.request('keyword'). '%');
-            })
-            ->whereHas('unit', function($query) {
-                $query->whereIn('nama', auth()->user()->getRoleNames());
-            })
+        $listPegawai = Pegawai::query()
+            ->milikUser()
             ->with('bagian', 'unit')
             ->get();
 
@@ -58,9 +53,9 @@ class PegawaiController extends Controller
     public function show(Pegawai $pegawai)
     {
         $listBulan = Bulan::all();
-        $year = Carbon::now()->year;
+        $tahunIni = date('Y');
         
-        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'year'));
+        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni'));
     }
 
     /**

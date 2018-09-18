@@ -155,8 +155,8 @@
                             <label for="tahun" class="col-sm-4 col-form-label text-md-right">Tahun</label>
                             <div class="col-md-6">
                                 <select name="tahun" id="tahun" class="form-control{{ $errors->has('tahun') ? ' is-invalid' : '' }}">
-                                    @for ($i = $year - 2; $i < $year + 5; $i++)
-                                        <option {{ old('tahun', $year) == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                    @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
+                                        <option {{ old('tahun', $tahunIni) == $i ? 'selected' : '' }}>{{ $i }}</option>
                                     @endfor
                                 </select>
                                 @if ($errors->has('tahun'))

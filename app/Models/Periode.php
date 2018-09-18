@@ -10,17 +10,17 @@ use Illuminate\Database\Eloquent\Model;
 class Periode extends Model
 {
     /**
-    * The table associated with the model.
-    *
-    * @var string
-    */
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'periode';
 
     /**
-    * The table guarded attribute.
-    *
-    * @var string
-    */
+     * The table guarded attribute.
+     *
+     * @var string
+     */
     protected $guarded = [];
 
     protected $dates = [
@@ -28,44 +28,64 @@ class Periode extends Model
     ];
 
     /**
-    * bulan relationship
-    */
+     * Setiap Periode mempunyai Bulan
+     */
     public function bulan()
     {
        return $this->belongsTo(Bulan::class);
     }
 
     /**
-    * pegawai relationship
-    */
+     * Setiap Periode dimiliki seorang pegawai
+     */
     public function pegawai()
     {
        return $this->belongsTo(Pegawai::class);
     }
 
     /**
-    * aspek relationship
-    */
+     * Setiap periode mempunyai banyak Aspek penilaian
+     */
     public function aspek()
     {
        return $this->belongsToMany(Aspek::class, 'nilai');
     }
 
     /**
-    * nilai relationship
-    */
+     * Setiap Periode punya banyak Nilai
+     */
     public function nilai()
     {
        return $this->hasMany(Nilai::class);
     }
 
+    /**
+     * Set verif_kabag field to now()
+     */
     public function verifKabag()
     {
        $this->update(['verif_kabag' => Carbon::now()]);
     }
     
+    /**
+     * Set verif_wadir field to now()
+     */
     public function verifWadir()
     {
        $this->update(['verif_wadir' => Carbon::now()]);
+    }
+
+    /**
+     * Mengecek Periode apakah unik dengan kombinasi tiga kolom
+     *
+     * @param Integer $pegawai
+     * @param Integer $bulan
+     * @param Integer $tahun
+     */
+    public function scopeUnique($query, $pegawai, $bulan, $tahun)
+    {
+        $query->wherePegawaiId($pegawai)
+            ->whereBulanId($bulan)
+            ->whereTahun($tahun);
     }
 }

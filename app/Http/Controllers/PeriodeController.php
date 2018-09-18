@@ -26,7 +26,7 @@ class PeriodeController extends Controller
      */
     public function index(Pegawai $pegawai)
     {
-        return view('admin.periode.index',compact('pegawai'));
+        return view('admin.periode.index', compact('pegawai'));
     }
 
     /**
@@ -53,18 +53,15 @@ class PeriodeController extends Controller
         ]);
 
         if (!$pegawai->bagian) {
-            return redirect()
-                ->back()
-                ->with('danger', "Pegawai tidak memiliki bagian");
+            return back()
+                ->with('danger', 'Pegawai tidak memiliki bagian');
         }
 
         $bulan = Bulan::find($request->bulan);
 
-        if ($pegawai->periode()->where(['pegawai_id' => $pegawai->id, 'bulan_id' => $bulan->id, 'tahun' => $request->tahun])->exists()) {
-            return redirect()
-                ->back()
-                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.")
-                ->withInput();
+        if (Periode::unique($pegawai->id, $bulan->id, $request->tahun)->exists()) {
+            return back()
+                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.");
         }
 
         $periode = $pegawai->periode()->create([
@@ -72,11 +69,13 @@ class PeriodeController extends Controller
             'tahun' => $request->tahun
         ]);
 
-        $pegawai->bagian->aspek->each(function($item) use ($periode) {
+        $pegawai->bagian->aspek->each(function ($item) use ($periode) {
             $periode->nilai()->create(['aspek' => $item->nama, 'kategori' => $item->kategori]);
         });
-        
-        return redirect()->route('pegawai.show', $pegawai->id);
+
+        return redirect()
+            ->route('pegawai.show', $pegawai->id)
+            ->with('success', "Periode $bulan->nama $periode->tahun berhasil ditambahkan");
     }
 
     /**
@@ -125,7 +124,8 @@ class PeriodeController extends Controller
 
         $periode->delete();
 
-        return redirect()->route('pegawai.show', $pegawai->id)
-            ->with('success', 'Periode '.$periode->bulan->nama .' '. $periode->tahun.' berhasil dihapus');
+        return redirect()
+            ->route('pegawai.show', $pegawai->id)
+            ->with('success', 'Periode ' . $periode->bulan->nama . ' ' . $periode->tahun . ' berhasil dihapus');
     }
 }
