@@ -52,6 +52,7 @@
                                         @else
                                             <span class="badge badge-warning">Belum Diverifikasi Kabag/Kabid</span>
                                         @endif
+                                        <br>
                                         @if ($periode->verif_wadir)
                                             <span class="badge badge-primary">Terverifikasi Wadir</span>
                                         @else

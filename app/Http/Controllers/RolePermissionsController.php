@@ -9,26 +9,6 @@ use Spatie\Permission\Models\Permission;
 class RolePermissionsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,47 +19,11 @@ class RolePermissionsController extends Controller
         $this->validate($request, [
             'permission_id' => 'required|integer|exists:permissions,id',
         ]);
-
-        $permission = Permission::findOrFail($request->permission_id);
         
+        $permission = Permission::findOrFail($request->permission_id);
         $role->givePermissionTo($permission);
 
-        return redirect()->back()
-            ->with('success', "Hak akses $permission->name diberikan kepada $role->name");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Permission $permission)
-    {
-        //
+        return back()->with('success', "Hak akses $permission->name diberikan kepada $role->name");
     }
 
     /**
@@ -92,7 +36,6 @@ class RolePermissionsController extends Controller
     {
         $role->revokePermissionTo($permission);
 
-        return redirect()->back()
-            ->with('success', "Hak akses $permission->name berhasil dihapus");
+        return back()->with('success', "Hak akses $permission->name berhasil dihapus");
     }
 }
