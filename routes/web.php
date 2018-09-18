@@ -20,9 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function() {
+    Route::get('/penilaian', 'PenilaianController@index')->name('penilaian.index');
+
     Route::get('/pegawai', 'PegawaiController@index')->name('pegawai.index');
     Route::get('/pegawai/{pegawai}', 'PegawaiController@show')->name('pegawai.show');
-
     Route::get('/pegawai/{pegawai}/periode', 'PeriodeController@index')->name('periode.index');
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
     Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');

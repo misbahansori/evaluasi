@@ -18,6 +18,12 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                <li{{ Request::is( 'penilaian*') ? ' class=selected' : '' }}>
+                    <a class="waves-effect waves-dark" href="{{ route('penilaian.index') }}" aria-expanded="false">
+                        <i class="ti-bookmark-alt"></i>
+                        <span class="hide-menu">Penilaian Pegawai</span>
+                    </a>
+                </li>
                 <li{{ Request::is( 'pegawai*') ? ' class=selected' : '' }}>
                     <a class="waves-effect waves-dark" href="{{ route('pegawai.index') }}" aria-expanded="false">
                         <i class="ti-user"></i>

@@ -65,7 +65,7 @@
                         <tr>
                             <td>Bagian</td>
                             <td>:</td>
-                            <td>{{ $pegawai->bagian->nama }}</td>
+                            <td>{{ optional($pegawai->bagian)->nama }}</td>
                         </tr>
                     </table>
                     <form action="{{ route('nilai.update') }}" method="POST">

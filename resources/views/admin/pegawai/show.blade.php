@@ -105,11 +105,11 @@
                                         @csrf
                                         @method('delete')
                                         <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="btn btn-success btn-sm">
-                                            <i class="ti ti-view-list-alt"></i> Detail
+                                            <i class="ti-view-list-alt"></i> Detail
                                         </a>
                                         @can('hapus periode')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus')">
-                                                <i class="ti ti-trash"></i> Hapus
+                                                <i class="ti-trash"></i> Hapus
                                             </button>
                                         @endcan
                                     </form>
