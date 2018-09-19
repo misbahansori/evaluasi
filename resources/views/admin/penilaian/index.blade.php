@@ -33,7 +33,8 @@
                                 <th>Formasi</th>
                                 <th>Periode</th>
                                 <th>Nilai</th>
-                                <th>Status</th>
+                                <th>Verif Kabag</th>
+                                <th>Verif Wadir</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -48,15 +49,16 @@
                                     <td>{{ round($periode->nilai->avg('nilai'), 2) }}</td>
                                     <td>
                                         @if ($periode->verif_kabag)
-                                            <span class="badge badge-primary">Terverifikasi Kabag/Kabid</span> 
+                                            <span class="badge badge-primary">Terverifikasi</span> 
                                         @else
-                                            <span class="badge badge-warning">Belum Diverifikasi Kabag/Kabid</span>
+                                            <span class="badge badge-warning">Belum Diverifikasi</span>
                                         @endif
-                                        <br>
+                                    </td>
+                                    <td>
                                         @if ($periode->verif_wadir)
-                                            <span class="badge badge-primary">Terverifikasi Wadir</span>
+                                            <span class="badge badge-primary">Terverifikasi</span>
                                         @else
-                                            <span class="badge badge-warning">Belum Diverifikasi Wadir</span>
+                                            <span class="badge badge-warning">Belum Diverifikasi</span>
                                         @endif
                                     </td>
                                     <th>
