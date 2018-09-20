@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
 use App\Models\Bulan;
+use App\Models\Bagian;
+use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
@@ -30,7 +34,11 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        $listUnit    = Unit::orderBy('nama')->get();
+        $listFormasi = Formasi::orderBy('nama')->get();
+        $listBagian  = Bagian::orderBy('nama')->get();
+        
+        return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian'));
     }
 
     /**
@@ -39,9 +47,13 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PegawaiRequest $request)
     {
-        //
+        $pegawai = $request->save();
+
+        return redirect()
+            ->route('pegawai.index')
+            ->with('success', "Pegawai $pegawai->nama berhasil ditambahkan");
     }
 
     /**
@@ -52,10 +64,15 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        $listBulan = Bulan::all();
-        $tahunIni = date('Y');
+        $listUnit    = Unit::orderBy('nama')->get();
+        $listFormasi = Formasi::orderBy('nama')->get();
+        $listBagian  = Bagian::orderBy('nama')->get();
+        $listBulan   = Bulan::all();
+        $tahunIni    = date('Y');
         
-        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni'));
+        return view('admin.pegawai.show', compact(
+            'pegawai', 'listBulan', 'tahunIni', 'listUnit', 'listFormasi', 'listBagian'
+        ));
     }
 
     /**
@@ -76,9 +93,12 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
-        //
+        $request->update($pegawai);
+
+        return back()
+            ->with('success', "Pegawai $pegawai->nama berhasil diubah.");
     }
 
     /**
