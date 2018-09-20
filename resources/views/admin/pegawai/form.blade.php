@@ -165,3 +165,10 @@
         @endif
     </div>
 </div>
+<div class="form-group">
+    <div class="col">
+        <button type="submit" class="btn btn-primary">
+            <i class="ti-save"></i> Simpan
+        </button>
+    </div>
+</div>

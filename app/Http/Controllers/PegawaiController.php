@@ -64,15 +64,10 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        $listUnit    = Unit::orderBy('nama')->get();
-        $listFormasi = Formasi::orderBy('nama')->get();
-        $listBagian  = Bagian::orderBy('nama')->get();
         $listBulan   = Bulan::all();
         $tahunIni    = date('Y');
         
-        return view('admin.pegawai.show', compact(
-            'pegawai', 'listBulan', 'tahunIni', 'listUnit', 'listFormasi', 'listBagian'
-        ));
+        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni'));
     }
 
     /**
@@ -83,7 +78,11 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        //
+        $listUnit    = Unit::orderBy('nama')->get();
+        $listFormasi = Formasi::orderBy('nama')->get();
+        $listBagian  = Bagian::orderBy('nama')->get();
+
+        return view('admin.pegawai.edit', compact('pegawai','listUnit', 'listFormasi', 'listBagian'));
     }
 
     /**
@@ -97,7 +96,8 @@ class PegawaiController extends Controller
     {
         $request->update($pegawai);
 
-        return back()
+        return redirect()
+            ->route('pegawai.show', $pegawai->id)
             ->with('success', "Pegawai $pegawai->nama berhasil diubah.");
     }
 

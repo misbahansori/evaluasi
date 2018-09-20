@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Biodata Pegawai</h4>
-                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal2">
+                    <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-info btn-sm">
                         <i class="ti-pencil-alt"></i> Edit Pegawai
-                    </button>
+                    </a>
                 </div>
 
                 <div class="card-body">
@@ -154,31 +154,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="ti ti-save"></i> Simpan
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Modal Tambah Hak Akses Group -->
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <form action="{{ route('pegawai.update', $pegawai->id) }}" method="POST" class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal2Label">Edit Biodata Pegawai</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @csrf
-                        @method('put')
-                        @include('admin.pegawai.form')
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

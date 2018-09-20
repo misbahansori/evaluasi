@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/pegawai', 'PegawaiController@index')->name('pegawai.index');
     Route::get('/pegawai/create', 'PegawaiController@create')->name('pegawai.create');
     Route::get('/pegawai/{pegawai}', 'PegawaiController@show')->name('pegawai.show');
+    Route::get('/pegawai/{pegawai}/edit', 'PegawaiController@edit')->name('pegawai.edit');
     Route::put('/pegawai/{pegawai}', 'PegawaiController@update')->name('pegawai.update');
     Route::post('/pegawai', 'PegawaiController@store')->name('pegawai.store');
     Route::get('/pegawai/{pegawai}/periode', 'PeriodeController@index')->name('periode.index');
