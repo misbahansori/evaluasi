@@ -97,19 +97,34 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $nilai->aspek }}</td>
                                             <td style="width: 50px;">
-                                                <input type="radio" name="{{ $nilai->id }}" id="{{ $nilai->id }}" value="1" {{ $nilai->nilai == 1 ? 'checked=checked' : '' }}>
+                                                 <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="{{ $nilai->id }}" id="{{ $nilai->id }}1" value="1" {{ $nilai->nilai == 1 ? 'checked=checked' : '' }}>
+                                                    <label for="{{ $nilai->id }}1" class="custom-control-label"></label>
+                                                 </div>
                                             </td>
                                             <td style="width: 50px;">
-                                                <input type="radio" name="{{ $nilai->id }}" id="{{ $nilai->id }}" value="2" {{ $nilai->nilai == 2 ? 'checked=checked' : '' }}>
+                                                 <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="{{ $nilai->id }}" id="{{ $nilai->id }}2" value="2" {{ $nilai->nilai == 2 ? 'checked=checked' : '' }}>
+                                                    <label for="{{ $nilai->id }}2" class="custom-control-label"></label>
+                                                 </div>
                                             </td>
                                             <td style="width: 50px;">
-                                                <input type="radio" name="{{ $nilai->id }}" id="{{ $nilai->id }}" value="3" {{ $nilai->nilai == 3 ? 'checked=checked' : '' }}>
+                                                 <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="{{ $nilai->id }}" id="{{ $nilai->id }}3" value="3" {{ $nilai->nilai == 3 ? 'checked=checked' : '' }}>
+                                                    <label for="{{ $nilai->id }}3" class="custom-control-label"></label>
+                                                 </div>
                                             </td>
                                             <td style="width: 50px;">
-                                                <input type="radio" name="{{ $nilai->id }}" id="{{ $nilai->id }}" value="4" {{ $nilai->nilai == 4 ? 'checked=checked' : '' }}>
+                                                 <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="{{ $nilai->id }}" id="{{ $nilai->id }}4" value="4" {{ $nilai->nilai == 4 ? 'checked=checked' : '' }}>
+                                                    <label for="{{ $nilai->id }}4" class="custom-control-label"></label>
+                                                 </div>
                                             </td>
                                             <td style="width: 50px;">
-                                                <input type="radio" name="{{ $nilai->id }}" id="{{ $nilai->id }}" value="5" {{ $nilai->nilai == 5 ? 'checked=checked' : '' }}>
+                                                 <div class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input" name="{{ $nilai->id }}" id="{{ $nilai->id }}5" value="5" {{ $nilai->nilai == 5 ? 'checked=checked' : '' }}>
+                                                    <label for="{{ $nilai->id }}5" class="custom-control-label"></label>
+                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach

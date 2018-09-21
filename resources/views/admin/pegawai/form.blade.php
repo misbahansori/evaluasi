@@ -38,7 +38,7 @@
     <label for="jenis_kelamin" class="col">Jenis Kelamin</label>
     <div class="col-md-5">
         <div class="custom-control custom-radio custom-control-inline">
-            <input class="custom-control-input"name="jenis_kelamin" type="radio" id="Laki-laki" value="L" {{ old('jenis_kelamin', @$pegawai->jenis_kelamin) == 'L' ? 'checked' : '' }}>
+            <input class="custom-control-input" name="jenis_kelamin" type="radio" id="Laki-laki" value="L" {{ old('jenis_kelamin', @$pegawai->jenis_kelamin) == 'L' ? 'checked' : '' }}>
             <label class="custom-control-label" for="Laki-laki">Laki-laki</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
