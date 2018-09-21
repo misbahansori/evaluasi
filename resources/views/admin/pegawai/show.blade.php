@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div>{!! $chart->container() !!}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
@@ -166,3 +175,8 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src=//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js charset=utf-8></script>
+    {!! $chart->script() !!}
+@endpush

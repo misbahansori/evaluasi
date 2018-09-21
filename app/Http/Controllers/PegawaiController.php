@@ -9,6 +9,7 @@ use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Requests\PegawaiRequest;
+use App\Charts\PenilaianPegawaiChart;
 
 class PegawaiController extends Controller
 {
@@ -66,8 +67,10 @@ class PegawaiController extends Controller
     {
         $listBulan   = Bulan::all();
         $tahunIni    = date('Y');
+
+        $chart = new PenilaianPegawaiChart($pegawai);
         
-        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni'));
+        return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni', 'pegawai', 'chart'));
     }
 
     /**

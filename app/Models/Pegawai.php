@@ -54,7 +54,8 @@ class Pegawai extends Model
     {
         return $this->hasMany(Periode::class)
             ->with('bulan')
-            ->orderBy('created_at');
+            ->orderBy('tahun')
+            ->orderBy('bulan_id');
     }
 
     /**
