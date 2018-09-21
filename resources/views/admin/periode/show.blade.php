@@ -116,11 +116,11 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="2">Total Nilai</td>
-                                    <td colspan="6">{{ $periode->nilai->sum('nilai') }}</td>
+                                    <td colspan="6">{{ $periode->totalNilai() }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Rata-rata Nilai</td>
-                                    <td colspan="6">{{ round($periode->nilai->avg('nilai'), 2) }}</td>
+                                    <td colspan="6">{{ $periode->rataNilai() }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Element Penilaian</td>

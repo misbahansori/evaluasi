@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Bulan;
 use App\Models\Pegawai;
 use App\Models\Periode;

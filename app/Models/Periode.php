@@ -60,6 +60,22 @@ class Periode extends Model
     }
 
     /**
+     * Total nilai per periode
+     */
+    public function totalNilai()
+    {
+        return $this->nilai()->sum('nilai');
+    }
+
+    /**
+     * Rata - rata nilai per periode
+     */
+    public function rataNilai()
+    {
+        return round($this->nilai()->avg('nilai'), 2);
+    }
+
+    /**
      * Set verif_kabag field to now()
      */
     public function verifKabag()
