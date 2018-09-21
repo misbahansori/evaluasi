@@ -64,7 +64,7 @@ class Periode extends Model
      */
     public function totalNilai()
     {
-        return $this->nilai()->sum('nilai');
+        return $this->nilai->sum('nilai');
     }
 
     /**
@@ -72,7 +72,7 @@ class Periode extends Model
      */
     public function rataNilai()
     {
-        return round($this->nilai()->avg('nilai'), 2);
+        return round($this->nilai->avg('nilai'), 2);
     }
 
     /**

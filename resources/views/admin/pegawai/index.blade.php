@@ -16,6 +16,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NBM</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>Tanggal Lahir</th>
@@ -27,6 +28,7 @@
                             @foreach ($listPegawai as $pegawai)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pegawai->nbm }}</td>
                                     <td>{{ $pegawai->nama }}</td>
                                     <td>{{ $pegawai->alamat }}</td>
                                     <td>{{ $pegawai->tanggal_lahir }}</td>

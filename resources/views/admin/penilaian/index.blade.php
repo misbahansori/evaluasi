@@ -46,7 +46,7 @@
                                     <td>{{ $periode->pegawai->unit->nama }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
                                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
-                                    <td>{{ round($periode->nilai->avg('nilai'), 2) }}</td>
+                                    <td>{{ $periode->rataNilai() }}</td>
                                     <td>
                                         @if ($periode->verif_kabag)
                                             <span class="badge badge-primary">Terverifikasi</span> 
