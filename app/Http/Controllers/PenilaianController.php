@@ -21,7 +21,7 @@ class PenilaianController extends Controller
         }
 
         $listPeriode = Periode::query()
-            ->with('pegawai.unit', 'pegawai.formasi', 'nilai')
+            ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->get();
