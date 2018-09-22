@@ -104,4 +104,18 @@ class Periode extends Model
             ->whereBulanId($bulan)
             ->whereTahun($tahun);
     }
+
+    /**
+     * Memfilter Pegawai berdasarkan user() Role/Unit
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMilikUser($query)
+    {
+        $query->whereHas('pegawai.unit', function($q) {
+            $q->whereIn('nama', auth()->user()->getRoleNames());
+        });
+    }
 }

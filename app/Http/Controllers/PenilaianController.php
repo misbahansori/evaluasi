@@ -22,6 +22,7 @@ class PenilaianController extends Controller
 
         $listPeriode = Periode::query()
             ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
+            ->milikUser()
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->get();
