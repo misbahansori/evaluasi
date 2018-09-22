@@ -15,9 +15,11 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Biodata Pegawai</h4>
-                    <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-info btn-sm">
-                        <i class="ti-pencil-alt"></i> Edit Pegawai
-                    </a>
+                    @can('edit pegawai')
+                        <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-info btn-sm">
+                            <i class="ti-pencil-alt"></i> Edit Pegawai
+                        </a>
+                    @endcan
                 </div>
 
                 <div class="card-body">

@@ -13,6 +13,11 @@ use App\Charts\PenilaianPegawaiChart;
 
 class PegawaiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:tambah pegawai')->only('create', 'store');
+        $this->middleware('permission:edit pegawai')->only('edit', 'update');
+    }
     /**
      * Display a listing of the resource.
      *

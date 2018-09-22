@@ -11,16 +11,7 @@
                 <div class="card-body">
                     <form action="{{ route('pegawai.store') }}" method="POST">
                         @csrf
-
                         @include('admin.pegawai.form')
-                        
-                        <div class="form-group">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="ti-save"></i> Simpan
-                                </button>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>

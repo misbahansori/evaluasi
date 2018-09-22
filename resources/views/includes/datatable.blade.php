@@ -8,7 +8,7 @@
         $(document).ready(function() {
             $('#datatable').DataTable({
                 'language' : {
-                    "sEmptyTable":   "Tidak ada data yang tersedia pada tabel ini",
+                    "sEmptyTable":   "Tidak ada data",
                     "sProcessing":   "Sedang memproses...",
                     "sLengthMenu":   "Tampilkan _MENU_ entri",
                     "sZeroRecords":  "Tidak ditemukan data yang sesuai",
@@ -24,7 +24,8 @@
                         "sNext":     "Selanjutnya",
                         "sLast":     "Terakhir"
                     }
-                }
+                },
+                'colReorder' : true
             });
         } );
     </script>

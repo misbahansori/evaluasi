@@ -14,6 +14,7 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
+            'tambah pegawai', 'edit pegawai',
             'tambah periode', 'hapus periode', 
             'verif wadir', 'verif kabag',
             'master aspek', 'master user', 'master group'

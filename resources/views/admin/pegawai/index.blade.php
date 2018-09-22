@@ -6,9 +6,11 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar Pegawai</h4>
-                    <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm">
-                        <i class="ti-pencil"></i> Tambah Pegawai
-                    </a>
+                    @can('tambah pegawai')
+                        <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm">
+                            <i class="ti-pencil"></i> Tambah Pegawai
+                        </a>
+                    @endcan
                 </div>
 
                 <div class="card-body">
