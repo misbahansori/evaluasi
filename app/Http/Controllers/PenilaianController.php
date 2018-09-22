@@ -22,9 +22,12 @@ class PenilaianController extends Controller
 
         $listPeriode = Periode::query()
             ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
-            ->milikUser()
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
+            ->milikUser()
+            ->when(auth()->user()->hasPermissionTo('verif wadir'),function($query){
+                return $query->terverifikasiKabag();
+            })
             ->get();
 
         return view('admin.penilaian.index', compact('listPeriode', 'listBulan', 'tahunIni'));
