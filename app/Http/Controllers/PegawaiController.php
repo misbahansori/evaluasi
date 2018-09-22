@@ -70,6 +70,10 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
+        if (! auth()->user()->hasRole($pegawai->unit->nama)) {
+            abort(403);
+        }
+        
         $listBulan   = Bulan::all();
         $tahunIni    = date('Y');
 

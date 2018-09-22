@@ -85,6 +85,10 @@ class PeriodeController extends Controller
      */
     public function show(Pegawai $pegawai, Periode $periode)
     {
+        if (! auth()->user()->hasRole($pegawai->unit->nama)) {
+            abort(403);
+        }
+        
         return view('admin.periode.show', compact('pegawai', 'periode'));
     }
 
