@@ -18,6 +18,7 @@ class PegawaiController extends Controller
         $this->middleware('permission:tambah pegawai')->only('create', 'store');
         $this->middleware('permission:edit pegawai')->only('edit', 'update');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +44,7 @@ class PegawaiController extends Controller
         $listUnit    = Unit::orderBy('nama')->get();
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
-        
+
         return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian'));
     }
 
@@ -65,27 +66,25 @@ class PegawaiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function show(Pegawai $pegawai)
     {
-        if (! auth()->user()->hasRole($pegawai->unit->nama)) {
-            abort(403);
-        }
-        
-        $listBulan   = Bulan::all();
-        $tahunIni    = date('Y');
+        $this->authorize('view', $pegawai);
+
+        $listBulan = Bulan::all();
+        $tahunIni  = date('Y');
 
         $chart = new PenilaianPegawaiChart($pegawai);
-        
+
         return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni', 'pegawai', 'chart'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function edit(Pegawai $pegawai)
@@ -94,14 +93,14 @@ class PegawaiController extends Controller
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
 
-        return view('admin.pegawai.edit', compact('pegawai','listUnit', 'listFormasi', 'listBagian'));
+        return view('admin.pegawai.edit', compact('pegawai', 'listUnit', 'listFormasi', 'listBagian'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pegawai  $pegawai
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function update(PegawaiRequest $request, Pegawai $pegawai)
@@ -116,7 +115,7 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function destroy(Pegawai $pegawai)

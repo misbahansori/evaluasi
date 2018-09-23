@@ -19,26 +19,6 @@ class PeriodeController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Pegawai $pegawai)
-    {
-        return view('admin.periode.index', compact('pegawai'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Pegawai $pegawai)
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -85,34 +65,9 @@ class PeriodeController extends Controller
      */
     public function show(Pegawai $pegawai, Periode $periode)
     {
-        if (! auth()->user()->hasRole($pegawai->unit->nama)) {
-            abort(403);
-        }
+        $this->authorize('view', $pegawai);
         
         return view('admin.periode.show', compact('pegawai', 'periode'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Periode  $periode
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Periode $periode)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Periode  $periode
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Periode $periode)
-    {
-        //
     }
 
     /**
@@ -124,7 +79,6 @@ class PeriodeController extends Controller
     public function destroy(Pegawai $pegawai, Periode $periode)
     {
         $periode->aspek()->detach();
-
         $periode->delete();
 
         return redirect()
