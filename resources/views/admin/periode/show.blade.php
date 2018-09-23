@@ -10,128 +10,20 @@
                         @can('verif kabag')
                             <form action="{{ route('verif.kabag', $periode->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Verifikasi Kabag/Kabid</button>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Verifikasi Kabag/Kabid</button>
                             </form>
                         @endcan
                         @can('verif wadir')
                             <form action="{{ route('verif.wadir', $periode->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Verifikasi Wakil Direktur</button>
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Verifikasi Wakil Direktur</button>
                             </form>
                         @endcan
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td>NBM</td>
-                            <td>:</td>
-                            <td>{{ $pegawai->nbm }}</td>
-
-                            <td>Verifikasi Kabag / Kabid</td>
-                            <td>:</td>
-                            <td>
-                                @if ($periode->verif_kabag)
-                                    <span class="badge badge-primary">Terverifikasi</span> 
-                                    <br>
-                                    <small>{{ $periode->verif_kabag->formatLocalized('%A, %d %B %Y') }}</small>
-                                @else
-                                    <span class="badge badge-warning">Belum Diverifikasi</span>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nama</td>
-                            <td>:</td>
-                            <td>{{ $pegawai->nama }}</td>
-
-                            <td>Verifikasi Wakil Direktur</td>
-                            <td>:</td>
-                            <td>
-                                @if ($periode->verif_wadir)
-                                    <span class="badge badge-primary">Terverifikasi</span>
-                                    <br>
-                                    <small>{{ $periode->verif_wadir->formatLocalized('%A, %d %B %Y') }}</small>
-                                @else
-                                    <span class="badge badge-warning">Belum Diverifikasi</span>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Unit</td>
-                            <td>:</td>
-                            <td>{{ optional($periode->pegawai->unit)->nama }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bagian</td>
-                            <td>:</td>
-                            <td>{{ optional($pegawai->bagian)->nama }}</td>
-                        </tr>
-                    </table>
-                    <form action="{{ route('nilai.update') }}" method="POST">
-                        @csrf
-                        @method('put')
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2" style="vertical-align: middle">No</th>
-                                    <th rowspan="2" style="vertical-align: middle">Aspek Penilaian</th>
-                                    <th colspan="5" style="text-align: center">Nilai</th>
-                                </tr>
-                                <tr>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                    <th>4</th>
-                                    <th>5</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($periode->nilai->groupBy('kategori')->sortKeys() as $grouped)
-                                    <tr>
-                                        <th colspan="9"> {{ $grouped->first()->kategori }}</th>
-                                    </tr>
-                                    @foreach ($grouped as $nilai)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $nilai->aspek }}</td>
-                                            @for ($i = 1; $i < 6; $i++)
-                                                <td style="width: 50px;">
-                                                    <div class="custom-control custom-radio">
-                                                    <input type="radio" 
-                                                        class="custom-control-input" 
-                                                        name="{{ $nilai->id }}" id="{{ $nilai->id }}{{ $i }}" 
-                                                        value="{{ $i }}" 
-                                                        {{ $nilai->nilai == $i ? 'checked=checked' : '' }} 
-                                                        {{ $periode->tidakBisaDiedit() ? 'disabled=disabled' : '' }}
-                                                    >
-                                                    <label for="{{ $nilai->id }}{{ $i }}" class="custom-control-label"></label>
-                                                    </div>
-                                                </td>
-                                            @endfor
-                                        </tr>
-                                    @endforeach
-                                @endforeach
-                                <tr>
-                                    <td colspan="2">Total Nilai</td>
-                                    <td colspan="6">{{ $periode->totalNilai() }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Rata-rata Nilai</td>
-                                    <td colspan="6">{{ $periode->rataNilai() }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Element Penilaian</td>
-                                    <td colspan="6">{{ $periode->nilai->count() }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="button-group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg">
-                                <i class="fa fa-save"></i> Simpan
-                            </button>
-                        </div>
-                    </form>
+                    @include('admin.periode.pegawai-table')
+                    @include('admin.periode.penilaian-form')
                 </div>
             </div>
         </div>
