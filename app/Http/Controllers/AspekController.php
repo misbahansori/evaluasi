@@ -48,15 +48,15 @@ class AspekController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'bagian' => 'required|integer|exists:bagian,id',
-            'nama' => 'required|string|max:150',
+            'bagian'   => 'required|integer|exists:bagian,id',
+            'nama'     => 'required|string|max:150',
             'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'
         ]);
 
         $aspek = Aspek::create([
             'bagian_id' => $request->bagian,
-            'nama' => $request->nama,
-            'kategori' => $request->kategori
+            'nama'      => $request->nama,
+            'kategori'  => $request->kategori
         ]);
 
         return redirect()->route('aspek.index')
@@ -66,7 +66,7 @@ class AspekController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Aspek  $aspek
+     * @param  \App\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function edit(Aspek $aspek)
@@ -80,21 +80,21 @@ class AspekController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aspek  $aspek
+     * @param  \App\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Aspek $aspek)
     {
         $this->validate($request, [
-            'bagian' => 'required|integer|exists:bagian,id',
-            'nama' => 'required|string|max:150',
+            'bagian'   => 'required|integer|exists:bagian,id',
+            'nama'     => 'required|string|max:150',
             'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'
         ]);
 
         $aspek->update([
             'bagian_id' => $request->bagian,
-            'nama' => $request->nama,
-            'kategori' => $request->kategori
+            'nama'      => $request->nama,
+            'kategori'  => $request->kategori
         ]);
 
         return redirect()->route('aspek.index')
@@ -104,7 +104,7 @@ class AspekController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Aspek  $aspek
+     * @param  \App\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function destroy(Aspek $aspek)
