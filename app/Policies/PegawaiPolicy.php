@@ -19,6 +19,9 @@ class PegawaiPolicy
      */
     public function view(User $user, Pegawai $pegawai)
     {
+        if (! $pegawai->unit) {
+            return true;
+        }
         return $user->hasRole($pegawai->unit->nama);
     }
 

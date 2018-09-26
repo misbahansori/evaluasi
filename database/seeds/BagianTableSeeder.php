@@ -12,7 +12,7 @@ class BagianTableSeeder extends Seeder
     public function run()
     {
         $bagian = [
-            'Struktural', 'Medis', 'Penunjang Medis', 'Umum'
+            'Struktural', 'Pelayanan Medis', 'Penunjang Medis', 'Umum'
         ];
 
         foreach ($bagian as $key => $value) {

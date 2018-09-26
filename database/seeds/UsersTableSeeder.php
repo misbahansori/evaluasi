@@ -21,5 +21,13 @@ class UsersTableSeeder extends Seeder
         $user->assignRole(Spatie\Permission\Models\Role::all());
         $user->givePermissionTo(Spatie\Permission\Models\Permission::all());
 
+        $user2 = User::create([
+            'name' => 'Sugiarto',
+            'email' => 'ugi@gmail.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $user2->assignRole(Spatie\Permission\Models\Role::all());
+        $user2->givePermissionTo(Spatie\Permission\Models\Permission::all());
     }
 }
