@@ -30,6 +30,7 @@ class CreatePegawaiTable extends Migration
             $table->integer('bagian_id')->unsigned()->nullable();
             $table->integer('formasi_id')->unsigned()->nullable();
             $table->integer('unit_id')->unsigned()->nullable();
+            $table->integer('status_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

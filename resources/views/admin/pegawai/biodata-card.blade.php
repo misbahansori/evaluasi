@@ -62,6 +62,11 @@
                     <td>{{ optional($pegawai->bagian)->nama }}</td>
                 </tr>
                 <tr>
+                    <td>Status Kepegawaian</td>
+                    <td>:</td>
+                    <td>{{ optional($pegawai->status)->nama }}</td>
+                </tr>
+                <tr>
                     <td>Tanggal Masuk</td>
                     <td>:</td>
                     <td>{{ $pegawai->tanggal_masuk }}</td>

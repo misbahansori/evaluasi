@@ -165,6 +165,23 @@
         @endif
     </div>
 </div>
+
+<div class="form-group">
+    <label for="status" class="col">Status Pegawai</label>
+    <div class="col-md-6">
+        <select name="status" id="status" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}">
+            <option value="" selected disabled>--- Silahkan pilih status ---</option>
+            @foreach ($listStatus as $status)
+                <option value="{{ $status->id }}" {{ old('status', @$pegawai->status->id) == $status->id ? 'selected=selected' : '' }}>{{ $status->nama }}</option>
+            @endforeach
+        </select>
+        @if ($errors->has('status'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('status') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
 <div class="form-group">
     <div class="col">
         <button type="submit" class="btn btn-primary">

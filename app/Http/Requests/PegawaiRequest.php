@@ -8,6 +8,7 @@ use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Status;
 
 class PegawaiRequest extends FormRequest
 {
@@ -41,6 +42,7 @@ class PegawaiRequest extends FormRequest
             'unit'          => 'required|integer|exists:unit,id',
             'formasi'       => 'required|integer|exists:formasi,id',
             'bagian'        => 'required|integer|exists:bagian,id',
+            'status'        => 'required|integer|exists:status,id',
         ];
 
         if ($this->isMethod('put')) {
@@ -58,7 +60,7 @@ class PegawaiRequest extends FormRequest
      */
     public function save()
     {
-        $pegawai = Pegawai::create($this->except('unit', 'formasi', 'bagian'));
+        $pegawai = Pegawai::create($this->except('unit', 'formasi', 'bagian', 'status'));
         $this->associate($pegawai);
         $pegawai->save();
 
@@ -74,7 +76,7 @@ class PegawaiRequest extends FormRequest
     public function update(Pegawai $pegawai)
     {
         $this->associate($pegawai);
-        $pegawai->update($this->except('unit', 'formasi', 'bagian'));
+        $pegawai->update($this->except('unit', 'formasi', 'bagian', 'status'));
 
         return $pegawai;
     }
@@ -90,10 +92,12 @@ class PegawaiRequest extends FormRequest
         $unit    = Unit::findOrFail($this->unit);
         $formasi = Formasi::findOrFail($this->formasi);
         $bagian  = Bagian::findOrFail($this->bagian);
+        $status  = Status::findOrFail($this->status);
 
         $pegawai->unit()->associate($unit);
         $pegawai->formasi()->associate($formasi);
         $pegawai->bagian()->associate($bagian);
+        $pegawai->status()->associate($status);
 
         return $pegawai;
     }

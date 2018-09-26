@@ -48,6 +48,14 @@ class Pegawai extends Model
     }
 
     /**
+     * Setiap Pegawai mempunyai satu Bagian
+     */
+    public function status()
+    {
+       return $this->belongsTo(Status::class);
+    }
+
+    /**
      * Pegawai punya banyak Periode penilaian
      */
     public function periode()

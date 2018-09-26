@@ -10,6 +10,7 @@ use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Requests\PegawaiRequest;
 use App\Charts\PenilaianPegawaiChart;
+use App\Models\Status;
 
 class PegawaiController extends Controller
 {
@@ -27,7 +28,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $listPegawai = Pegawai::query()
-            // ->milikUser()
+            ->milikUser()
             ->with('bagian', 'unit', 'formasi')
             ->get();
 
@@ -44,8 +45,9 @@ class PegawaiController extends Controller
         $listUnit    = Unit::orderBy('nama')->get();
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
+        $listStatus  = Status::orderBy('nama')->get();
 
-        return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian'));
+        return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian', 'listStatus'));
     }
 
     /**
@@ -92,8 +94,9 @@ class PegawaiController extends Controller
         $listUnit    = Unit::orderBy('nama')->get();
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
+        $listStatus  = Status::orderBy('nama')->get();
 
-        return view('admin.pegawai.edit', compact('pegawai', 'listUnit', 'listFormasi', 'listBagian'));
+        return view('admin.pegawai.edit', compact('pegawai', 'listUnit', 'listFormasi', 'listBagian', 'listStatus'));
     }
 
     /**
