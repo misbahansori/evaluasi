@@ -38,6 +38,8 @@ class RolesTableSeeder extends Seeder
             ['name' => 'Ruang Shafa', 'guard_name' => 'web'],
             ['name' => 'Ruang UGD', 'guard_name' => 'web'],
             ['name' => 'Tata Usaha dan Personalia', 'guard_name' => 'web'],
+            ['name' => 'Bindatra', 'guard_name' => 'web'],
+            ['name' => 'Musdalifah', 'guard_name' => 'web'],
         ];
 
         DB::table('roles')->insert($listUnit);

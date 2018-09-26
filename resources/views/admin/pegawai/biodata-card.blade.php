@@ -52,7 +52,7 @@
                     <td>{{ optional($pegawai->formasi)->nama }}</td>
                 </tr>
                 <tr>
-                    <td>Unit</td>
+                    <td>Unit / Ruangan</td>
                     <td>:</td>
                     <td>{{ optional($pegawai->unit)->nama }}</td>
                 </tr>

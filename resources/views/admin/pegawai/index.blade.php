@@ -23,6 +23,8 @@
                                 <th>Alamat</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Unit</th>
+                                <th>Bagian</th>
+                                <th>Formasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -34,7 +36,9 @@
                                     <td>{{ $pegawai->nama }}</td>
                                     <td>{{ $pegawai->alamat }}</td>
                                     <td>{{ $pegawai->tanggal_lahir }}</td>
-                                    <td>{{ $pegawai->unit->nama }}</td>
+                                    <td>{{ optional($pegawai->unit)->nama }}</td>
+                                    <td>{{ optional($pegawai->bagian)->nama }}</td>
+                                    <td>{{ optional($pegawai->formasi)->nama }}</td>
                                     <th>
                                         <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-success btn-sm">
                                             <i class="ti ti-write"></i> Biodata

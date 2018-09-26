@@ -49,6 +49,7 @@ class FormasiTableSeeder extends Seeder
             ['nama' => 'Teknisi'],
             ['nama' => 'Teknisi Elektromedis'],
             ['nama' => 'Tenaga Gizi'],
+            ['nama' => 'Bindatra'],
         ];
 
         DB::table('formasi')->insert($listFormasi);

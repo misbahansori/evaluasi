@@ -38,6 +38,8 @@ class UnitTableSeeder extends Seeder
             ['nama' => 'Ruang Shafa'],
             ['nama' => 'Ruang UGD'],
             ['nama' => 'Tata Usaha dan Personalia'],
+            ['nama' => 'Bindatra'],
+            ['nama' => 'Musdalifah'],
         ];
 
         DB::table('unit')->insert($listUnit);

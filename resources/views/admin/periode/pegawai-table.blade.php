@@ -34,7 +34,7 @@
         </td>
     </tr>
     <tr>
-        <td>Unit</td>
+        <td>Unit / Ruangan</td>
         <td>:</td>
         <td>{{ optional($periode->pegawai->unit)->nama }}</td>
     </tr>
