@@ -107,7 +107,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="role" class="">Silahkan pilih Group</label>
-                            <select class="form-control select2{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role" multiple="multiple">
+                            <select class="form-control select2{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role[]" multiple="multiple">
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
