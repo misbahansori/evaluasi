@@ -36,7 +36,7 @@
                                     <td>{{ $pegawai->nama }}</td>
                                     <td>{{ $pegawai->alamat }}</td>
                                     <td>{{ $pegawai->tanggal_lahir }}</td>
-                                    <td>{{ optional($pegawai->unit)->nama }}</td>
+                                    <td>{{ optional($pegawai->unit)->name }}</td>
                                     <td>{{ optional($pegawai->bagian)->nama }}</td>
                                     <td>{{ optional($pegawai->formasi)->nama }}</td>
                                     <th>

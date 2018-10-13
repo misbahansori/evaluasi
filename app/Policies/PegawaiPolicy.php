@@ -22,7 +22,7 @@ class PegawaiPolicy
         if (! $pegawai->unit) {
             return true;
         }
-        return $user->hasRole($pegawai->unit->nama);
+        return $user->hasRole($pegawai->unit->name);
     }
 
 }

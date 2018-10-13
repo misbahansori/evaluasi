@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $periode->pegawai->nama }}</td>
-                                    <td>{{ $periode->pegawai->unit->nama }}</td>
+                                    <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
                                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
                                     <td>{{ $periode->rataNilai() }}</td>

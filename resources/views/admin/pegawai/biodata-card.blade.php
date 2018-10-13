@@ -54,7 +54,7 @@
                 <tr>
                     <td>Unit / Ruangan</td>
                     <td>:</td>
-                    <td>{{ optional($pegawai->unit)->nama }}</td>
+                    <td>{{ optional($pegawai->unit)->name }}</td>
                 </tr>
                 <tr>
                     <td>Bagian</td>

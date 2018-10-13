@@ -11,7 +11,7 @@ class Unit extends Model
     *
     * @var string
     */
-    protected $table = 'unit';
+    protected $table = 'roles';
 
     /**
     * The table associated with the model.

@@ -76,7 +76,7 @@ class Pegawai extends Model
     public function scopeMilikUser($query)
     {
         $query->whereHas('unit', function($q) {
-            $q->whereIn('nama', auth()->user()->getRoleNames());
+            $q->whereIn('name', auth()->user()->getRoleNames());
         });
     }
 }

@@ -121,7 +121,7 @@
         <select name="unit" id="unit" class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}">
             <option value="" selected disabled>--- Silahkan pilih unit ---</option>
             @foreach ($listUnit as $unit)
-                <option value="{{ $unit->id }}" {{ old('unit', @$pegawai->unit->id) == $unit->id ? 'selected=selected' : '' }}>{{ $unit->nama }}</option>
+                <option value="{{ $unit->id }}" {{ old('unit', @$pegawai->unit->id) == $unit->id ? 'selected=selected' : '' }}>{{ $unit->name }}</option>
             @endforeach
         </select>
         @if ($errors->has('unit'))
