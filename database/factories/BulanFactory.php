@@ -52,7 +52,7 @@ $factory->define(Bulan::class, function (Faker $faker) {
         ],
         [
             'id' => 10,
-            'nama' => 'Okober',
+            'nama' => 'Oktober',
             'nama_singkat' => 'Okt'
         ],
         [
