@@ -19,7 +19,7 @@
     <tr>
         <td>Nama</td>
         <td>:</td>
-        <td>{{ $pegawai->nama }}</td>
+        <td><a href="{{ route('pegawai.show', $pegawai->id) }}">{{ $pegawai->nama }}</a></td>
 
         <td>Verifikasi Wakil Direktur</td>
         <td>:</td>
@@ -36,7 +36,7 @@
     <tr>
         <td>Unit / Ruangan</td>
         <td>:</td>
-        <td>{{ optional($periode->pegawai->unit)->nama }}</td>
+        <td>{{ optional($periode->pegawai->unit)->name }}</td>
     </tr>
     <tr>
         <td>Bagian</td>

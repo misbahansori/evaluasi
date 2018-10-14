@@ -15,7 +15,7 @@
                     <div class="col-md-6">
                         <select name="bulan" id="bulan" class="form-control{{ $errors->has('bulan') ? ' is-invalid' : '' }}">
                             @foreach ($listBulan as $bulan)
-                                <option {{ old('bulan') == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
+                                <option {{ old('bulan', date('m')) == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('bulan'))

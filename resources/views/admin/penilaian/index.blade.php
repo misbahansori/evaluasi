@@ -5,7 +5,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
-                    <h4>Penilaian Pegawai</h4>
+                    <h4>
+                        Penilaian Pegawai Bulan 
+                        {{ \Carbon\Carbon::createFromFormat('m', request()->bulan)->formatLocalized('%B') }} 
+                        {{ request()->tahun }}
+                    </h4>
                     <form action="{{ route('penilaian.index') }}" method="GET" class="form-inline">
                         <select name="bulan" id="bulan" class="form-control mr-2">
                             @foreach ($listBulan as $bulan)

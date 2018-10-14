@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Unit;
 use App\Models\Bulan;
 use App\Models\Bagian;
+use App\Models\Status;
 use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use App\Http\Requests\PegawaiRequest;
 use App\Charts\PenilaianPegawaiChart;
-use App\Models\Status;
+use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
@@ -42,10 +42,10 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $listUnit    = Unit::orderBy('nama')->get();
+        $listUnit    = Unit::orderBy('name')->get();
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
-        $listStatus  = Status::orderBy('nama')->get();
+        $listStatus  = Status::all();
 
         return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian', 'listStatus'));
     }
@@ -91,10 +91,10 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        $listUnit    = Unit::orderBy('nama')->get();
+        $listUnit    = Unit::orderBy('name')->get();
         $listFormasi = Formasi::orderBy('nama')->get();
         $listBagian  = Bagian::orderBy('nama')->get();
-        $listStatus  = Status::orderBy('nama')->get();
+        $listStatus  = Status::all();
 
         return view('admin.pegawai.edit', compact('pegawai', 'listUnit', 'listFormasi', 'listBagian', 'listStatus'));
     }
