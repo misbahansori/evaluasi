@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Models\Nilai;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodeModelTest extends TestCase
@@ -18,11 +19,12 @@ class PeriodeModelTest extends TestCase
             ['name' => 'verif wadir', 'guard_name' => 'web'],
         ]);
 
+       (new \BulanTableSeeder())->run();
+
     }
     /** @test */
     public function it_has_bulan()
     {
-       (new \BulanTableSeeder())->run();
 
         $periode = factory('App\Models\Periode')->create();
 
@@ -92,5 +94,24 @@ class PeriodeModelTest extends TestCase
         $periode = factory('App\Models\Periode')->create();
 
         $this->assertTrue($periode->tidakBisaDiedit());
+    }
+
+    /** @test */
+    public function periode_bisa_menampilkan_nilai_rata_rata()
+    {
+        $bagian  = factory('App\Models\Bagian')->create();
+        $aspek   = factory('App\Models\Aspek', 20)->create(['bagian_id' => $bagian->id]);
+        $pegawai = factory('App\Models\Pegawai')->create(['bagian_id' => $bagian->id]);
+        $periode = factory('App\Models\Periode')->create(['pegawai_id' => $pegawai->id]);
+
+        $pegawai->bagian->aspek->each(function ($item) use ($periode) {
+            $periode->nilai()->create(['aspek' => $item->nama, 'kategori' => $item->kategori]);
+        });
+        
+        $this->assertEquals(0, $periode->rataNilai());
+        
+        $nilai = Nilai::first()->update(['nilai' => 5]);
+        
+        $this->assertEquals($periode->totalNilai() / $periode->nilai()->count(), $periode->rataNilai());
     }
 }
