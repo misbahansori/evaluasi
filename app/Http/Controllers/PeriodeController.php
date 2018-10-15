@@ -78,6 +78,8 @@ class PeriodeController extends Controller
      */
     public function destroy(Pegawai $pegawai, Periode $periode)
     {
+        $this->authorize('view', $pegawai);
+
         $periode->aspek()->detach();
         $periode->delete();
 

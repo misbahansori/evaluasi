@@ -12,10 +12,10 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         DB::table('status')->insert([
-            ['nama' => 'Pegawai Tetap'],
-            ['nama' => 'Calon Pegawai'],
-            ['nama' => 'Pegawai Kontrak'],
             ['nama' => 'Pegawai Magang'],
+            ['nama' => 'Pegawai Kontrak'],
+            ['nama' => 'Calon Pegawai'],
+            ['nama' => 'Pegawai Tetap'],
         ]);
     }
 }

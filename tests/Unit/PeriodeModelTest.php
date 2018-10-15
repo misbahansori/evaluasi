@@ -22,6 +22,8 @@ class PeriodeModelTest extends TestCase
     /** @test */
     public function it_has_bulan()
     {
+       (new \BulanTableSeeder())->run();
+
         $periode = factory('App\Models\Periode')->create();
 
         $this->assertInstanceOf('App\Models\Bulan', $periode->bulan);
@@ -55,6 +57,18 @@ class PeriodeModelTest extends TestCase
         $periode = factory('App\Models\Periode')->create(['verif_kabag' => 1]);
 
         $this->assertTrue($periode->tidakBisaDiedit());
+    }
+
+    /** @test */
+    public function periode_bisa_diedit_jika_sudah_di_verif_kabag_dan_user_adalah_wadir()
+    {
+        $user = factory('App\Models\User')->create();
+        $user->givePermissionTo('verif wadir');
+        $this->actingAs($user);
+
+        $periode = factory('App\Models\Periode')->create(['verif_kabag' => 1]);
+
+        $this->assertFalse($periode->tidakBisaDiedit());
     }
 
     /** @test */

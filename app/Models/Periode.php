@@ -147,8 +147,8 @@ class Periode extends Model
 
     public function tidakBisaDiedit()
     {
-        // Jika sudah di verifikasi kabag dan user bukan kabag
-        if ($this->verif_kabag && ! auth()->user()->hasPermissionTo('verif kabag')) {
+        // Jika sudah di verifikasi kabag dan user bukan kabag atau wadir
+        if ($this->verif_kabag && ! auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
             return true;
         }
         // jika sudah di verif wadir dan user bukan wadir

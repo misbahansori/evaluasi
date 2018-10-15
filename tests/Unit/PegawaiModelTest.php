@@ -29,4 +29,20 @@ class PegawaiModelTest extends TestCase
 
         $this->assertInstanceOf('App\Models\Bagian', $pegawai->bagian);
     }
+
+    /** @test */
+    public function ngetes_scope_milik_user()
+    {
+        $unit = factory('App\Models\Unit', 2)->create();
+        $user = factory('App\Models\User')->create();
+        $user->assignRole(2);
+        $this->actingAs($user);
+
+        $pegawai1 = factory('App\Models\Pegawai', 1)->create(['unit_id' => 1]);
+        $pegawai2 = factory('App\Models\Pegawai', 2)->create(['unit_id' => 2]);
+
+        $listPegawai = \App\Models\Pegawai::milikUser()->get();
+
+        $this->assertEquals(2, $listPegawai->count());
+    }
 }
