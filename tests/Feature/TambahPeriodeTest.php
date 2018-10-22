@@ -71,6 +71,21 @@ class TambahPeriodeTest extends TestCase
     }
 
     /** @test */
+    public function pegawai_yang_tidak_memiliki_bagian_tidak_bisa_ditambakan_periode()
+    {
+        $this->user->givePermissionTo(1);
+
+        $this->pegawai->update(['bagian_id' => null]);
+
+        $this->actingAs($this->user)
+            ->post(route('periode.store', $this->pegawai->id), [
+                'bulan' => 12,
+                'tahun' => 2018
+            ])
+            ->assertSessionHas('danger', "Pegawai tidak memiliki bagian");
+    }
+
+    /** @test */
     public function ketka_menambah_periode_maka_table_nilai_akan_terisi_per_bagiannya()
     {
         $this->user->givePermissionTo(1);

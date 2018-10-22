@@ -6,6 +6,7 @@ use App\Models\Bulan;
 use App\Models\Pegawai;
 use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Http\Requests\PeriodeRequest;
 
 class PeriodeController extends Controller
 {
@@ -21,40 +22,19 @@ class PeriodeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PeriodeRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Pegawai $pegawai, Request $request)
-    {
-        $this->validate($request, [
-            'bulan' => 'required|integer',
-            'tahun' => 'required|integer|digits:4'
-        ]);
+    public function store(Pegawai $pegawai, PeriodeRequest $request)
+    {           
+        $bulan = $request->cekPegawaiMempunyaiBagian()
+                         ->cekPeriodeUnique();
 
-        if (!$pegawai->bagian) {
-            return back()
-                ->with('danger', 'Pegawai tidak memiliki bagian');
-        }
-
-        $bulan = Bulan::find($request->bulan);
-
-        if (Periode::unique($pegawai->id, $bulan->id, $request->tahun)->exists()) {
-            return back()
-                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.");
-        }
-
-        $periode = $pegawai->periode()->create([
-            'bulan_id' => $request->bulan,
-            'tahun' => $request->tahun
-        ]);
-
-        $pegawai->bagian->aspek->each(function ($item) use ($periode) {
-            $periode->nilai()->create(['aspek' => $item->nama, 'kategori' => $item->kategori]);
-        });
+        $request->persist();
 
         return redirect()
             ->route('pegawai.show', $pegawai->id)
-            ->with('success', "Periode $bulan->nama $periode->tahun berhasil ditambahkan");
+            ->with('success', "Periode $bulan->nama $request->tahun berhasil ditambahkan");
     }
 
     /**
