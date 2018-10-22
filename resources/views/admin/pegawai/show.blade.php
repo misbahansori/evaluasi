@@ -2,14 +2,16 @@
 
 @section('content')
     <div class="row">
-        {{-- Chart js --}}
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div>{!! $chart->container() !!}</div>
+        @can('grafik-pegawai')
+            {{-- Chart js --}}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>{!! $chart->container() !!}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endcan
     </div>
     <div class="row">
         @include('admin.pegawai.biodata-card')
