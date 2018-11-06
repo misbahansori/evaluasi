@@ -141,5 +141,9 @@ return [
     */
 
     'attributes' => [
+        'unit_id'    => 'unit',
+        'bagian_id'  => 'bagian',
+        'formasi_id' => 'formasi',
+        'status_id'  => 'status'
     ],
 ];

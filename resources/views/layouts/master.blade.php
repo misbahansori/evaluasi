@@ -41,6 +41,7 @@
     <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('js/waves.js') }}"></script>
     <script src="{{ asset('js/custom.min.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
     @stack('js')
     @if(Session::has('errors'))
         <script>

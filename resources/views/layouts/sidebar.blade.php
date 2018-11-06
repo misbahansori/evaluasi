@@ -31,30 +31,37 @@
                     </a>
                 </li>
                 <hr>
-                @can('master user')
-                    <li{{ Request::is( 'master/aspek*') ? ' class=selected' : '' }}>
-                        <a class="waves-effect waves-dark" href="{{ route('aspek.index') }}" aria-expanded="false">
-                            <i class="ti-agenda"></i>
-                            <span class="hide-menu">Master Aspek Penilaian</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('master user')
-                    <li{{ Request::is( 'master/user*') ? ' class=selected' : '' }}>
-                        <a class="waves-effect waves-dark" href="{{ route('user.index') }}" aria-expanded="false">
-                            <i class="ti ti-id-badge"></i>
-                            <span class="hide-menu">Master User Account</span>
-                        </a>
-                    </li>
-                @endcan
-                @can('master group')
-                    <li{{ Request::is( 'master/group*') ? ' class=selected' : '' }}>
-                        <a class="waves-effect waves-dark" href="{{ route('role.index') }}" aria-expanded="false">
-                            <i class="ti ti-menu-alt"></i>
-                            <span class="hide-menu">Master Group/Unit</span>
-                        </a>
-                    </li>
-                @endcan
+                <li{{ Request::is( 'master/*') ? ' class=selected' : '' }}>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="ti-settings"></i> <span class="hide-menu"> Master Data</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse{{ Request::is( 'master/*') ? ' in' : '' }}">
+                        @can('master user')
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/aspek*') ? ' active' : '' }}" href="{{ route('aspek.index') }}" aria-expanded="false">
+                                    <i class="ti-agenda"></i>
+                                    <span class="hide-menu">Aspek Penilaian</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('master user')
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/user*') ? ' active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
+                                    <i class="ti ti-id-badge"></i>
+                                    <span class="hide-menu">User Account</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('master group')
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/group*') ? ' active' : '' }}" href="{{ route('role.index') }}" aria-expanded="false">
+                                    <i class="ti ti-menu-alt"></i>
+                                    <span class="hide-menu">Group/Unit</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

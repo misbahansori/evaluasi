@@ -87,6 +87,8 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
+        $this->authorize('view', $pegawai);
+
         return view('admin.pegawai.edit', new PegawaiViewModel($pegawai));
     }
 
@@ -99,6 +101,8 @@ class PegawaiController extends Controller
      */
     public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
+        $this->authorize('view', $pegawai);
+
         $pegawai->update($request->validated());
 
         return redirect()
