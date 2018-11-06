@@ -4,11 +4,11 @@ namespace App\Http\Requests;
 
 use App\Models\Unit;
 use App\Models\Bagian;
+use App\Models\Status;
 use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Status;
 
 class PegawaiRequest extends FormRequest
 {
@@ -39,10 +39,10 @@ class PegawaiRequest extends FormRequest
             'alamat'        => 'required|string',
             'no_hp'         => 'required|string|max:20',
             'tanggal_masuk' => 'required|date_format:d-m-Y',
-            'unit'          => 'required|integer|exists:unit,id',
-            'formasi'       => 'required|integer|exists:formasi,id',
-            'bagian'        => 'required|integer|exists:bagian,id',
-            'status'        => 'required|integer|exists:status,id',
+            'unit_id'       => 'required|integer|exists:roles,id',
+            'formasi_id'    => 'required|integer|exists:formasi,id',
+            'bagian_id'     => 'required|integer|exists:bagian,id',
+            'status_id'     => 'required|integer|exists:status,id',
         ];
 
         if ($this->isMethod('put')) {
@@ -52,54 +52,4 @@ class PegawaiRequest extends FormRequest
 
         return $rules;
     }
-
-    /**
-     * Save record to the database
-     *
-     * @return App\Models\Pegawai $pegawai
-     */
-    public function save()
-    {
-        $pegawai = Pegawai::create($this->except('unit', 'formasi', 'bagian', 'status'));
-        $this->associate($pegawai);
-        $pegawai->save();
-
-        return $pegawai;
-    }
-
-    /**
-     * Update the given Pegawai
-     * 
-     * @param App\Models\Pegawai $pegawai
-     * @return App\Models\Pegawai $pegawai
-     */
-    public function update(Pegawai $pegawai)
-    {
-        $this->associate($pegawai);
-        $pegawai->update($this->except('unit', 'formasi', 'bagian', 'status'));
-
-        return $pegawai;
-    }
-
-    /**
-     * Associate model with Pegawai
-     * 
-     * @param App\Models\Pegawai $pegawai
-     * @return App\Models\Pegawai $pegawai
-     */
-    public function associate(Pegawai $pegawai)
-    {
-        $unit    = Unit::findOrFail($this->unit);
-        $formasi = Formasi::findOrFail($this->formasi);
-        $bagian  = Bagian::findOrFail($this->bagian);
-        $status  = Status::findOrFail($this->status);
-
-        $pegawai->unit()->associate($unit);
-        $pegawai->formasi()->associate($formasi);
-        $pegawai->bagian()->associate($bagian);
-        $pegawai->status()->associate($status);
-
-        return $pegawai;
-    }
-    
 }

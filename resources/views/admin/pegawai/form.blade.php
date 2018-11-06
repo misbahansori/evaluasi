@@ -116,68 +116,68 @@
 </div>
 
 <div class="form-group">
-    <label for="unit" class="col">Unit</label>
+    <label for="unit_id" class="col">Unit</label>
     <div class="col-md-6">
-        <select name="unit" id="unit" class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}">
+        <select name="unit_id" id="unit_id" class="form-control{{ $errors->has('unit_id') ? ' is-invalid' : '' }}">
             <option value="" selected disabled>--- Silahkan pilih unit ---</option>
             @foreach ($listUnit as $unit)
-                <option value="{{ $unit->id }}" {{ old('unit', @$pegawai->unit->id) == $unit->id ? 'selected=selected' : '' }}>{{ $unit->name }}</option>
+                <option value="{{ $unit->id }}" {{ old('unit_id', @$pegawai->unit->id) == $unit->id ? 'selected=selected' : '' }}>{{ $unit->name }}</option>
             @endforeach
         </select>
-        @if ($errors->has('unit'))
+        @if ($errors->has('unit_id'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('unit') }}</strong>
+                <strong>{{ $errors->first('unit_id') }}</strong>
             </span>
         @endif
     </div>
 </div>
 
 <div class="form-group">
-    <label for="formasi" class="col">Formasi</label>
+    <label for="formasi_id" class="col">Formasi</label>
     <div class="col-md-6">
-        <select name="formasi" id="formasi" class="form-control{{ $errors->has('formasi') ? ' is-invalid' : '' }}">
+        <select name="formasi_id" id="formasi_id" class="form-control{{ $errors->has('formasi_id') ? ' is-invalid' : '' }}">
             <option value="" selected disabled>--- Silahkan pilih formasi ---</option>
             @foreach ($listFormasi as $formasi)
-                <option value="{{ $formasi->id }}" {{ old('formasi', @$pegawai->formasi->id) == $formasi->id ? 'selected=selected' : '' }}>{{ $formasi->nama }}</option>
+                <option value="{{ $formasi->id }}" {{ old('formasi_id', @$pegawai->formasi->id) == $formasi->id ? 'selected=selected' : '' }}>{{ $formasi->nama }}</option>
             @endforeach
         </select>
-        @if ($errors->has('formasi'))
+        @if ($errors->has('formasi_id'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('formasi') }}</strong>
+                <strong>{{ $errors->first('formasi_id') }}</strong>
             </span>
         @endif
     </div>
 </div>
 
 <div class="form-group">
-    <label for="bagian" class="col">Bagian</label>
+    <label for="bagian_id" class="col">Bagian</label>
     <div class="col-md-6">
-        <select name="bagian" id="bagian" class="form-control{{ $errors->has('bagian') ? ' is-invalid' : '' }}">
+        <select name="bagian_id" id="bagian_id" class="form-control{{ $errors->has('bagian_id') ? ' is-invalid' : '' }}">
             <option value="" selected disabled>--- Silahkan pilih bagian ---</option>
             @foreach ($listBagian as $bagian)
-                <option value="{{ $bagian->id }}" {{ old('bagian', @$pegawai->bagian->id) == $bagian->id ? 'selected=selected' : '' }}>{{ $bagian->nama }}</option>
+                <option value="{{ $bagian->id }}" {{ old('bagian_id', @$pegawai->bagian->id) == $bagian->id ? 'selected=selected' : '' }}>{{ $bagian->nama }}</option>
             @endforeach
         </select>
-        @if ($errors->has('bagian'))
+        @if ($errors->has('bagian_id'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('bagian') }}</strong>
+                <strong>{{ $errors->first('bagian_id') }}</strong>
             </span>
         @endif
     </div>
 </div>
 
 <div class="form-group">
-    <label for="status" class="col">Status Pegawai</label>
+    <label for="status_id" class="col">Status Pegawai</label>
     <div class="col-md-6">
-        <select name="status" id="status" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}">
+        <select name="status_id" id="status_id" class="form-control{{ $errors->has('status_id') ? ' is-invalid' : '' }}">
             <option value="" selected disabled>--- Silahkan pilih status ---</option>
             @foreach ($listStatus as $status)
-                <option value="{{ $status->id }}" {{ old('status', @$pegawai->status->id) == $status->id ? 'selected=selected' : '' }}>{{ $status->nama }}</option>
+                <option value="{{ $status->id }}" {{ old('status_id', @$pegawai->status->id) == $status->id ? 'selected=selected' : '' }}>{{ $status->nama }}</option>
             @endforeach
         </select>
-        @if ($errors->has('status'))
+        @if ($errors->has('status_id'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('status') }}</strong>
+                <strong>{{ $errors->first('status_id') }}</strong>
             </span>
         @endif
     </div>

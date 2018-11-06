@@ -58,7 +58,7 @@ class PegawaiController extends Controller
      */
     public function store(PegawaiRequest $request)
     {
-        $pegawai = $request->save();
+        $pegawai = Pegawai::create($request->validated());
 
         return redirect()
             ->route('pegawai.index')
@@ -108,7 +108,7 @@ class PegawaiController extends Controller
      */
     public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
-        $request->update($pegawai);
+        $pegawai->update($request->validated());
 
         return redirect()
             ->route('pegawai.show', $pegawai->id)
