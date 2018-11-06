@@ -26,10 +26,19 @@ class PeriodeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Pegawai $pegawai, PeriodeRequest $request)
-    {           
-        $bulan = $request->cekPegawaiMempunyaiBagian()
-                         ->cekPeriodeUnique();
-
+    {         
+        if (!$pegawai->bagian) {
+            return back()
+                ->with('danger', 'Pegawai tidak memiliki bagian');
+        }
+          
+        $bulan = Bulan::find($request->bulan);
+    
+        if (Periode::unique($request->pegawai->id, $bulan->id, $request->tahun)->exists()) {
+            return back()
+                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.");
+        }
+        
         $request->persist();
 
         return redirect()
