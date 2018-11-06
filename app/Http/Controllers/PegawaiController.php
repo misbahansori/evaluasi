@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use App\ViewModels\PegawaiViewModel;
 use App\Charts\PenilaianPegawaiChart;
 use App\Http\Requests\PegawaiRequest;
 
@@ -42,12 +43,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $listUnit    = Unit::orderBy('name')->get();
-        $listFormasi = Formasi::orderBy('nama')->get();
-        $listBagian  = Bagian::orderBy('nama')->get();
-        $listStatus  = Status::all();
-
-        return view('admin.pegawai.create', compact('listUnit', 'listFormasi', 'listBagian', 'listStatus'));
+        return view('admin.pegawai.create', new PegawaiViewModel);
     }
 
     /**
@@ -91,12 +87,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        $listUnit    = Unit::orderBy('name')->get();
-        $listFormasi = Formasi::orderBy('nama')->get();
-        $listBagian  = Bagian::orderBy('nama')->get();
-        $listStatus  = Status::all();
-
-        return view('admin.pegawai.edit', compact('pegawai', 'listUnit', 'listFormasi', 'listBagian', 'listStatus'));
+        return view('admin.pegawai.edit', new PegawaiViewModel($pegawai));
     }
 
     /**

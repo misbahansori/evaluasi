@@ -2405,7 +2405,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802061507810001',
                 'no_hp'         => '082213219081',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2419,7 +2419,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802055102850002',
                 'no_hp'         => '085269537971',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2433,7 +2433,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1801045002880013',
                 'no_hp'         => '0895364379335',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2447,7 +2447,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802106505880004',
                 'no_hp'         => '085768371715',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2461,7 +2461,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872056405880004',
                 'no_hp'         => '082182161588',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2475,7 +2475,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807060208880003',
                 'no_hp'         => '085769474700',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2489,7 +2489,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802141704910004',
                 'no_hp'         => '085664934797',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2503,7 +2503,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807065603920002',
                 'no_hp'         => '089512881560',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2517,7 +2517,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1812070309920003',
                 'no_hp'         => '085788955245',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2531,7 +2531,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872015308930003',
                 'no_hp'         => '085758960801',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2545,7 +2545,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802066311920001',
                 'no_hp'         => '085783216443',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2559,7 +2559,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807064101930004',
                 'no_hp'         => '085377250313',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2573,7 +2573,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872034909940004',
                 'no_hp'         => '085769555777',
                 'formasi_id'    => 11,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -2587,7 +2587,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807095309900006',
                 'no_hp'         => '081373253557',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2601,7 +2601,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872054404920002',
                 'no_hp'         => '085669709304',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2615,7 +2615,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872011511930002',
                 'no_hp'         => '08978619711',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2629,7 +2629,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872014312860003',
                 'no_hp'         => '081379929906',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2643,7 +2643,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807041010900006',
                 'no_hp'         => '085768338990',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2657,7 +2657,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807016012890001',
                 'no_hp'         => '081272224766',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2671,7 +2671,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872055910920001',
                 'no_hp'         => '085758933026',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2685,7 +2685,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '',
                 'no_hp'         => '081367223311',
                 'formasi_id'    => 14,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -2699,7 +2699,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1801040911920007',
                 'no_hp'         => '085789925681',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2713,7 +2713,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1806020403940002',
                 'no_hp'         => '082307294694',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2727,7 +2727,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807112911930001',
                 'no_hp'         => '085758900036',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2741,7 +2741,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802082511820005',
                 'no_hp'         => '081282258277',
                 'formasi_id'    => 21,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -2755,7 +2755,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807064406840005',
                 'no_hp'         => '085840569073',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2769,7 +2769,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802214710880001',
                 'no_hp'         => '082282620827',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2783,7 +2783,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807060105920004',
                 'no_hp'         => '085716108272',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2797,7 +2797,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802055406900001',
                 'no_hp'         => '082337183146',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2811,7 +2811,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802106009920001',
                 'no_hp'         => '085768276085',
                 'formasi_id'    => 1,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -2825,7 +2825,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872025702930003',
                 'no_hp'         => '085768989271',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2839,7 +2839,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802236512920001',
                 'no_hp'         => '082307733510',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2853,7 +2853,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807056202940005',
                 'no_hp'         => '085768723520',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2867,7 +2867,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872044505940004',
                 'no_hp'         => '085743132119',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2881,7 +2881,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872024512930002',
                 'no_hp'         => '082282139240',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2895,7 +2895,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802056812940002',
                 'no_hp'         => '085709986262',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2909,7 +2909,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872016209830002',
                 'no_hp'         => '085383473303',
                 'formasi_id'    => 31,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -2923,7 +2923,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807123105900001',
                 'no_hp'         => '082178189130',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2937,7 +2937,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807052808900001',
                 'no_hp'         => '082179961324',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2951,7 +2951,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807066702920004',
                 'no_hp'         => '085768147872',
                 'formasi_id'    => 31,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -2965,7 +2965,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807122804920001',
                 'no_hp'         => '082298436865',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2979,7 +2979,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872024705930003',
                 'no_hp'         => '085766659036',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -2993,7 +2993,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807101508930001',
                 'no_hp'         => '081379729626',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3007,7 +3007,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1812076009930003',
                 'no_hp'         => '085768005617',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3021,7 +3021,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802214610930005',
                 'no_hp'         => '085717098393',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3035,7 +3035,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807041003940003',
                 'no_hp'         => '081379734993',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3049,7 +3049,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872032309940002',
                 'no_hp'         => '08117902865',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3063,7 +3063,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872026406760003',
                 'no_hp'         => '085379788167',
                 'formasi_id'    => 12,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3077,7 +3077,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '',
                 'no_hp'         => '0856 6987 1566',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3091,7 +3091,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872050902690001',
                 'no_hp'         => '085369800344',
                 'formasi_id'    => 35,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3105,7 +3105,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872016905940003',
                 'no_hp'         => '08978934919',
                 'formasi_id'    => 27,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3119,7 +3119,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807095801940003',
                 'no_hp'         => '08996458003',
                 'formasi_id'    => 27,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3133,7 +3133,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802052005650002',
                 'no_hp'         => '085669970571',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3147,7 +3147,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802051112690004',
                 'no_hp'         => '082374906857',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3161,7 +3161,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '',
                 'no_hp'         => '082371579385',
                 'formasi_id'    => 16,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3175,7 +3175,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802054410770001',
                 'no_hp'         => '085709371999',
                 'formasi_id'    => 12,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3189,7 +3189,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872010205930007',
                 'no_hp'         => '082175267500',
                 'formasi_id'    => 28,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3203,7 +3203,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802065607830003',
                 'no_hp'         => '085758983578',
                 'formasi_id'    => 12,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3217,7 +3217,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '',
                 'no_hp'         => '082214953145',
                 'formasi_id'    => 25,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3231,7 +3231,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872055202880003',
                 'no_hp'         => '085380572855',
                 'formasi_id'    => 16,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3245,7 +3245,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807135310890001',
                 'no_hp'         => '085788871092',
                 'formasi_id'    => 26,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3259,7 +3259,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807046712930001',
                 'no_hp'         => '082176557653',
                 'formasi_id'    => 33,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3273,7 +3273,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872011904810001',
                 'no_hp'         => '85768104096',
                 'formasi_id'    => 17,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3287,7 +3287,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872051208860002',
                 'no_hp'         => '085769515270',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3301,7 +3301,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1871100506890001',
                 'no_hp'         => '089666448727',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3315,7 +3315,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802054403900002',
                 'no_hp'         => '085279862649',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3329,7 +3329,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872010707940002',
                 'no_hp'         => '085768104496',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3343,7 +3343,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802241305960001',
                 'no_hp'         => '085609184280',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3357,7 +3357,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807042507970003',
                 'no_hp'         => '085609091698',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3371,7 +3371,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1812020712960004',
                 'no_hp'         => '085788717944',
                 'formasi_id'    => 17,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3385,7 +3385,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872055310890002',
                 'no_hp'         => '087898938137',
                 'formasi_id'    => 33,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3399,7 +3399,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802235507940001',
                 'no_hp'         => '081632382151',
                 'formasi_id'    => 1,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3413,7 +3413,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872014306950009',
                 'no_hp'         => '089518548761',
                 'formasi_id'    => 20,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3427,7 +3427,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802052410960001',
                 'no_hp'         => '085783426711',
                 'formasi_id'    => 30,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3441,7 +3441,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872052201840002',
                 'no_hp'         => '082372593763',
                 'formasi_id'    => 17,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3455,7 +3455,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807066408970001',
                 'no_hp'         => '08979808524',
                 'formasi_id'    => 27,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3469,7 +3469,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807065106980002',
                 'no_hp'         => '089674089255',
                 'formasi_id'    => 27,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3483,7 +3483,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872032305830003',
                 'no_hp'         => '082269893765',
                 'formasi_id'    => 10,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3497,7 +3497,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872023108860001',
                 'no_hp'         => '085669681314',
                 'formasi_id'    => 17,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3511,7 +3511,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872020508890003',
                 'no_hp'         => '085768515511',
                 'formasi_id'    => 26,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3525,7 +3525,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802134607910001',
                 'no_hp'         => '085789581496',
                 'formasi_id'    => 28,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3539,7 +3539,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872011402920001',
                 'no_hp'         => '089607338832',
                 'formasi_id'    => 10,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3553,7 +3553,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802054311940003',
                 'no_hp'         => '085840855429',
                 'formasi_id'    => 32,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3567,7 +3567,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872014910970002',
                 'no_hp'         => '08976487989',
                 'formasi_id'    => 12,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3581,7 +3581,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872015702950003',
                 'no_hp'         => '089612196793',
                 'formasi_id'    => 1,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3595,7 +3595,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872016905960004',
                 'no_hp'         => '08975480423',
                 'formasi_id'    => 12,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3609,7 +3609,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807041702920001',
                 'no_hp'         => '085768096641',
                 'formasi_id'    => 5,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3623,7 +3623,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807101710850003',
                 'no_hp'         => '082179982351',
                 'formasi_id'    => 29,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3637,7 +3637,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807085110830001',
                 'no_hp'         => '081532525818',
                 'formasi_id'    => 7,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 4,
             ],
             [
@@ -3651,7 +3651,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802066210950001',
                 'no_hp'         => '082280251818',
                 'formasi_id'    => 3,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3665,7 +3665,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872024402940003',
                 'no_hp'         => '082226043526',
                 'formasi_id'    => 22,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3679,7 +3679,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802085706930003',
                 'no_hp'         => '082176157784',
                 'formasi_id'    => 19,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3693,7 +3693,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872016003950001',
                 'no_hp'         => '081273315523',
                 'formasi_id'    => 21,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3707,7 +3707,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802125303950001',
                 'no_hp'         => '081214557123',
                 'formasi_id'    => 1,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3721,7 +3721,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '-',
                 'no_hp'         => '085602017079',
                 'formasi_id'    => 11,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3735,7 +3735,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872014205940008',
                 'no_hp'         => '0811 960 2737',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3749,7 +3749,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807084705920001',
                 'no_hp'         => '0812 7822 0262',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3763,7 +3763,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807106811920001',
                 'no_hp'         => '0822 8182 8748',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3777,7 +3777,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802056709950001',
                 'no_hp'         => '0856 6947 4643',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3791,7 +3791,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807041703900003',
                 'no_hp'         => '0822 2584 7359',
                 'formasi_id'    => 18,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3805,7 +3805,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1807095809870004',
                 'no_hp'         => '0813 7930 4023',
                 'formasi_id'    => 4,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 2,
             ],
             [
@@ -3819,7 +3819,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872047112900002',
                 'no_hp'         => '0813 7922 2619',
                 'formasi_id'    => 1,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => 3,
             ],
             [
@@ -3833,7 +3833,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802233003920001',
                 'no_hp'         => '0813 2955 5519',
                 'formasi_id'    => 11,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3847,7 +3847,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802061404890002',
                 'no_hp'         => '0821 1473 4214',
                 'formasi_id'    => 36,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3861,7 +3861,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1802055603980002',
                 'no_hp'         => '0857 8330 3706',
                 'formasi_id'    => 13,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
             [
@@ -3875,7 +3875,7 @@ class PegawaiTableSeeder extends Seeder
                 'nik'           => '1872033007830001',
                 'no_hp'         => '0823 7338 4283',
                 'formasi_id'    => 10,
-                'unit_id'       => null,
+                'unit_id'       => 99,
                 'bagian_id'     => null,
             ],
         ];
