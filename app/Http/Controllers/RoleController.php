@@ -19,8 +19,7 @@ class RoleController extends Controller
         $selectedRole = Role::find($request->role);
         
         $roles = Role::all();
-        $permissions = Permission::all();
-        $permissions = $permissions->diff(optional($selectedRole)->permissions);
+        $permissions = Permission::all()->diff(optional($selectedRole)->permissions);
         
         return view('admin.role.index', compact('selectedRole', 'roles', 'permissions'));
     }
@@ -43,11 +42,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validated = $request->validate([
             'name' => 'required|string|max:255|unique:roles',
         ]);
 
-        $role = Role::create(['name' => $request->name]);
+        $role = Role::create($validated);
 
         return redirect()->route('role.index')
             ->with('success', "Group $role->name berhasil ditambahkan");
@@ -84,11 +83,11 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $this->validate($request, [
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($role->id)],
         ]);
 
-        $role->update(['name' => $request->name]);
+        $role->update($validated);
 
         return redirect()->route('role.index')
             ->with('success', "Group $role->name berhasil diubah");

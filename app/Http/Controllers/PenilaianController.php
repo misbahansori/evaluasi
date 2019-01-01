@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PenilaianController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $listBulan = Bulan::all();

@@ -2,11 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Unit;
-use App\Models\Bagian;
-use App\Models\Status;
-use App\Models\Formasi;
-use App\Models\Pegawai;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 

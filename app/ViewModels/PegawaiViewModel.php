@@ -29,7 +29,7 @@ class PegawaiViewModel extends ViewModel
     /**
      * listUnit
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
     public function listUnit()
     {
@@ -39,7 +39,7 @@ class PegawaiViewModel extends ViewModel
     /**
      * listFormasi
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
     public function listFormasi()
     {
@@ -49,7 +49,7 @@ class PegawaiViewModel extends ViewModel
     /**
      * listBagian
      *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function listBagian()
     {
@@ -59,7 +59,7 @@ class PegawaiViewModel extends ViewModel
     /**
      * listStatus
      *
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
     public function listStatus()
     {

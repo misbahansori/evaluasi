@@ -2,8 +2,8 @@
 
 namespace App\Charts;
 
-use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use App\Models\Pegawai;
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 class PenilaianPegawaiChart extends Chart
 {

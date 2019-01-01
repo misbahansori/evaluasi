@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Bulan;
-use App\Models\Periode;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PeriodeRequest extends FormRequest

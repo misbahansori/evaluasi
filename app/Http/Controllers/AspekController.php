@@ -47,7 +47,7 @@ class AspekController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'bagian'   => 'required|integer|exists:bagian,id',
             'nama'     => 'required|string|max:150',
             'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'
@@ -85,7 +85,7 @@ class AspekController extends Controller
      */
     public function update(Request $request, Aspek $aspek)
     {
-        $this->validate($request, [
+        $request->validate([
             'bagian'   => 'required|integer|exists:bagian,id',
             'nama'     => 'required|string|max:150',
             'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'

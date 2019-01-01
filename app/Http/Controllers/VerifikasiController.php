@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Periode;
-use Illuminate\Http\Request;
 
 class VerifikasiController extends Controller
 {

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
 use App\Models\Bulan;
-use App\Models\Bagian;
-use App\Models\Status;
-use App\Models\Formasi;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\ViewModels\PegawaiViewModel;
@@ -29,7 +25,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $listPegawai = Pegawai::query()
-            // ->milikUser()
+            ->milikUser()
             ->with('bagian', 'unit', 'formasi')
             ->get();
 
@@ -52,7 +48,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PegawaiRequest $request)
+    public function store(PegawaiReqxuest $request)
     {
         $pegawai = Pegawai::create($request->validated());
 

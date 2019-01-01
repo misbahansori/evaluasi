@@ -10,13 +10,15 @@ use Spatie\Permission\Models\Role;
 class UsersController extends Controller
 {
     /**
-    * __construct method
-    * 
-    */
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
        $this->middleware('permission:master user');
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +49,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -96,7 +98,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => 'nullable|string|min:6|confirmed',
@@ -104,9 +106,11 @@ class UsersController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+
         if ($request->password) {
             $user->password = bcrypt($request->password);
         }
+        
         $user->save();
 
         return redirect()->route('user.index')

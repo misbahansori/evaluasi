@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Bulan;
 use App\Models\Pegawai;
 use App\Models\Periode;
-use Illuminate\Http\Request;
 use App\Http\Requests\PeriodeRequest;
 
 class PeriodeController extends Controller
 {
     /**
-    * Construct method
-    */
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('permission:tambah periode')->only('create');

@@ -16,7 +16,7 @@ class RolePermissionsController extends Controller
      */
     public function store(Role $role, Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'hak_akses' => 'required',
         ]);
         
