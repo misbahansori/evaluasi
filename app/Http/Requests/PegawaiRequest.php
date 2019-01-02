@@ -25,8 +25,8 @@ class PegawaiRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'nik'           => 'nullable|integer|unique:pegawai|digits:16',
-            'nbm'           => 'nullable|integer|unique:pegawai|digits:7',
+            'nik'           => 'nullable|string|unique:pegawai|digits:16',
+            'nbm'           => 'nullable|string|digits:7',
             'nama'          => 'required|string',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir'  => 'required|string|max:100',
@@ -42,7 +42,6 @@ class PegawaiRequest extends FormRequest
 
         if ($this->isMethod('put')) {
             $rules['nik'] = ['nullable', 'integer', 'digits:16', Rule::unique('pegawai')->ignore($this->route('pegawai'))];
-            $rules['nbm'] = ['nullable', 'integer', 'digits:7', Rule::unique('pegawai')->ignore($this->route('pegawai'))];
         }
 
         return $rules;
