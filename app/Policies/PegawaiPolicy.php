@@ -25,4 +25,9 @@ class PegawaiPolicy
         return $user->hasRole($pegawai->unit->name);
     }
 
+    public function update(User $user, Pegawai $pegawai)
+    {
+        return $user->hasPermissionTo('edit pegawai');
+    }
+
 }

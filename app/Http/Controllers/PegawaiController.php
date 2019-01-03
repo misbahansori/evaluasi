@@ -97,7 +97,7 @@ class PegawaiController extends Controller
      */
     public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
-        $this->authorize('view', $pegawai);
+        $this->authorize('update', $pegawai);
 
         $pegawai->update($request->validated());
 
