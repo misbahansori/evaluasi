@@ -41,7 +41,7 @@ class PegawaiRequest extends FormRequest
         ];
 
         if ($this->isMethod('put')) {
-            $rules['nik'] = ['nullable', 'integer', 'digits:16', Rule::unique('pegawai')->ignore($this->route('pegawai'))];
+            $rules['nik'] = ['nullable', 'digits:16', Rule::unique('pegawai')->ignore($this->route('pegawai'))];
         }
 
         return $rules;
