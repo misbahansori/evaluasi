@@ -46,7 +46,7 @@ class TambahPeriodeTest extends TestCase
         $this->post(route('periode.store', $this->pegawai->id), [
                 'bulan' => 12,
                 'tahun' => 2018
-            ])->assertSessionHas('danger', "Periode Desember 2018 sudah ada.");
+            ])->assertSessionHas('danger', "Tidak dapat menambah penilaian. Pegawai " . $this->pegawai->nama . ", Periode Desember 2018 sudah ada.");
 
         $this->assertEquals(1, $this->pegawai->periode()->count());
             
@@ -82,7 +82,7 @@ class TambahPeriodeTest extends TestCase
                 'bulan' => 12,
                 'tahun' => 2018
             ])
-            ->assertSessionHas('danger', "Pegawai tidak memiliki bagian");
+            ->assertSessionHas('danger', 'Pegawai "' . $this->pegawai->nama .'" tidak memiliki bagian. Harap periksa kembali biodata pegawai.');
     }
 
     /** @test */

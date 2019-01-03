@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
     Route::delete('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@destroy')->name('periode.destroy');
 
+    Route::get('/input-penilaian', 'InputPenilaianController@index')->name('input.penilaian.index');
+    Route::post('/input-penilaian', 'InputPenilaianController@store')->name('input.penilaian.store');
+
     Route::put('/nilai', 'NilaiController@update')->name('nilai.update');
 
     Route::get('/master/aspek', 'AspekController@index')->name('aspek.index');

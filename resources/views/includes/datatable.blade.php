@@ -7,7 +7,7 @@
     <script>
         $(document).ready(function() {
             $('#datatable').DataTable({
-                'iDisplayLength': 100,
+                'iDisplayLength': {{ $page ?? 100 }},
                 'language' : {
                     "sEmptyTable":   "Tidak ada data",
                     "sProcessing":   "Sedang memproses...",

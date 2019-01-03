@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bulan;
 use App\Models\Pegawai;
 use App\Models\Periode;
-use App\Http\Requests\PeriodeRequest;
+use Illuminate\Http\Request;
 
 class PeriodeController extends Controller
 {
@@ -23,28 +22,15 @@ class PeriodeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PeriodeRequest $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Pegawai $pegawai, PeriodeRequest $request)
+    public function store(Pegawai $pegawai, Request $request)
     {         
-        if (!$pegawai->bagian) {
-            return back()
-                ->with('danger', 'Pegawai tidak memiliki bagian');
-        }
-          
-        $bulan = Bulan::find($request->bulan);
-    
-        if (Periode::unique($request->pegawai->id, $bulan->id, $request->tahun)->exists()) {
-            return back()
-                ->with('danger', "Periode $bulan->nama $request->tahun sudah ada.");
-        }
-        
-        $request->persist();
+        $pegawai->createPeriode($request);
 
         return redirect()
-            ->route('pegawai.show', $pegawai->id)
-            ->with('success', "Periode $bulan->nama $request->tahun berhasil ditambahkan");
+            ->route('pegawai.show', $pegawai->id);
     }
 
     /**

@@ -6,11 +6,18 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar Pegawai</h4>
-                    @can('tambah pegawai')
-                        <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm">
-                            <i class="ti-pencil"></i> Tambah Pegawai
-                        </a>
-                    @endcan
+                    <div>
+                        @can('tambah periode')
+                            <a href="{{ route('input.penilaian.index') }}" class="btn btn-success btn-sm mr-4">
+                                <i class="ti-bar-chart"></i> Tambah Banyak Penilaian
+                            </a>
+                        @endcan
+                        @can('tambah pegawai')
+                            <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm">
+                                <i class="ti-pencil"></i> Tambah Pegawai
+                            </a>
+                        @endcan
+                    </div>
                 </div>
 
                 <div class="card-body">
