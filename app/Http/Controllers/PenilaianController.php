@@ -31,7 +31,7 @@ class PenilaianController extends Controller
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->milikUser()
-            ->when(auth()->user()->hasPermissionTo('verif wadir'),function($query){
+            ->when(auth()->user()->hasPermissionTo('verif wadir') && $request->terverifikasiKabag, function($query) {
                 return $query->terverifikasiKabag();
             })
             ->get();

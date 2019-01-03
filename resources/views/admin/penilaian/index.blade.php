@@ -11,6 +11,12 @@
                         {{ request()->tahun }}
                     </h4>
                     <form action="{{ route('penilaian.index') }}" method="GET" class="form-inline">
+
+                        <div class="custom-control custom-checkbox mr-5">
+                            <input type="checkbox" class="custom-control-input" id="terverifikasiKabag" name="terverifikasiKabag" value="true" {{ request()->terverifikasiKabag == 'true' ? 'checked' : '' }}>
+                            <label class="custom-control-label" for="terverifikasiKabag">Tampilkan hanya yg terverifikasi Kabag</label>
+                        </div>
+
                         <select name="bulan" id="bulan" class="form-control mr-2">
                             @foreach ($listBulan as $bulan)
                                 <option {{ request()->bulan == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
