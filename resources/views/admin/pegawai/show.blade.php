@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        @can('grafik-pegawai')
+        @can('grafik pegawai')
             {{-- Chart js --}}
             <div class="col-md-12">
                 <div class="card">
