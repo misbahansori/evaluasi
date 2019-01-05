@@ -42,7 +42,11 @@
                                                 <label class="custom-control-label" for="{{ $pegawai->id }}"></label>
                                             </div>
                                         </td>
-                                        <td>{{ $pegawai->nama }}</td>
+                                        <td>
+                                            <a href="{{ route('pegawai.show', $pegawai->id) }}">
+                                                {{ $pegawai->nama }}
+                                            </a>
+                                        </td>
                                         <td>{{ optional($pegawai->unit)->name }}</td>
                                         <td>{{ optional($pegawai->bagian)->nama }}</td>
                                         <td>{{ optional($pegawai->formasi)->nama }}</td>

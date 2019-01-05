@@ -52,7 +52,11 @@
                             @foreach ($listPeriode as $periode)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $periode->pegawai->nama }}</td>
+                                    <td>
+                                        <a href="{{ route('pegawai.show', $periode->pegawai->id) }}">
+                                            {{ $periode->pegawai->nama }}
+                                        </a>
+                                    </td>
                                     <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
                                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
