@@ -91,25 +91,29 @@ class Pegawai extends Model
      */
     public function createPeriode(Request $request)
     {
+        // Cek pegawai memiliki bagian
         if (! $this->bagian) {
-            return redirect()
-                ->route('input.penilaian.index')
-                ->with('danger', 'Pegawai "' . $this->nama .'" tidak memiliki bagian. Harap periksa kembali biodata pegawai.');
+            session()->flash('danger', array_merge((array) session()->get('danger'), ['Pegawai "' . $this->nama .'" tidak memiliki bagian. Harap periksa kembali biodata pegawai.']));
+            
+            return;
         }
         
+        // Cek periode pegawai belum ada
         $bulan = Bulan::find($request->bulan);
     
         if (Periode::unique($this->id, $bulan->id, $request->tahun)->exists()) {
-            return redirect()
-                ->route('input.penilaian.index')
-                ->with('danger', "Tidak dapat menambah penilaian. Pegawai $this->nama, Periode $bulan->nama $request->tahun sudah ada.");
+            session()->flash('danger', array_merge((array) session()->get('danger'), ["Tidak dapat menambah penilaian. Pegawai $this->nama, Periode $bulan->nama $request->tahun sudah ada."]));
+            
+            return;
         }
 
+        // Buat periode penilaian
         $periode = $this->periode()->create([
             'bulan_id' => $request->bulan,
             'tahun' => $request->tahun
         ]);
 
+        // Copy aspek penilaian ke periode 
         $this->bagian->aspek->each(function ($item) use ($periode) {
             $periode->nilai()->create([
                 'aspek' => $item->nama, 
@@ -117,8 +121,9 @@ class Pegawai extends Model
             ]);
         });
 
-        return redirect()
-            ->route('pegawai.show', $this->id)
-            ->with('success', "Periode $bulan->nama $request->tahun berhasil ditambahkan");
+        session()->flash('success', array_merge((array) session()->get('success'), ["Pegawai $this->nama, Periode $bulan->nama $request->tahun berhasil ditambahkan"]));
+        
+        
+        return;
     }
 }
