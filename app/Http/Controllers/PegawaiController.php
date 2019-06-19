@@ -48,7 +48,7 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PegawaiReqxuest $request)
+    public function store(PegawaiRequest $request)
     {
         $pegawai = Pegawai::create($request->validated());
 
