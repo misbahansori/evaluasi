@@ -32,6 +32,7 @@
                                 <th>Unit</th>
                                 <th>Bagian</th>
                                 <th>Formasi</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                     <td>{{ optional($pegawai->unit)->name }}</td>
                                     <td>{{ optional($pegawai->bagian)->nama }}</td>
                                     <td>{{ optional($pegawai->formasi)->nama }}</td>
+                                    <td>{{ optional($pegawai->status)->nama }}</td>
                                     <th>
                                         <a href="{{ route('pegawai.show', $pegawai->id) }}" class="btn btn-success btn-sm">
                                             <i class="ti ti-write"></i> Biodata

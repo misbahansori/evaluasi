@@ -26,7 +26,7 @@ class PegawaiController extends Controller
     {
         $listPegawai = Pegawai::query()
             ->milikUser()
-            ->with('bagian', 'unit', 'formasi')
+            ->with('bagian', 'unit', 'formasi', 'status')
             ->get();
 
         return view('admin.pegawai.index', compact('listPegawai'));
