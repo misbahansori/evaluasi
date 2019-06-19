@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row">
+    <div class="row justify-content-center">
         @can('grafik pegawai')
             {{-- Chart js --}}
             <div class="col-md-12">
@@ -13,7 +13,7 @@
             </div>
         @endcan
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         @include('admin.pegawai.biodata-card')
         @include('admin.pegawai.periode-card')
         @include('admin.pegawai.tambah-periode-modal')

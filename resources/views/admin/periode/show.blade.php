@@ -1,7 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row">
+    @if ($periode->tidakBisaDiedit())
+        <div class="alert badge-danger text-white fade show" role="alert" style="border-radius:0">
+            <strong>Peringatan!</strong> Tidak Bisa mengisi nilai
+        </div>
+    @endif
+    <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
