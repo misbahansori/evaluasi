@@ -32,7 +32,7 @@ class PegawaiRequest extends FormRequest
             'tempat_lahir'  => 'required|string|max:100',
             'tanggal_lahir' => 'required|date_format:d-m-Y',
             'alamat'        => 'required|string',
-            'no_hp'         => 'required|string|max:20',
+            'no_hp'         => 'nullable|string|max:20',
             'tanggal_masuk' => 'required|date_format:d-m-Y',
             'unit_id'       => 'required|integer|exists:roles,id',
             'formasi_id'    => 'required|integer|exists:formasi,id',
