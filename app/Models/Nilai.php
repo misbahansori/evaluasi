@@ -21,11 +21,23 @@ class Nilai extends Model
     protected $guarded = [];
 
     /**
+     * The relationships that should be touched on save.
+     *
+     * @var array
+     */
+    protected $touches = ['periode'];
+
+    /**
     * aspek relationship
     */
     public function aspek()
     {
        return $this->belongsTo(Aspek::class);
+    }
+
+    public function periode()
+    {
+        return $this->belongsTo(Periode::class);
     }
     
 }

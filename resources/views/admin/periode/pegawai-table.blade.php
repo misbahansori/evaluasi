@@ -4,6 +4,15 @@
         <td>:</td>
         <td>{{ $pegawai->nbm }}</td>
 
+        <td>Update Karu / Kasie</td>
+        <td>:</td>
+        <td>{{ optional($periode->updated_at)->formatLocalized('%A, %d %B %Y') }}</td>
+    </tr>
+    <tr>
+        <td>Nama</td>
+        <td>:</td>
+        <td><a href="{{ route('pegawai.show', $pegawai->id) }}">{{ $pegawai->nama }}</a></td>
+        
         <td>Verifikasi Kabag / Kabid</td>
         <td>:</td>
         <td>
@@ -17,9 +26,9 @@
         </td>
     </tr>
     <tr>
-        <td>Nama</td>
+        <td>Unit / Ruangan</td>
         <td>:</td>
-        <td><a href="{{ route('pegawai.show', $pegawai->id) }}">{{ $pegawai->nama }}</a></td>
+        <td>{{ optional($periode->pegawai->unit)->name }}</td>
 
         <td>Verifikasi Wakil Direktur</td>
         <td>:</td>
@@ -32,11 +41,6 @@
                 <span class="badge badge-warning">Belum Diverifikasi</span>
             @endif
         </td>
-    </tr>
-    <tr>
-        <td>Unit / Ruangan</td>
-        <td>:</td>
-        <td>{{ optional($periode->pegawai->unit)->name }}</td>
     </tr>
     <tr>
         <td>Bagian</td>

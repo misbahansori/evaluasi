@@ -85,7 +85,8 @@ class Periode extends Model
      */
     public function verifKabag()
     {
-       $this->update(['verif_kabag' => Carbon::now()]);
+        $this->timestamps = false;
+        $this->update(['verif_kabag' => Carbon::now()]);
     }
     
     /**
@@ -93,7 +94,8 @@ class Periode extends Model
      */
     public function verifWadir()
     {
-       $this->update(['verif_wadir' => Carbon::now()]);
+        $this->timestamps = false;
+        $this->update(['verif_wadir' => Carbon::now()]);
     }
 
     /**
