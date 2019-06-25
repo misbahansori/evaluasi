@@ -1,4 +1,4 @@
-<form action="{{ route('nilai.update') }}" method="POST">
+<form action="{{ route('nilai.update', $periode->id) }}" method="POST">
     @csrf
     @method('put')
     <table class="table table-bordered table-striped">

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::redirect('/','login');
 
 Auth::routes();
 
@@ -36,7 +34,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/input-penilaian', 'InputPenilaianController@index')->name('input.penilaian.index');
     Route::post('/input-penilaian', 'InputPenilaianController@store')->name('input.penilaian.store');
 
-    Route::put('/nilai', 'NilaiController@update')->name('nilai.update');
+    Route::put('/nilai/{periode}', 'NilaiController@update')->name('nilai.update');
 
     Route::get('/master/aspek', 'AspekController@index')->name('aspek.index');
     Route::get('/master/aspek/create', 'AspekController@create')->name('aspek.create');
