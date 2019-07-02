@@ -40,7 +40,9 @@ class PeriodeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Pegawai $pegawai, Periode $periode)
-    {
+    { 
+        abort_if($periode->pegawai_id != $pegawai->id, 404);
+        
         $this->authorize('view', $pegawai);
         
         return view('admin.periode.show', compact('pegawai', 'periode'));
