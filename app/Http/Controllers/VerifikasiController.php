@@ -20,7 +20,16 @@ class VerifikasiController extends Controller
                 ->with('danger', 'Belum di verifikasi Kabag/Kabid');
         }
 
+        $this->authorize('verif wadir');
+
         $periode->verifWadir();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true, 
+                'message' => $periode->pegawai->nama . ' berhasil diverifikasi'
+            ]);
+        }
 
         return back()
             ->with('success', 'Berhasil di verifikasi');
@@ -34,8 +43,17 @@ class VerifikasiController extends Controller
     */
     public function kabag(Periode $periode)
     {
+        $this->authorize('verif kabag');
+
         $periode->verifKabag();
 
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true, 
+                'message' => $periode->pegawai->nama . ' berhasil diverifikasi'
+            ]);
+        }
+        
         return back()
             ->with('success', 'Berhasil di verifikasi');
     }

@@ -59,28 +59,18 @@
                                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
                                     <td>{{ $periode->rataNilai() }}</td>
                                     <td>
-                                        @if ($periode->verif_kabag)
-                                            <span class="badge badge-primary">Terverifikasi</span> 
-                                        @else
-                                            @can('verif kabag')
-                                                <form action="{{ route('verif.kabag', $periode->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="badge badge-warning" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Belum Diverifikasi</button>
-                                                </form>
-                                            @endcan
-                                        @endif
+                                        <verifikasi-component 
+                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif kabag') ? 'true' : 'false' }}"
+                                            verifikasi="{{ $periode->verif_kabag }}" 
+                                            action="{{ route('verif.kabag', $periode->id) }}"
+                                        ></verifikasi-component>
                                     </td>
                                     <td>
-                                        @if ($periode->verif_wadir)
-                                            <span class="badge badge-primary">Terverifikasi</span>
-                                        @else
-                                            @can('verif wadir')
-                                                <form action="{{ route('verif.wadir', $periode->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="badge badge-warning" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Belum Diverifikasi</button>
-                                                </form>
-                                            @endcan
-                                        @endif
+                                        <verifikasi-component 
+                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif wadir') ? 'true' : 'false' }}"
+                                            verifikasi="{{ $periode->verif_wadir }}" 
+                                            action="{{ route('verif.wadir', $periode->id) }}"
+                                        ></verifikasi-component>
                                     </td>
                                     <th>
                                         <a href="{{ route('periode.show', [ $periode->pegawai->id,  $periode->id]) }}" class="btn btn-success btn-sm">

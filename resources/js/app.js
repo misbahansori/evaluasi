@@ -16,7 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('penilaian-form', require('./components/PenilaianForm.vue'));
-
+Vue.component('verifikasi-component', require('./components/VerifikasiComponent.vue'));
 
 const app = new Vue({
     el: '#main-wrapper',
