@@ -62,14 +62,24 @@
                                         @if ($periode->verif_kabag)
                                             <span class="badge badge-primary">Terverifikasi</span> 
                                         @else
-                                            <span class="badge badge-warning">Belum Diverifikasi</span>
+                                            @can('verif kabag')
+                                                <form action="{{ route('verif.kabag', $periode->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="badge badge-warning" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Belum Diverifikasi</button>
+                                                </form>
+                                            @endcan
                                         @endif
                                     </td>
                                     <td>
                                         @if ($periode->verif_wadir)
                                             <span class="badge badge-primary">Terverifikasi</span>
                                         @else
-                                            <span class="badge badge-warning">Belum Diverifikasi</span>
+                                            @can('verif wadir')
+                                                <form action="{{ route('verif.wadir', $periode->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="badge badge-warning" onclick="return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')">Belum Diverifikasi</button>
+                                                </form>
+                                            @endcan
                                         @endif
                                     </td>
                                     <th>
