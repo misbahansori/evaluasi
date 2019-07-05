@@ -17,19 +17,16 @@
                             <label class="custom-control-label" for="terverifikasiKabag">Tampilkan hanya yg terverifikasi Kabag</label>
                         </div>
 
-                        <select name="bulan" id="bulan" class="form-control mr-2">
+                        <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
                             @foreach ($listBulan as $bulan)
                                 <option {{ request()->bulan == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
                             @endforeach
                         </select>
-                        <select name="tahun" id="tahun" class="form-control mr-2">
+                        <select name="tahun" id="tahun" class="form-control mr-2" onchange="this.form.submit()">
                             @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
                                 <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
-                        <button type="submit" class="btn btn-info">
-                            <i class="ti-search"></i> Cari
-                        </button>
                     </form>
                 </div>
 

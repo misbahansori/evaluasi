@@ -21,7 +21,7 @@ class PenilaianController extends Controller
 
         if (!$request->bulan && !$request->tahun) {
             $request->request->add([
-                'bulan' => date('n'),
+                'bulan' => date('n', strtotime("-1 month")),
                 'tahun' => date('Y')
             ]);
         }
