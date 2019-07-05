@@ -32,7 +32,23 @@
                 </div>
                 <div class="card-body">
                     @include('admin.periode.pegawai-table')
-                    @include('admin.periode.penilaian-form')
+                    {{-- @include('admin.periode.penilaian-form') --}}
+                    
+                    <form action="{{ route('nilai.update', $periode->id) }}" method="POST">
+                        @csrf
+                        @method('put')
+
+                        <penilaian-form
+                            :grouped="{{ $periode->nilai->groupBy('kategori')->sortKeys() }}"
+                            :disabled="false"
+                        ></penilaian-form>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-success btn-block btn-lg">
+                                <i class="ti-save"></i> Simpan
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
