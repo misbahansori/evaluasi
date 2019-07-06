@@ -24,7 +24,7 @@
                         <td>{{ index + 1 }}</td>
                         <td>{{ nilai.aspek }}</td>
                         <td v-for="i in 5" style="width: 50px;">
-                            <div class="custom-control custom-radio">
+                            <div class="custom-control custom-radio ">
                                 <input type="radio" 
                                     class="custom-control-input" 
                                     :name="nilai.id" 
@@ -83,3 +83,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .custom-control-label::after, .custom-control-label::before {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+</style>
