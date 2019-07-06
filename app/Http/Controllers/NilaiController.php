@@ -17,6 +17,11 @@ class NilaiController extends Controller
      */
     public function update(Request $request, Periode $periode)
     {
+        if ($periode->tidakBisaDiedit()) {
+            return back()
+            ->with('danger', 'Nilai tidak bisa diedit');
+        }
+        
         foreach ($request->all() as $key => $value) {
             Nilai::where('id', $key)
                 ->update(['nilai' => $value]);

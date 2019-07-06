@@ -40,7 +40,7 @@
 
                         <penilaian-form
                             :grouped="{{ $periode->nilai->groupBy('kategori')->sortKeys() }}"
-                            :disabled="false"
+                            :disabled="{{ $periode->tidakBisaDiedit() }}"
                         ></penilaian-form>
 
                         <div class="button-group">
