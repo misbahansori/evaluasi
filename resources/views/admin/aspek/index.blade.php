@@ -5,12 +5,23 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
-                    <h4>Master Data Aspek Penilaian</h4>
-                    <a href="{{ route('aspek.create') }}" class="btn btn-primary btn-sm">
-                        <i class="ti ti-pencil"></i> Tambah Aspek Penilaian
-                    </a>
+                    <h4>Master Data Aspek Penilaian {{ $tipe }}</h4>
+                    <div class="d-flex align-items-center">
+                        <form action="{{ url()->current() }}" method="get" class="d-flex">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="bulanan" name="tipe" value="bulanan" onchange="this.form.submit()" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="bulanan">Bulanan</label>
+                            </div>
+                            <div class="custom-control custom-radio ml-2">
+                                <input type="radio" id="tahunan" name="tipe" value="tahunan" onchange="this.form.submit()" class="custom-control-input" {{ request('tipe') == 'tahunan' ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="tahunan">Tahunan</label>
+                            </div>
+                        </form>
+                        <a href="{{ route('aspek.create') }}" class="btn btn-primary btn-sm ml-4">
+                            <i class="ti ti-pencil"></i> Tambah Aspek Penilaian
+                        </a>
+                    </div>
                 </div>
-
                 <div class="card-body">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">

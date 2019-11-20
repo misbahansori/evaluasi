@@ -20,11 +20,17 @@ class AspekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listBagian = Bagian::with('aspek')->orderBy('nama')->get();
+        $listBagian = Bagian::orderBy('nama')->get();
 
-        return view('admin.aspek.index', compact('listBagian'));
+        $tipe = $request->tipe ?? 'bulanan';
+         
+        $listBagian->load(['aspek' => function($query) use ($tipe) {
+            $query->whereTipe($tipe);
+        }]);
+
+        return view('admin.aspek.index', compact('listBagian', 'tipe'));
     }
 
     /**
