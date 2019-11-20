@@ -110,7 +110,7 @@ class Periode extends Model
         $query->wherePegawaiId($pegawai)
             ->whereBulanId($bulan)
             ->whereTahun($tahun)
-            ->whereBulanId($tipe);
+            ->whereTipe($tipe);
     }
 
     /**

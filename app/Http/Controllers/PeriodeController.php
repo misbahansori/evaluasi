@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pegawai;
 use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Actions\CreatePeriodeAction;
 
 class PeriodeController extends Controller
 {
@@ -25,9 +26,9 @@ class PeriodeController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Pegawai $pegawai, Request $request)
+    public function store(Pegawai $pegawai, CreatePeriodeAction $createPeriodeAction)
     {         
-        $pegawai->createPeriode($request, $request->tipe ?? 'bulanan');
+        $createPeriodeAction->execute($pegawai);
 
         return redirect()
             ->route('pegawai.show', $pegawai->id);
