@@ -16,9 +16,6 @@ class PenilaianController extends Controller
      */
     public function index(Request $request)
     {
-        $listBulan = Bulan::all();
-        $tahunIni = date('Y');
-
         if (!$request->bulan && !$request->tahun) {
             $request->request->add([
                 'bulan' => date('n', strtotime("-1 month")),
@@ -36,6 +33,6 @@ class PenilaianController extends Controller
             })
             ->get();
 
-        return view('admin.penilaian.index', compact('listPeriode', 'listBulan', 'tahunIni'));
+        return view('admin.penilaian.index', compact('listPeriode'));
     }
 }

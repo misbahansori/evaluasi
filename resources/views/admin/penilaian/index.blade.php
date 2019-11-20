@@ -18,12 +18,12 @@
                         </div>
 
                         <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
-                            @foreach ($listBulan as $bulan)
-                                <option {{ request()->bulan == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
-                            @endforeach
+                            @for ($bulan = 1; $bulan <= 12; $bulan++)
+                                <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                            @endfor
                         </select>
                         <select name="tahun" id="tahun" class="form-control mr-2" onchange="this.form.submit()">
-                            @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
+                            @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
                                 <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
