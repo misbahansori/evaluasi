@@ -60,6 +60,27 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="tipe" class="col-sm-4 col-form-label text-md-right">Tipe</label>
+                            <div class="col-md-6">
+                                <div class="d-flex mt-2">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="bulanan" name="tipe" value="bulanan" class="custom-control-input" {{ old('tipe', $aspek->tipe) == 'bulanan' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="bulanan">Bulanan</label>
+                                    </div>
+                                    <div class="custom-control custom-radio ml-2">
+                                        <input type="radio" id="tahunan" name="tipe" value="tahunan" class="custom-control-input" {{ old('tipe', $aspek->tipe) == 'tahunan' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="tahunan">Tahunan</label>
+                                    </div>
+                                </div>
+                                @if ($errors->has('tipe'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('tipe') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>

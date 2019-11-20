@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="kategori" class="col-sm-4 col-form-label text-md-right">Bagian</label>
+                            <label for="kategori" class="col-sm-4 col-form-label text-md-right">Kategori</label>
                             <div class="col-md-6">
                                 <select name="kategori" id="kategori" class="form-control{{ $errors->has('kategori') ? ' is-invalid' : '' }}">
                                     <option {{ old('kategori') == 'Profesi'? 'selected' : '' }}>Profesi</option>
@@ -53,6 +53,27 @@
                                 @if ($errors->has('kategori'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('kategori') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="tipe" class="col-sm-4 col-form-label text-md-right">Tipe</label>
+                            <div class="col-md-6">
+                                <div class="d-flex mt-2">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="bulanan" name="tipe" value="bulanan" class="custom-control-input" checked>
+                                        <label class="custom-control-label" for="bulanan">Bulanan</label>
+                                    </div>
+                                    <div class="custom-control custom-radio ml-2">
+                                        <input type="radio" id="tahunan" name="tipe" value="tahunan" class="custom-control-input" {{ old('tipe') == 'tahunan' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="tahunan">Tahunan</label>
+                                    </div>
+                                </div>
+                                @if ($errors->has('tipe'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('tipe') }}</strong>
                                     </span>
                                 @endif
                             </div>

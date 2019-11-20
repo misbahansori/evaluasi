@@ -1,15 +1,15 @@
 <div class="card">
     <div class="card-header bg-white d-flex justify-content-between">
-        <h4>Penilaian Bulanan</h5>
+        <h4>Penilaian Tahunan</h5>
         @can('tambah periode')
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#periodeTahunanModal">
                 <i class="ti ti-pencil"></i> Tambah
             </button>
         @endcan
     </div>
     <div class="card-body">
         <table class="table">
-            @forelse ($pegawai->periode as $periode)
+            @forelse ($pegawai->periodeTahunan as $periode)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
@@ -30,7 +30,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="text-center"><i>Belum ada data</i></td>
+                    <td colspan="3" class="text-center"><i>Belum ada data penilaian tahunan.</i></td>
                 </tr>
             @endforelse
         </table>

@@ -27,7 +27,7 @@ class PeriodeController extends Controller
      */
     public function store(Pegawai $pegawai, Request $request)
     {         
-        $pegawai->createPeriode($request);
+        $pegawai->createPeriode($request, $request->tipe ?? 'bulanan');
 
         return redirect()
             ->route('pegawai.show', $pegawai->id);

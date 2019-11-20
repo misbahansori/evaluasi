@@ -64,6 +64,19 @@ class Pegawai extends Model
     public function periode()
     {
         return $this->hasMany(Periode::class)
+            ->whereTipe('bulanan')
+            ->with('bulan')
+            ->orderBy('tahun')
+            ->orderBy('bulan_id');
+    }
+    /**
+     * 
+     * Pegawai punya banyak Periode penilaian
+     */
+    public function periodeTahunan()
+    {
+        return $this->hasMany(Periode::class)
+            ->whereTipe('tahunan')
             ->with('bulan')
             ->orderBy('tahun')
             ->orderBy('bulan_id');
@@ -89,7 +102,7 @@ class Pegawai extends Model
      * @param Request $request
      * @return void
      */
-    public function createPeriode(Request $request)
+    public function createPeriode(Request $request, $tipe)
     {
         // Cek pegawai memiliki bagian
         if (! $this->bagian) {
@@ -101,7 +114,7 @@ class Pegawai extends Model
         // Cek periode pegawai belum ada
         $bulan = Bulan::find($request->bulan);
     
-        if (Periode::unique($this->id, $bulan->id, $request->tahun)->exists()) {
+        if (Periode::unique($this->id, $bulan->id, $request->tahun, $tipe)->exists()) {
             session()->flash('danger', array_merge((array) session()->get('danger'), ["Tidak dapat menambah penilaian. Pegawai $this->nama, Periode $bulan->nama $request->tahun sudah ada."]));
             
             return;
@@ -110,8 +123,13 @@ class Pegawai extends Model
         // Buat periode penilaian
         $periode = $this->periode()->create([
             'bulan_id' => $request->bulan,
-            'tahun' => $request->tahun
+            'tahun' => $request->tahun,
+            'tipe' => $tipe
         ]);
+
+        $this->bagian->load(['aspek' => function($query) use ($tipe) {
+            $query->whereTipe($tipe);
+        }]);
 
         // Copy aspek penilaian ke periode 
         $this->bagian->aspek->each(function ($item) use ($periode) {

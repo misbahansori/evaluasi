@@ -14,9 +14,15 @@
         @endcan
     </div>
     <div class="row justify-content-center">
-        @include('admin.pegawai.biodata-card')
-        @include('admin.pegawai.periode-card')
+        <div class="col-md-7">
+            @include('admin.pegawai.biodata-card')
+        </div>
+        <div class="col-md-5">
+            @include('admin.pegawai.periode-tahunan-card')
+            @include('admin.pegawai.periode-card')
+        </div>
         @include('admin.pegawai.tambah-periode-modal')
+        @include('admin.pegawai.tambah-periode-tahunan-modal')
     </div>
 @endsection
 

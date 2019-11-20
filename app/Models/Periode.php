@@ -105,11 +105,12 @@ class Periode extends Model
      * @param Integer $bulan
      * @param Integer $tahun
      */
-    public function scopeUnique($query, $pegawai, $bulan, $tahun)
+    public function scopeUnique($query, $pegawai, $bulan, $tahun, $tipe)
     {
         $query->wherePegawaiId($pegawai)
             ->whereBulanId($bulan)
-            ->whereTahun($tahun);
+            ->whereTahun($tahun)
+            ->whereBulanId($tipe);
     }
 
     /**

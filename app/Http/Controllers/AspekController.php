@@ -56,13 +56,15 @@ class AspekController extends Controller
         $request->validate([
             'bagian'   => 'required|integer|exists:bagian,id',
             'nama'     => 'required|string|max:150',
-            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'
+            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja',
+            'tipe'     => 'required|in:bulanan,tahunan'
         ]);
 
         $aspek = Aspek::create([
             'bagian_id' => $request->bagian,
             'nama'      => $request->nama,
-            'kategori'  => $request->kategori
+            'kategori'  => $request->kategori,
+            'tipe'  => $request->tipe
         ]);
 
         return redirect()->route('aspek.index')
@@ -94,13 +96,15 @@ class AspekController extends Controller
         $request->validate([
             'bagian'   => 'required|integer|exists:bagian,id',
             'nama'     => 'required|string|max:150',
-            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja'
+            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja',
+            'tipe'     => 'required|in:bulanan,tahunan'
         ]);
 
         $aspek->update([
             'bagian_id' => $request->bagian,
             'nama'      => $request->nama,
-            'kategori'  => $request->kategori
+            'kategori'  => $request->kategori,
+            'tipe'  => $request->tipe
         ]);
 
         return redirect()->route('aspek.index')
