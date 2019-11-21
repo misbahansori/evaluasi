@@ -11,17 +11,35 @@
                         {{ request()->tahun }}
                     </h4>
                     <form action="{{ route('penilaian.index') }}" method="GET" class="form-inline">
-
                         <div class="custom-control custom-checkbox mr-5">
                             <input type="checkbox" class="custom-control-input" id="terverifikasiKabag" name="terverifikasiKabag" value="true" {{ request()->terverifikasiKabag == 'true' ? 'checked' : '' }} onclick="this.form.submit()">
                             <label class="custom-control-label" for="terverifikasiKabag">Tampilkan hanya yg terverifikasi Kabag</label>
                         </div>
+                        <div class="d-flex">
+                            <div class="custom-control custom-radio mr-3">
+                                <input type="radio" id="bulanan" name="tipe" value="bulanan" onchange="this.form.submit()" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="bulanan">Bulanan</label>
+                            </div>
+                            <div class="custom-control custom-radio mr-3">
+                                <input type="radio" id="tahunan" name="tipe" value="tahunan" onchange="this.form.submit()" class="custom-control-input" {{ request('tipe') == 'tahunan' ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="tahunan">Tahunan</label>
+                            </div>
+                        </div>
 
-                        <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
-                            @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
-                            @endfor
-                        </select>
+                        @if (request()->tipe == 'tahunan')
+                            <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
+                                <option {{ request()->bulan == 2 ? 'selected' : '' }} value="2">Februari</option>
+                                <option {{ request()->bulan == 8 ? 'selected' : '' }} value="8">Agustus</option>
+                                <option {{ request()->bulan == 12 ? 'selected' : '' }} value="12">Desember</option>
+                            </select>
+                        @else
+                            <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
+                                @for ($bulan = 1; $bulan <= 12; $bulan++)
+                                    <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                @endfor
+                            </select>
+                        @endif
+
                         <select name="tahun" id="tahun" class="form-control mr-2" onchange="this.form.submit()">
                             @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
                                 <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>

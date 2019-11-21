@@ -16,10 +16,11 @@ class PenilaianController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->bulan && !$request->tahun) {
+        if (!$request->bulan && !$request->tahun && !$request->tipe) {
             $request->request->add([
                 'bulan' => date('n', strtotime("-1 month")),
-                'tahun' => date('Y')
+                'tahun' => date('Y'),
+                'tipe' => 'bulanan'
             ]);
         }
 
@@ -27,6 +28,7 @@ class PenilaianController extends Controller
             ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
+            ->whereTipe($request->tipe)
             ->milikUser()
             ->when(auth()->user()->hasPermissionTo('verif wadir') && $request->terverifikasiKabag, function($query) {
                 return $query->terverifikasiKabag();
