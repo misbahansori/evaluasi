@@ -20,6 +20,11 @@
                             <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="btn btn-success btn-sm">
                                 <i class="ti-view-list-alt"></i> Detail
                             </a>
+                            @can('cetak periode')
+                                <a href="#" class="btn btn-info btn-sm">
+                                    <i class="ti-printer"></i> Cetak
+                                </a>
+                            @endcan
                             @can('hapus periode')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus')">
                                     <i class="ti-trash"></i> Hapus
