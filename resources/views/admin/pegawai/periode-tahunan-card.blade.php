@@ -21,7 +21,7 @@
                                 <i class="ti-view-list-alt"></i> Detail
                             </a>
                             @can('cetak periode')
-                                <a href="#" class="btn btn-info btn-sm">
+                                <a href="{{ route('hasil-evaluasi.cetak', $periode->id) }}" class="btn btn-info btn-sm">
                                     <i class="ti-printer"></i> Cetak
                                 </a>
                             @endcan
