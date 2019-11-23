@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\Unit;
 use App\Models\User;
 use App\Models\Bagian;
 use App\Models\Pegawai;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
-class PegawaiModelTest extends TestCase
+class PegawaiTest extends TestCase
 {
     use RefreshDatabase;
     

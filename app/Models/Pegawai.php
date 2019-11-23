@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Models\Bulan;
 use App\Models\Periode;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Presenters\TanggalPresenter;
 

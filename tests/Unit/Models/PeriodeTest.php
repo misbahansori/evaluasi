@@ -1,16 +1,19 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Aspek;
 use App\Models\Bulan;
 use App\Models\Nilai;
 use App\Models\Bagian;
+use App\Models\Pegawai;
 use App\Models\Periode;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PeriodeModelTest extends TestCase
+class PeriodeTest extends TestCase
 {
     use RefreshDatabase;
     
