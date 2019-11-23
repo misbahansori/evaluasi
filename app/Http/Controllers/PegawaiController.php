@@ -11,6 +11,11 @@ use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
+    /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('permission:tambah pegawai')->only('create', 'store');

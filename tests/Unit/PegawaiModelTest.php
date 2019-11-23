@@ -3,6 +3,10 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Models\Unit;
+use App\Models\User;
+use App\Models\Bagian;
+use App\Models\Pegawai;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
@@ -13,35 +17,35 @@ class PegawaiModelTest extends TestCase
     /** @test */
     public function it_has_unit()
     {
-        $unit = factory('App\Models\Unit')->create();
+        $unit = factory(Unit::class)->create();
 
-        $pegawai = factory('App\Models\Pegawai')->create(['unit_id' => $unit->id]);
+        $pegawai = factory(Pegawai::class)->create(['unit_id' => $unit->id]);
 
-        $this->assertInstanceOf('App\Models\Unit', $pegawai->unit);
+        $this->assertInstanceOf(Unit::class, $pegawai->unit);
     }
 
     /** @test */
     public function it_has_bagian()
     {
-        $bagian = factory('App\Models\Bagian')->create();
+        $bagian = factory(Bagian::class)->create();
 
-        $pegawai = factory('App\Models\Pegawai')->create(['bagian_id' => $bagian->id]);
+        $pegawai = factory(Pegawai::class)->create(['bagian_id' => $bagian->id]);
 
-        $this->assertInstanceOf('App\Models\Bagian', $pegawai->bagian);
+        $this->assertInstanceOf(Bagian::class, $pegawai->bagian);
     }
 
     /** @test */
     public function ngetes_scope_milik_user()
     {
-        $unit = factory('App\Models\Unit', 2)->create();
-        $user = factory('App\Models\User')->create();
+        $unit = factory(Unit::class, 2)->create();
+        $user = factory(User::class)->create();
         $user->assignRole(2);
         $this->actingAs($user);
 
-        $pegawai1 = factory('App\Models\Pegawai', 1)->create(['unit_id' => 1]);
-        $pegawai2 = factory('App\Models\Pegawai', 2)->create(['unit_id' => 2]);
+        $pegawai1 = factory(Pegawai::class, 1)->create(['unit_id' => 1]);
+        $pegawai2 = factory(Pegawai::class, 2)->create(['unit_id' => 2]);
 
-        $listPegawai = \App\Models\Pegawai::milikUser()->get();
+        $listPegawai = Pegawai::milikUser()->get();
 
         $this->assertEquals(2, $listPegawai->count());
     }

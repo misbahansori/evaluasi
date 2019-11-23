@@ -14,7 +14,7 @@ class TambahPeriodeTest extends TestCase
     protected $user;
     protected $pegawai;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         
@@ -28,7 +28,7 @@ class TambahPeriodeTest extends TestCase
         ]);
 
         $this->user = factory('App\Models\User')->create();
-        $this->pegawai = factory('App\Models\Pegawai')->create();
+        $this->pegawai = factory(Pegawai::class)->create();
 
     }
 

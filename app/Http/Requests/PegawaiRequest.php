@@ -26,13 +26,13 @@ class PegawaiRequest extends FormRequest
     {
         $rules = [
             'nik'           => 'nullable|string|unique:pegawai|digits:16',
-            'nbm'           => 'nullable|string|digits:7',
+            'nbm'           => 'nullable|string',
             'nama'          => 'required|string',
             'jenis_kelamin' => 'required|in:L,P',
             'tempat_lahir'  => 'required|string|max:100',
             'tanggal_lahir' => 'required|date_format:d-m-Y',
             'alamat'        => 'required|string',
-            'no_hp'         => 'nullable|string|max:20',
+            'no_hp'         => 'nullable|string|max:30',
             'tanggal_masuk' => 'required|date_format:d-m-Y',
             'unit_id'       => 'required|integer|exists:roles,id',
             'formasi_id'    => 'required|integer|exists:formasi,id',
