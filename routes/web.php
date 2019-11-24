@@ -15,20 +15,15 @@ Route::redirect('/','login');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::middleware('auth')->group(function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::get('/penilaian', 'PenilaianController@index')->name('penilaian.index');
 
-    Route::get('/pegawai', 'PegawaiController@index')->name('pegawai.index');
-    Route::get('/pegawai/create', 'PegawaiController@create')->name('pegawai.create');
-    Route::get('/pegawai/{pegawai}', 'PegawaiController@show')->name('pegawai.show');
-    Route::get('/pegawai/{pegawai}/edit', 'PegawaiController@edit')->name('pegawai.edit');
-    Route::put('/pegawai/{pegawai}', 'PegawaiController@update')->name('pegawai.update');
-    Route::post('/pegawai', 'PegawaiController@store')->name('pegawai.store');
+    Route::resource('/pegawai', 'PegawaiController');
 
-    Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
+    Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');
     Route::delete('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@destroy')->name('periode.destroy');
 
     Route::get('/input-penilaian', 'InputPenilaianController@index')->name('input.penilaian.index');
