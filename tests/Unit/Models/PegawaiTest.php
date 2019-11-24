@@ -6,8 +6,13 @@ use Tests\TestCase;
 use App\Models\Unit;
 use App\Models\User;
 use App\Models\Bagian;
+use App\Models\Status;
+use App\Models\Formasi;
 use App\Models\Pegawai;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Periode;
+use Tests\Setup\UserFactory;
+use Tests\Setup\PegawaiFactory;
+use Illuminate\Support\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PegawaiTest extends TestCase
@@ -17,9 +22,7 @@ class PegawaiTest extends TestCase
     /** @test */
     public function it_has_unit()
     {
-        $unit = factory(Unit::class)->create();
-
-        $pegawai = factory(Pegawai::class)->create(['unit_id' => $unit->id]);
+        $pegawai = factory(Pegawai::class)->create();
 
         $this->assertInstanceOf(Unit::class, $pegawai->unit);
     }
@@ -27,26 +30,68 @@ class PegawaiTest extends TestCase
     /** @test */
     public function it_has_bagian()
     {
-        $bagian = factory(Bagian::class)->create();
-
-        $pegawai = factory(Pegawai::class)->create(['bagian_id' => $bagian->id]);
+        $pegawai = factory(Pegawai::class)->create();
 
         $this->assertInstanceOf(Bagian::class, $pegawai->bagian);
     }
 
     /** @test */
-    public function ngetes_scope_milik_user()
+    public function it_has_formasi()
     {
-        $unit = factory(Unit::class, 2)->create();
-        $user = factory(User::class)->create();
-        $user->assignRole(2);
+        $pegawai = factory(Pegawai::class)->create();
+
+        $this->assertInstanceOf(Formasi::class, $pegawai->formasi);
+    }
+    
+    /** @test */
+    public function it_has_status()
+    {
+        $pegawai = factory(Pegawai::class)->create();
+
+        $this->assertInstanceOf(Status::class, $pegawai->status);
+    }
+
+    /** @test */
+    public function it_has_many_periode()
+    {
+        $pegawai = app(PegawaiFactory::class)->withPeriode()->create();
+        
+        $this->assertInstanceOf(Collection::class, $pegawai->periode);
+        $this->assertInstanceOf(Periode::class, $pegawai->periode->first());
+    }
+
+    /** @test */
+    public function periode_hanya_menampilkan_tipe_bulanan()
+    {
+        $pegawai = factory(Pegawai::class)->create();
+
+        factory(Periode::class, 3)->create(['tipe' => 'bulanan', 'pegawai_id' => $pegawai->id]);
+        factory(Periode::class, 1)->create(['tipe' => 'tahunan', 'pegawai_id' => $pegawai->id]);
+        
+        $this->assertCount(3, $pegawai->periode);
+    }
+
+    /** @test */
+    public function periode_hanya_menampilkan_tipe_tahunan()
+    {
+        $pegawai = factory(Pegawai::class)->create();
+
+        factory(Periode::class, 3)->create(['tipe' => 'bulanan', 'pegawai_id' => $pegawai->id]);
+        factory(Periode::class, 1)->create(['tipe' => 'tahunan', 'pegawai_id' => $pegawai->id]);
+        
+        $this->assertCount(1, $pegawai->periodeTahunan);
+    }
+
+    /** @test */
+    public function scope_milik_user()
+    {
+        $user = app(UserFactory::class)->withRole('Ruang IT')->create();
+
+        factory(Pegawai::class, 3)->create(['unit_id' => $user->roles[0]->id]);
+        factory(Pegawai::class, 2)->create();
+
         $this->actingAs($user);
-
-        $pegawai1 = factory(Pegawai::class, 1)->create(['unit_id' => 1]);
-        $pegawai2 = factory(Pegawai::class, 2)->create(['unit_id' => 2]);
-
-        $listPegawai = Pegawai::milikUser()->get();
-
-        $this->assertEquals(2, $listPegawai->count());
+        
+        $this->assertCount(3, Pegawai::milikUser()->get());
     }
 }
