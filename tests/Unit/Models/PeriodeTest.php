@@ -10,6 +10,8 @@ use App\Models\Nilai;
 use App\Models\Bagian;
 use App\Models\Pegawai;
 use App\Models\Periode;
+use Tests\Setup\PeriodeFactory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -38,12 +40,69 @@ class PeriodeTest extends TestCase
     }
 
     /** @test */
-    public function it_has_bagian()
+    public function it_has_pegawai()
     {
-        $bagian = factory(Bagian::class)->create();
-        $pegawai = factory(Pegawai::class)->create(['bagian_id' => $bagian->id]);
+        $periode = factory(Periode::class)->create();
 
-        $this->assertInstanceOf(Bagian::class, $pegawai->bagian);
+        $this->assertInstanceOf(Pegawai::class, $periode->pegawai);
+    }
+
+    /** @test */
+    public function it_has_many_nilai()
+    {
+        $periode = factory(Periode::class)->create();
+        factory(Nilai::class)->create(['periode_id' => $periode->id]);
+        
+        $this->assertInstanceOf(Collection::class, $periode->nilai);
+        $this->assertInstanceOf(Nilai::class, $periode->nilai->first());
+    }
+
+    /** @test */
+    public function periode_can_determine_total_nilai()
+    {
+        $periode = app(PeriodeFactory::class)->withNilai(10)->create();
+
+        $this->assertEquals($periode->totalNilai(), $periode->nilai->sum('nilai'));
+    }
+    
+    /** @test */
+    public function periode_can_determine_rata_rata_nilai()
+    {
+        $periode = app(PeriodeFactory::class)->withNilai(10)->create();
+
+        $this->assertEquals($periode->rataNilai(), round($periode->totalNilai() / $periode->nilai->count(), 2));
+    }
+
+    /** @test */
+    public function it_can_set_verif_kabag()
+    {
+        $periode = factory(Periode::class)->create();
+        
+        $this->assertNull($periode->verif_kabag);
+
+        $periode->verifKabag();
+        
+        $this->assertNotNull($periode->verif_kabag);
+    }
+
+    /** @test */
+    public function it_can_set_verif_wadir()
+    {
+        $periode = factory(Periode::class)->create();
+        
+        $this->assertNull($periode->verif_wadir);
+
+        $periode->verifWadir();
+        
+        $this->assertNotNull($periode->verif_wadir);
+    }
+
+    /** @test */
+    public function it_can_scope_unique()
+    {
+        $periode = factory(Periode::class)->create();
+
+        $this->assertTrue(Periode::unique($periode->pegawai_id, $periode->bulan_id, $periode->tahun, $periode->tipe)->exists());
     }
     
     /** @test */

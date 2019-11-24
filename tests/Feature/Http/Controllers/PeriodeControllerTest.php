@@ -10,7 +10,6 @@ use App\Models\Pegawai;
 use PermissionsTableSeeder;
 use Tests\Setup\UserFactory;
 use Tests\Setup\PegawaiFactory;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodeControllerTest extends TestCase
@@ -77,6 +76,8 @@ class PeriodeControllerTest extends TestCase
         $this->seed(PermissionsTableSeeder::class);
         $user = app(UserFactory::class)->withRole('Ruang IT')->withPermission('hapus periode')->create();
         $pegawai = app(PegawaiFactory::class)->withPeriode()->withNilai()->create(['unit_id' => $user->roles[0]->id]);
+
+        $this->assertTrue(Nilai::all()->isNotEmpty());
 
         $this->actingAs($user)
             ->delete(route('periode.destroy', [$pegawai, $pegawai->periode->first()]))

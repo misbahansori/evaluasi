@@ -59,7 +59,7 @@ class PeriodeController extends Controller
     {
         $this->authorize('view', $pegawai);
 
-        $periode->aspek()->detach();
+        $periode->nilai()->delete();
         $periode->delete();
 
         return redirect()

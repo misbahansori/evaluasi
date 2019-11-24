@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Aspek;
 use App\Models\Nilai;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -49,14 +48,6 @@ class Periode extends Model
     }
 
     /**
-     * Setiap periode mempunyai banyak Aspek penilaian
-     */
-    public function aspek()
-    {
-       return $this->belongsToMany(Aspek::class, 'nilai');
-    }
-
-    /**
      * Setiap Periode punya banyak Nilai
      */
     public function nilai()
@@ -85,7 +76,6 @@ class Periode extends Model
      */
     public function verifKabag()
     {
-        $this->timestamps = false;
         $this->update(['verif_kabag' => Carbon::now()]);
     }
     
@@ -94,12 +84,11 @@ class Periode extends Model
      */
     public function verifWadir()
     {
-        $this->timestamps = false;
         $this->update(['verif_wadir' => Carbon::now()]);
     }
 
     /**
-     * Mengecek Periode apakah unik dengan kombinasi tiga kolom
+     * Mengecek Periode apakah unik dengan kombinasi empat kolom
      *
      * @param Integer $pegawai
      * @param Integer $bulan
