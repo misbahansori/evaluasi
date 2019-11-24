@@ -10,6 +10,8 @@ use App\Models\Nilai;
 use App\Models\Bagian;
 use App\Models\Pegawai;
 use App\Models\Periode;
+use Tests\Setup\UserFactory;
+use Tests\Setup\PegawaiFactory;
 use Tests\Setup\PeriodeFactory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -104,37 +106,62 @@ class PeriodeTest extends TestCase
 
         $this->assertTrue(Periode::unique($periode->pegawai_id, $periode->bulan_id, $periode->tahun, $periode->tipe)->exists());
     }
-    
+
+    /** @test */
+    public function it_can_spoce_milik_user()
+    {
+        $user = app(UserFactory::class)->withRole('Ruang IT')->create();
+        app(PegawaiFactory::class)->withPeriode()->create(['unit_id' => $user->roles[0]->id]);
+        factory(Periode::class, 3)->create();
+
+        $this->actingAs($user);
+        $this->assertCount(1, Periode::milikUser()->get());
+    }
+
+    /** @test */
+    public function it_can_scope_terverifikasi_kabag()
+    {
+        factory(Periode::class)->create();
+        factory(Periode::class, 2)->create(['verif_kabag' => now()]);
+
+        $this->assertCount(2, Periode::terverifikasiKabag()->get());
+    }
+
+    /** @test */
+    public function it_can_scope_terverifikasi_wadir()
+    {
+        factory(Periode::class)->create();
+        factory(Periode::class, 2)->create(['verif_wadir' => now()]);
+
+        $this->assertCount(2, Periode::terverifikasiWadir()->get());
+    }
+
     /** @test */
     public function periode_bisa_diedit_oleh_siapapun_selama_belum_di_verifikasi()
     {
         $user = factory(User::class)->create();
-        $this->actingAs($user);
-        
         $periode = factory(Periode::class)->create();
         
+        $this->actingAs($user);
         $this->assertFalse($periode->tidakBisaDiedit());
     }
     /** @test */
     public function periode_tidak_bisa_diedit_jika_sudah_di_verif_kabag_dan_user_bukan_kabag()
     {
         $user = factory(User::class)->create();
+        $periode = factory(Periode::class)->create(['verif_kabag' => now()]);
+        
         $this->actingAs($user);
-
-        $periode = factory(Periode::class)->create(['verif_kabag' => 1]);
-
         $this->assertTrue($periode->tidakBisaDiedit());
     }
 
     /** @test */
     public function periode_bisa_diedit_jika_sudah_di_verif_kabag_dan_user_adalah_wadir()
     {
-        $user = factory(User::class)->create();
-        $user->givePermissionTo('verif wadir');
+        $user = app(UserFactory::class)->withPermission('verif kabag')->create();
+        $periode = factory(Periode::class)->create(['verif_kabag' => now()]);
+        
         $this->actingAs($user);
-
-        $periode = factory(Periode::class)->create(['verif_kabag' => 1]);
-
         $this->assertFalse($periode->tidakBisaDiedit());
     }
 
@@ -142,41 +169,19 @@ class PeriodeTest extends TestCase
     public function periode_tidak_bisa_diedit_jika_sudah_diverif_wadir_dan_user_bukan_wadir()
     {
         $user = factory(User::class)->create();
+        $periode = factory(Periode::class)->create(['verif_wadir' => now()]);
+        
         $this->actingAs($user);
-
-        $periode = factory(Periode::class)->create(['verif_wadir' => 1]);
-
         $this->assertTrue($periode->tidakBisaDiedit());
     }
 
     /** @test */
     public function periode_tidak_bisa_diedit_jika_belum_di_verif_kabag_dan_user_adalah_wadir()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-        $user->givePermissionTo('verif wadir');
-
+        $user = app(UserFactory::class)->withPermission('verif wadir')->create();
         $periode = factory(Periode::class)->create();
-
+        
+        $this->actingAs($user);
         $this->assertTrue($periode->tidakBisaDiedit());
-    }
-
-    /** @test */
-    public function periode_bisa_menampilkan_nilai_rata_rata()
-    {
-        $bagian  = factory(Bagian::class)->create();
-        $aspek   = factory(Aspek::class, 20)->create(['bagian_id' => $bagian->id]);
-        $pegawai = factory(Pegawai::class)->create(['bagian_id' => $bagian->id]);
-        $periode = factory(Periode::class)->create(['pegawai_id' => $pegawai->id]);
-
-        $pegawai->bagian->aspek->each(function ($item) use ($periode) {
-            $periode->nilai()->create(['aspek' => $item->nama, 'kategori' => $item->kategori]);
-        });
-        
-        $this->assertEquals(0, $periode->rataNilai());
-        
-        $nilai = Nilai::first()->update(['nilai' => 5]);
-        
-        $this->assertEquals($periode->totalNilai() / $periode->nilai()->count(), $periode->rataNilai());
     }
 }

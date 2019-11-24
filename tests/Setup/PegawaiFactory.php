@@ -5,7 +5,6 @@ namespace Tests\Setup;
 use App\Models\Nilai;
 use App\Models\Pegawai;
 use App\Models\Periode;
-use Spatie\Permission\Models\Permission;
 
 class PegawaiFactory 
 { 
@@ -16,9 +15,11 @@ class PegawaiFactory
     {
         $pegawai = factory(Pegawai::class)->create($attribute);
 
-        $periode = factory(Periode::class, $this->periodeCount)->create(['pegawai_id' => $pegawai->id]);
+        if ($this->periodeCount > 0) {
+            $periode = factory(Periode::class, $this->periodeCount)->create(['pegawai_id' => $pegawai->id]);
 
-        factory(Nilai::class, $this->nilaiCount)->create(['periode_id' => $periode->first()->id]);
+            factory(Nilai::class, $this->nilaiCount)->create(['periode_id' => $periode->first()->id]);
+        }
         
         return $pegawai;
     }
