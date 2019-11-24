@@ -28,16 +28,12 @@ class Nilai extends Model
     protected $touches = ['periode'];
 
     /**
-    * aspek relationship
-    */
-    public function aspek()
-    {
-       return $this->belongsTo(Aspek::class);
-    }
-
+     * Periode relationship
+     *
+     * @return \App\Models\Periode
+     */
     public function periode()
     {
         return $this->belongsTo(Periode::class);
     }
-    
 }

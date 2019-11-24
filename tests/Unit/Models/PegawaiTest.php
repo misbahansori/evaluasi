@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Models\Unit;
-use App\Models\User;
 use App\Models\Bagian;
 use App\Models\Status;
 use App\Models\Formasi;
