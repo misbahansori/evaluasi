@@ -65,4 +65,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/verif/wadir/{periode}', 'VerifikasiController@wadir')->name('verif.wadir');
 
     Route::post('/report/{tipe}', 'ReportController')->name('report');
+
+    Route::get('/login-as', 'LoginAsController@index')->name('login-as.index');
+    Route::post('/login-as', 'LoginAsController@store')->name('login-as.store');
 });

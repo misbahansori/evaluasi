@@ -25,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('login-as', function($user) {
+            return in_array($user->email, [
+                'misbah.ansori24@gmail.com'
+            ]);
+        });
     }
 }
