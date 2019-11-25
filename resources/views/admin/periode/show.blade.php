@@ -39,7 +39,7 @@
                         @method('put')
 
                         <penilaian-form
-                            :grouped="{{ $periode->nilai->groupBy('kategori')->sortKeys() }}"
+                            :grouped="{{ $penilaian }}"
                             :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
                         ></penilaian-form>
 

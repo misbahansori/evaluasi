@@ -45,8 +45,14 @@ class PeriodeController extends Controller
         abort_if($periode->pegawai_id != $pegawai->id, 404);
         
         $this->authorize('view', $pegawai);
+
+        if (auth()->user()->hasPermissionTo('penilaian aik')) {
+            $penilaian = $periode->nilaiAik->groupBy('kategori')->sortKeys();
+        } else {
+            $penilaian = $periode->nilai->groupBy('kategori')->sortKeys();
+        }
         
-        return view('admin.periode.show', compact('pegawai', 'periode'));
+        return view('admin.periode.show', compact('pegawai', 'periode', 'penilaian'));
     }
 
     /**

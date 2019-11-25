@@ -36,7 +36,7 @@ class Periode extends Model
      */
     public function bulan()
     {
-       return $this->belongsTo(Bulan::class);
+        return $this->belongsTo(Bulan::class);
     }
 
     /**
@@ -44,7 +44,7 @@ class Periode extends Model
      */
     public function pegawai()
     {
-       return $this->belongsTo(Pegawai::class);
+        return $this->belongsTo(Pegawai::class);
     }
 
     /**
@@ -52,7 +52,17 @@ class Periode extends Model
      */
     public function nilai()
     {
-       return $this->hasMany(Nilai::class);
+        return $this->hasMany(Nilai::class);
+    }
+
+    /**
+     * Setiap Periode punya banyak Nilai Al islam dan Kemuhammadiyahan
+     */
+    public function nilaiAik()
+    {
+        return $this->hasMany(Nilai::class)
+            ->where('kategori', 'Ke-islaman')
+            ->orWhere('kategori', 'Ke-muhammadiyahan');
     }
 
     /**
