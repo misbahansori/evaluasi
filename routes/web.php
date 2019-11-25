@@ -64,5 +64,5 @@ Route::middleware('auth')->group(function() {
     Route::post('/verif/kabag/{periode}', 'VerifikasiController@kabag')->name('verif.kabag');
     Route::post('/verif/wadir/{periode}', 'VerifikasiController@wadir')->name('verif.wadir');
 
-    Route::get('/report/hasil-evaluasi/{periode}', 'HasilEvaluasiController')->name('hasil-evaluasi.cetak');
+    Route::post('/report/{tipe}', 'ReportController')->name('report');
 });

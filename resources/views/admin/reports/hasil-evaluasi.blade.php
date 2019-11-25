@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>{{ $periode->pegawai->nama }} | {{ strtoupper($periode->tipe) }} | PERIODE {{ strtoupper($periode->bulan->nama) }} {{ $periode->tahun }}</title>
     <style>
         @page {
-            margin: 0;
+            margin: 30px 20px ;
         }
         .table {
             border-collapse: collapse;
@@ -28,34 +28,30 @@
 
 <body>
     <img src="{{ asset('/img/logo-rsumm.png') }}" width="85" height="85" style="margin-left: 30; margin-top: 10; position: absolute">
-    <div style="text-align: center; font-size: 8px; margin: 20px;">
+    <div style="text-align: center; font-size: 8px; margin: 0px 20px;">
         <h1>HASIL PENILAIAN KINERJA PEGAWAI KONTRAK</h1>
         <h1>RSU MUHAMMADIYAH METRO</h1>
+        <h1 style="text-transform: uppercase">PERIODE {{ $periode->bulan->nama }} {{ $periode->tahun }}</h1>
         <hr>
     </div>
-    <table style="margin: 20px; width: 50%">
+    <table style="margin: 20px;">
         <tr>
-            <td>Unit Kerja</td>
+            <td style="width: 150px;">Nama Pegawai</td>
+            <td>:</td>
+            <td style="font-weight: bold">{{ $periode->pegawai->nama }}</td>
+        </tr>
+        <tr>
+            <td style="width: 150px;">Unit Kerja</td>
             <td>:</td>
             <td>{{ $periode->pegawai->unit->name }}</td>
         </tr>
         <tr>
-            <td>Periode Penilaian</td>
-            <td>:</td>
-            <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
-        </tr>
-        <tr>
-            <td>Nama Pegawai</td>
-            <td>:</td>
-            <td>{{ $periode->pegawai->nama }}</td>
-        </tr>
-        <tr>
-            <td>NBM</td>
+            <td style="width: 150px;">NBM</td>
             <td>:</td>
             <td>{{ $periode->pegawai->nbm }}</td>
         </tr>
         <tr>
-            <td>Formasi Tugas</td>
+            <td style="width: 150px;">Formasi Tugas</td>
             <td>:</td>
             <td>{{ $periode->pegawai->formasi->nama }}</td>
         </tr>

@@ -13,24 +13,28 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
-                    <td>
-                        <form action="{{ route('periode.destroy', [$pegawai->id, $periode->id]) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="btn btn-success btn-sm">
-                                <i class="ti-view-list-alt"></i> Detail
-                            </a>
-                            @can('cetak periode')
-                                <a href="{{ route('hasil-evaluasi.cetak', $periode->id) }}" class="btn btn-info btn-sm">
+                    <td class="d-flex">
+                        <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="mr-1 btn btn-success btn-sm">
+                            <i class="ti-view-list-alt"></i> Detail
+                        </a>
+                        @can('cetak periode')
+                            <form action="{{ route('report', 'hasil-evaluasi') }}" method="POST" target="__blank" class="d-inline-block">
+                                @csrf
+                                <input type="hidden" name="periode_id" value="{{ $periode->id }}">
+                                <button class="mr-1 btn btn-info btn-sm d-inline-block" type="submit">
                                     <i class="ti-printer"></i> Cetak
-                                </a>
-                            @endcan
-                            @can('hapus periode')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus')">
+                                </button>
+                            </form>
+                        @endcan
+                        @can('hapus periode')
+                            <form action="{{ route('periode.destroy', [$pegawai->id, $periode->id]) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="mr-1 btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus')">
                                     <i class="ti-trash"></i> Hapus
                                 </button>
-                            @endcan
-                        </form>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
             @empty
