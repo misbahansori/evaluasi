@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UsersController extends Controller
 {
@@ -74,8 +75,9 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $roles = Role::all()->diff($user->roles);
+        $permissions = Permission::all()->diff($user->permissions);
 
-        return view('admin.user.show', compact('roles', 'user'));
+        return view('admin.user.show', compact('roles', 'user', 'permissions'));
     }
 
     /**

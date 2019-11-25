@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Group/Bagian</h4>
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#roleModal">
                         <i class="ti ti-plus"></i> Tambah Group
                     </button>
                 </div>
@@ -70,8 +70,11 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-white">
+                <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Hak Akses</h4>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#permissionModal">
+                        <i class="ti ti-plus"></i> Tambah Group
+                    </button>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -79,13 +82,31 @@
                             <tr>
                                 <th style="width:10px;">No</th>
                                 <th>Nama Hak Akses</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($user->getAllPermissions() as $permission)
+                            @foreach ($user->getAllPermissions()->diff($user->getDirectPermissions()) as $permission)
+                            <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $permission->name }}</td>
+                                    <td>
+                                    </td>
+                                </tr>  
+                            @endforeach
+                            @forelse ($user->getDirectPermissions() as $permission)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $permission->name }}</td>
+                                    <td>
+                                        <form action="{{ route('user.permission.destroy', [$user->id, $permission->id]) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus?')">
+                                                <i class="ti ti-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>  
                             @empty
                                 <tr>
@@ -99,11 +120,11 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="{{ route('user.role.store', $user->id) }}" method="POST" class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambahkan Group</h5>
+                    <h5 class="modal-title" id="roleModalLabel">Tambahkan Group</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,6 +141,42 @@
                         @if ($errors->has('role'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('role') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="permissionModal" tabindex="-1" role="dialog" aria-labelledby="permissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ route('user.permission.store', $user->id) }}" method="POST" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="permissionModalLabel">Tambahkan Hak Akses</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group">
+                        <label for="permission" class="">Silahkan pilih Hak Akses</label>
+                        <select class="form-control select2{{ $errors->has('permission') ? ' is-invalid' : '' }}" name="permission[]" multiple="multiple">
+                            @foreach ($permissions as $permission)
+                                <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('permission'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('permission') }}</strong>
                             </span>
                         @endif
                     </div>
