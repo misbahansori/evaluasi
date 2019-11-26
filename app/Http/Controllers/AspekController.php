@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Aspek;
 use App\Models\Bagian;
 use Illuminate\Http\Request;
+use App\Http\Requests\AspekRequest;
 
 class AspekController extends Controller
 {
@@ -48,24 +49,12 @@ class AspekController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\AspekRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AspekRequest $request)
     {
-        $request->validate([
-            'bagian'   => 'required|integer|exists:bagian,id',
-            'nama'     => 'required|string|max:150',
-            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja',
-            'tipe'     => 'required|in:bulanan,tahunan'
-        ]);
-
-        $aspek = Aspek::create([
-            'bagian_id' => $request->bagian,
-            'nama'      => $request->nama,
-            'kategori'  => $request->kategori,
-            'tipe'  => $request->tipe
-        ]);
+        $aspek = Aspek::create($request->validated());
 
         return redirect()->route('aspek.index')
             ->with('success', "Aspek penilaian $aspek->nama berhasil ditambahkan");
@@ -91,21 +80,9 @@ class AspekController extends Controller
      * @param  \App\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aspek $aspek)
+    public function update(AspekRequest $request, Aspek $aspek)
     {
-        $request->validate([
-            'bagian'   => 'required|integer|exists:bagian,id',
-            'nama'     => 'required|string|max:150',
-            'kategori' => 'required|in:Profesi,Sikap Kerja,Prestasi Kerja',
-            'tipe'     => 'required|in:bulanan,tahunan'
-        ]);
-
-        $aspek->update([
-            'bagian_id' => $request->bagian,
-            'nama'      => $request->nama,
-            'kategori'  => $request->kategori,
-            'tipe'  => $request->tipe
-        ]);
+        $aspek->update($request->validated());
 
         return redirect()->route('aspek.index')
             ->with('success', "Aspek penilaian $aspek->nama berhasil diubah");
@@ -119,6 +96,10 @@ class AspekController extends Controller
      */
     public function destroy(Aspek $aspek)
     {
-        //
+        $aspek->delete();
+        
+        return redirect()
+            ->route('aspek.index')
+            ->with('success', "Aspek $aspek->nama berhasil dihapus.");
     }
 }

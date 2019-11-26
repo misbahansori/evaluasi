@@ -13,16 +13,16 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="bagian" class="col-sm-4 col-form-label text-md-right">Bagian</label>
+                            <label for="bagian_id" class="col-sm-4 col-form-label text-md-right">Bagian</label>
                             <div class="col-md-6">
-                                <select name="bagian" id="bagian" class="form-control{{ $errors->has('bagian') ? ' is-invalid' : '' }}">
+                                <select name="bagian_id" id="bagian_id" class="form-control{{ $errors->has('bagian_id') ? ' is-invalid' : '' }}">
                                     @foreach ($listBagian as $bagian)
-                                        <option {{ old('bagian') == $bagian->id ? 'selected' : '' }} value="{{ $bagian->id }}">{{ $bagian->nama }}</option>
+                                        <option {{ old('bagian_id') == $bagian->id ? 'selected' : '' }} value="{{ $bagian->id }}">{{ $bagian->nama }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('bagian'))
+                                @if ($errors->has('bagian_id'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('bagian') }}</strong>
+                                        <strong>{{ $errors->first('bagian_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
