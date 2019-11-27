@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Nilai;
 use BulanTableSeeder;
 use App\Models\Pegawai;
+use App\Models\Periode;
 use PermissionsTableSeeder;
 use Tests\Setup\UserFactory;
 use Tests\Setup\PegawaiFactory;
@@ -52,6 +53,38 @@ class PeriodeControllerTest extends TestCase
             ->get(route('periode.show', [$pegawai, $pegawai->periode->first()]))
             ->assertOk()
             ->assertSee($pegawai->nama);
+    }
+
+    /** @test */
+    public function tidak_bisa_menambah_periode_jika_pegawai_tidak_memiliki_bagian()
+    {
+        $user = app(UserFactory::class)->withPermission('tambah periode')->create();
+        $pegawai = factory(Pegawai::class)->create(['bagian_id' => null]);
+
+        $this->actingAs($user)
+            ->post(route('periode.store', $pegawai))
+            ->assertSessionHas('danger');
+    }
+
+    /** @test */
+    public function tidak_bisa_menambah_periode_jika_periode_sudah_ada()
+    {
+        $this->withoutExceptionHandling();
+        $this->seed(BulanTableSeeder::class);
+        $user = app(UserFactory::class)->withPermission('tambah periode')->create();
+        $periode = factory(Periode::class)->create([
+            'bulan_id'   => 12,
+            'tahun'      => 2019,
+            'tipe'       => 'bulanan'
+        ]);
+        
+        $this->actingAs($user)
+            ->post(route('periode.store', $periode->pegawai), [
+                'bulan' => 12,
+                'tahun'    => 2019,
+                'tipe'     => 'bulanan'
+            ])
+            ->assertSessionHas('danger');
     }
 
     /** @test */
