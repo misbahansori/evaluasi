@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar User</h4>
@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" id="datatable">
                         <thead>
                             <tr>
                                 <th>Nama</th>
@@ -42,3 +42,6 @@
         </div>
     </div>
 @endsection
+
+@include('includes.datatable')
+

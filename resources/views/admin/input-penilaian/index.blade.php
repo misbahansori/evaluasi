@@ -40,14 +40,14 @@
                             @else
                                 <select name="bulan" id="bulan" class="form-control mr-2">
                                     @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                        <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                        <option {{ date('m') == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
                                     @endfor
                                 </select>
                             @endif
                             
                             <select name="tahun" id="tahun" class="form-control mr-2">
                                 @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
-                                    <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                    <option {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
                         </div>

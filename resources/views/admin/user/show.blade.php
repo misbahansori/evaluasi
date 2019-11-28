@@ -87,14 +87,13 @@
                         </thead>
                         <tbody>
                             @foreach ($user->getAllPermissions()->diff($user->getDirectPermissions()) as $permission)
-                            <tr>
+                                <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $permission->name }}</td>
-                                    <td>
-                                    </td>
+                                    <td></td>
                                 </tr>  
                             @endforeach
-                            @forelse ($user->getDirectPermissions() as $permission)
+                            @foreach ($user->getDirectPermissions() as $permission)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $permission->name }}</td>
@@ -108,11 +107,7 @@
                                         </form>
                                     </td>
                                 </tr>  
-                            @empty
-                                <tr>
-                                    <td colspan="3">Tidak ada hak akses untuk user ini</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
