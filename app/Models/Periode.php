@@ -55,21 +55,32 @@ class Periode extends Model
         return $this->hasMany(Nilai::class);
     }
 
-    public function setBulanAttribute($value)
-    {
-        $this->attributes['bulan_id'] = $value;
-    }
-
     /**
-     * Setiap Periode punya banyak Nilai Al islam dan Kemuhammadiyahan
+     * Filter penilaian berdasarkan kategori Keislaman dan Kemuhammadiyahan
      */
     public function nilaiAik()
     {
         return $this->hasMany(Nilai::class)
-            ->where('kategori', 'Ke-islaman')
-            ->orWhere('kategori', 'Ke-muhammadiyahan');
+            ->whereIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan']);
     }
 
+    public function nilaiBiasa()
+    {
+        return $this->hasMany(Nilai::class)
+            ->whereNotIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan']);
+    }
+
+    /**
+     * setBulanAttribute
+     *
+     * @param mixed $value
+     * @return void
+     */
+    public function setBulanAttribute($value)
+    {
+        $this->attributes['bulan_id'] = $value;
+    }
+    
     /**
      * Total nilai per periode
      */
