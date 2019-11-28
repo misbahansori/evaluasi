@@ -56,7 +56,7 @@ class CreatePeriodeAction
             ]);
         });        
 
-        $this->flash('success', "Pegawai $pegawai->nama, Periode $bulan->nama " . $this->request->tahun . "berhasil ditambahkan");
+        $this->flash('success', "Pegawai $pegawai->nama, Periode $bulan->nama " . $this->request->tahun . " berhasil ditambahkan");
         
         return;
     }

@@ -4,24 +4,55 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <form action="{{ route('input.penilaian.store') }}" method="POST">
+                @csrf
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert badge-danger text-white alert-dismissible fade show" role="alert" style="border-radius:0">
+                            <strong>Peringatan!</strong> {{ $error }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endforeach
+                @endif
+
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between form-inline">
                         <h4>Silahkan pilih Pegawai</h4>
-                        <div>
-                            <select name="bulan" id="bulan" class="form-control mr-2">
-                                @foreach ($listBulan as $bulan)
-                                    <option {{ date('m') == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
-                                @endforeach
-                            </select>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex">
+                                <div class="custom-control custom-radio mr-3">
+                                    <input type="radio" id="bulanan" name="tipe" value="bulanan" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="bulanan">Bulanan</label>
+                                </div>
+                                <div class="custom-control custom-radio mr-3">
+                                    <input type="radio" id="tahunan" name="tipe" value="tahunan" class="custom-control-input" {{ request('tipe') == 'tahunan' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="tahunan">Tahunan</label>
+                                </div>
+                            </div>
+                            
+                            @if (request()->tipe == 'tahunan')
+                                <select name="bulan" id="bulan" class="form-control mr-2">
+                                    <option {{ request()->bulan == 2 ? 'selected' : '' }} value="2">Februari</option>
+                                    <option {{ request()->bulan == 8 ? 'selected' : '' }} value="8">Agustus</option>
+                                    <option {{ request()->bulan == 12 ? 'selected' : '' }} value="12">Desember</option>
+                                </select>
+                            @else
+                                <select name="bulan" id="bulan" class="form-control mr-2">
+                                    @for ($bulan = 1; $bulan <= 12; $bulan++)
+                                        <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                    @endfor
+                                </select>
+                            @endif
+                            
                             <select name="tahun" id="tahun" class="form-control mr-2">
-                                @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
-                                    <option {{ $tahunIni == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
+                                    <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
                         </div>
                     </div>
                     <div class="card-body">
-                        @csrf
                         <table class="table" id="datatable">
                             <thead>
                                 <tr>
@@ -38,7 +69,7 @@
                                     <tr>
                                         <td>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="{{ $pegawai->id }}" name="{{ $pegawai->id }}" value="{{ $pegawai->id }}">
+                                                <input type="checkbox" class="custom-control-input" id="{{ $pegawai->id }}" name="pegawai[]" value="{{ $pegawai->id }}">
                                                 <label class="custom-control-label" for="{{ $pegawai->id }}"></label>
                                             </div>
                                         </td>

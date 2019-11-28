@@ -55,6 +55,11 @@ class Periode extends Model
         return $this->hasMany(Nilai::class);
     }
 
+    public function setBulanAttribute($value)
+    {
+        $this->attributes['bulan_id'] = $value;
+    }
+
     /**
      * Setiap Periode punya banyak Nilai Al islam dan Kemuhammadiyahan
      */

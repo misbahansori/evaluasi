@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bulan;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use App\Actions\CreatePeriodeAction;
 
 class InputPenilaianController extends Controller
 {
@@ -31,10 +32,17 @@ class InputPenilaianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CreatePeriodeAction $createPeriodeAction)
     {
-        foreach ($request->except('_token', 'datatable_length', 'bulan', 'tahun') as $id) {
-            Pegawai::findOrFail($id)->createPeriode($request);
+        $request->validate([
+            'bulan'   => 'required|integer|min:1|max:12',
+            'tahun'   => 'required|integer',
+            'tipe'    => 'required',
+            'pegawai' => 'required'
+        ]);
+
+        foreach ($request->pegawai as $pegawai_id) {
+            $createPeriodeAction->execute(Pegawai::findOrFail($pegawai_id));
         }
 
         return redirect()
