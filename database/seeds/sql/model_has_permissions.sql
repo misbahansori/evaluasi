@@ -1,0 +1,28 @@
+INSERT INTO 
+    `model_has_permissions` (`permission_id`, `model_type`, `model_id`) 
+VALUES 
+    (2, 'App\\Models\\User', 1),
+    (2, 'App\\Models\\User', 2),
+    (2, 'App\\Models\\User', 3),
+    (3, 'App\\Models\\User', 1),
+    (3, 'App\\Models\\User', 2),
+    (3, 'App\\Models\\User', 3),
+    (3, 'App\\Models\\User', 34),
+    (4, 'App\\Models\\User', 1),
+    (4, 'App\\Models\\User', 2),
+    (4, 'App\\Models\\User', 3),
+    (5, 'App\\Models\\User', 1),
+    (5, 'App\\Models\\User', 2),
+    (5, 'App\\Models\\User', 3),
+    (6, 'App\\Models\\User', 1),
+    (6, 'App\\Models\\User', 2),
+    (6, 'App\\Models\\User', 3),
+    (7, 'App\\Models\\User', 1),
+    (7, 'App\\Models\\User', 2),
+    (7, 'App\\Models\\User', 3),
+    (8, 'App\\Models\\User', 1),
+    (8, 'App\\Models\\User', 2),
+    (8, 'App\\Models\\User', 3),
+    (9, 'App\\Models\\User', 1),
+    (9, 'App\\Models\\User', 2),
+    (9, 'App\\Models\\User', 3);
