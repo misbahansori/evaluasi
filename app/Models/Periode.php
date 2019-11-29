@@ -83,7 +83,7 @@ class Periode extends Model
 
     public function getNamaBulanAttribute()
     {
-        return Carbon::createFromFormat('d', $this->bulan_id)->formatLocalized('%B');
+        return Carbon::createFromFormat('m', $this->bulan_id)->formatLocalized('%B');
     }
     
     /**
