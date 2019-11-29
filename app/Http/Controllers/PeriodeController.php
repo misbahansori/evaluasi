@@ -70,6 +70,6 @@ class PeriodeController extends Controller
 
         return redirect()
             ->route('pegawai.show', $pegawai->id)
-            ->with('success', 'Periode ' . $periode->bulan->nama . ' ' . $periode->tahun . ' berhasil dihapus');
+            ->with('success', 'Periode ' . $periode->namaBulan . ' ' . $periode->tahun . ' berhasil dihapus');
     }
 }

@@ -28,6 +28,8 @@ class HasilEvaluasi
     {
         $periode = Periode::findOrFail($this->request->periode_id);
         
+        $periode->load('pegawai', 'nilai');
+
         $pdf = \PDF::loadView('admin.reports.hasil-evaluasi', compact('periode'));
         
         return $pdf->stream('invoice.pdf');

@@ -74,7 +74,7 @@
                                     </td>
                                     <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
-                                    <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
+                                    <td>{{ $periode->namaBulan}} {{ $periode->tahun }}</td>
                                     <td>{{ $periode->rataNilai() }}</td>
                                     <td>
                                         <verifikasi-component 

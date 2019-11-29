@@ -12,7 +12,7 @@
             @forelse ($pegawai->periode as $periode)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $periode->bulan->nama }} {{ $periode->tahun }}</td>
+                    <td>{{ $periode->namaBulan }} {{ $periode->tahun }}</td>
                     <td class="d-flex">
                         <a href="{{ route('periode.show', [$pegawai->id, $periode->id]) }}" class="mr-1 btn btn-success btn-sm">
                             <i class="ti-view-list-alt"></i> Detail

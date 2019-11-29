@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
-                    <h4>Periode Penilaian {{ $periode->bulan->nama }} {{ $periode->tahun }}</h4>
+                    <h4>Periode Penilaian {{ $periode->namaBulan }} {{ $periode->tahun }}</h4>
                     <div class="button-group form-inline">
                         @if (!$periode->verif_kabag)
                             @can('verif kabag')

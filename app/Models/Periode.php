@@ -80,6 +80,11 @@ class Periode extends Model
     {
         $this->attributes['bulan_id'] = $value;
     }
+
+    public function getNamaBulanAttribute()
+    {
+        return Carbon::createFromFormat('d', $this->bulan_id)->formatLocalized('%B');
+    }
     
     /**
      * Total nilai per periode

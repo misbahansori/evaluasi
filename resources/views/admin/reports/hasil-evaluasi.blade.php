@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{{ $periode->pegawai->nama }} | {{ strtoupper($periode->tipe) }} | PERIODE {{ strtoupper($periode->bulan->nama) }} {{ $periode->tahun }}</title>
+    <title style="text-transform: uppercase">
+        {{ $periode->pegawai->nama }} | {{ ucfirst($periode->tipe) }} | Periode {{ $periode->namaBulan }} {{ $periode->tahun }}
+    </title>
     <style>
         @page {
             margin: 30px 20px ;
@@ -29,9 +31,9 @@
 <body>
     <img src="{{ asset('/img/logo-rsumm.png') }}" width="85" height="85" style="margin-left: 30; margin-top: 10; position: absolute">
     <div style="text-align: center; font-size: 8px; margin: 0px 20px;">
-        <h1>HASIL PENILAIAN KINERJA PEGAWAI KONTRAK</h1>
+        <h1>HASIL PENILAIAN KINERJA PEGAWAI</h1>
         <h1>RSU MUHAMMADIYAH METRO</h1>
-        <h1 style="text-transform: uppercase">PERIODE {{ $periode->bulan->nama }} {{ $periode->tahun }}</h1>
+        <h1 style="text-transform: uppercase">PERIODE {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h1>
         <hr>
     </div>
     <table style="margin: 20px;">
@@ -56,11 +58,14 @@
             <td>{{ $periode->pegawai->formasi->nama }}</td>
         </tr>
     </table>
-    <table class="table" style="margin:20px;">
+    <div style="margin: 0 25px;">
+        <h4>A. PENILAIAN</h4>
+    </div>
+    <table class="table" style="margin:10px 20px;">
         <thead>
             <tr>
                 <th rowspan="2" style="vertical-align: middle">No</th>
-                <th rowspan="2" style="vertical-align: middle">Aspek Penilaian</th>
+                <th rowspan="2" style="vertical-align: middle; text-align: center;">Aspek Penilaian</th>
                 <th colspan="5" style="text-align: center">Nilai</th>
             </tr>
             <tr>
@@ -78,17 +83,77 @@
                 </tr>
                 @foreach ($grouped as $key => $nilai)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td style="width: 20px; text-align:center;">{{ $loop->iteration }}</td>
                         <td>{{ $nilai->aspek }}</td>
                         @for ($i = 1; $i <= 5; $i++)
-                            <td style="font-family: DejaVu Sans, sans-serif; text-align:center;">
+                            <td style="font-family: DejaVu Sans, sans-serif; text-align:center; width: 25px;">
                                 {{ $nilai->nilai == $i ? '✔' : '' }}
                             </td>
                         @endfor
                     </tr>
                 @endforeach
             @endforeach
+            <tr>
+                <td colspan="2">Element Penilaian</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->nilai->count() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Total Nilai</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->totalNilai() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Rata-rata Nilai</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilai() }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Keterangan</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">
+                    @if ($periode->rataNilai() <= 3)
+                        TIDAK DISARANKAN
+                    @else
+                        DISARANKAN
+                    @endif
+                </td>
+            </tr>
         </tbody>
+    </table>
+    <div style="margin: 0 25px;">
+        <h4 style="margin-bottom: 3px;">B. CATATAN</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
+    </div>
+    <div style="margin: 0 25px;">
+        <h4 style="margin-bottom: 3px;">C. HAL YANG PERLU DITINGKATKAN</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
+    </div>
+    <div style="margin: 0 25px;">
+        <h4 style="margin-bottom: 3px;">D. HAL YANG PERLU DIPERTAHANKAN</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
+    </div>
+    <table  class="table" style="margin:10px 20px; width: 100%;">
+        <tr>
+            <td style="text-align: center; width: 50%; padding: 10px;">
+                <h4>PENILAI I</h4>
+                <p style="margin-top: 70px;">@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            </td>
+            <td style="text-align: center; width: 50%; padding: 10px;">
+                <h4>PEGAWAI</h4>
+                <p style="margin-top: 70px; text-decoration: underline; font-weight: bold;">{{ $periode->pegawai->nama }}</p>
+                <div style="margin-top:-17px;">NBM : {{ $periode->pegawai->nbm ?? '-' }}</div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; width: 50%; padding: 10px">
+                <h4>DIREKTUR/WAKIL DIREKTUR</h4>
+                <p style="margin-top: 70px;">@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            </td>
+            <td style="text-align: center; width: 50%; padding : 10px;">
+                <h4>PENILAI II</h4>
+                <p style="margin-top: 70px; font">@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            </td>
+        </tr>
     </table>
 </body>
 
