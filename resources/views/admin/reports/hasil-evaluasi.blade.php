@@ -117,7 +117,7 @@
             </tr>
         </tbody>
     </table>
-    <div style="margin: 0 25px;">
+    {{-- <div style="margin: 0 25px;">
         <h4 style="margin-bottom: 3px;">B. CATATAN</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
     </div>
@@ -128,7 +128,7 @@
     <div style="margin: 0 25px;">
         <h4 style="margin-bottom: 3px;">D. HAL YANG PERLU DIPERTAHANKAN</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
-    </div>
+    </div> --}}
     <table  class="table" style="margin:10px 20px; width: 100%;">
         <tr>
             <td style="text-align: center; width: 50%; padding: 10px;">
