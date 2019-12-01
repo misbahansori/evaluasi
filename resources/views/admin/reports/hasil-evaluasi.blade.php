@@ -6,62 +6,48 @@
     <title style="text-transform: uppercase">
         {{ $periode->pegawai->nama }} | {{ ucfirst($periode->tipe) }} | Periode {{ $periode->namaBulan }} {{ $periode->tahun }}
     </title>
-    <style>
-        @page {
-            margin: 30px 20px ;
-        }
-        .table {
-            border-collapse: collapse;
-            /* width: 100%; */
-        }
-
-        .table td, .table th {
-            border: 1px solid #111;
-            padding: 5px;
-        }
-
-        .table th {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/report.css') }}">
 </head>
 
 <body>
-    <img src="{{ asset('/img/logo-rsumm.png') }}" width="85" height="85" style="margin-left: 30; margin-top: 10; position: absolute">
-    <div style="text-align: center; font-size: 8px; margin: 0px 20px;">
-        <h1>HASIL PENILAIAN KINERJA PEGAWAI</h1>
-        <h1>RSU MUHAMMADIYAH METRO</h1>
-        <h1 style="text-transform: uppercase">PERIODE {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h1>
-        <hr>
-    </div>
-    <table style="margin: 20px;">
+    <table class="table">
         <tr>
-            <td style="width: 150px;">Nama Pegawai</td>
-            <td>:</td>
-            <td style="font-weight: bold">{{ $periode->pegawai->nama }}</td>
+            <td style="width: 84px; height: 84px;">
+                <img src="{{ asset('/img/logo-rsumm.jpg') }}" width="84" height="84">
+            </td>
+            <td class="uppercase text-center leading-relaxed">
+                <h4>Hasil Penilaian Kinerja Pegawai</h4>
+                <h4>Rsu Muhammadiyah Metro</h4>
+                <h4>Periode {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h4>
+            </td>
+            <td style="width: 84px; height: 84px;">&nbsp;</td>
         </tr>
+    </table>
+    <hr>
+    <table class="table leading-snug">
         <tr>
-            <td style="width: 150px;">Unit Kerja</td>
+            <td>Nama Pegawai</td>
+            <td>:</td>
+            <td>{{ $periode->pegawai->nama }}</td>
+
+            <td>Unit Kerja</td>
             <td>:</td>
             <td>{{ $periode->pegawai->unit->name }}</td>
         </tr>
         <tr>
-            <td style="width: 150px;">NBM</td>
+            <td>NBM</td>
             <td>:</td>
             <td>{{ $periode->pegawai->nbm }}</td>
-        </tr>
-        <tr>
-            <td style="width: 150px;">Formasi Tugas</td>
+
+            <td>Formasi Tugas</td>
             <td>:</td>
             <td>{{ $periode->pegawai->formasi->nama }}</td>
         </tr>
     </table>
-    <div style="margin: 0 25px;">
-        <h4>A. PENILAIAN</h4>
-    </div>
-    <table class="table" style="margin:10px 20px;">
+
+    <h4 style="margin: 15px 0">A. PENILAIAN</h4>
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th rowspan="2" style="vertical-align: middle">No</th>
@@ -117,41 +103,49 @@
             </tr>
         </tbody>
     </table>
-    {{-- <div style="margin: 0 25px;">
-        <h4 style="margin-bottom: 3px;">B. CATATAN</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
-    </div>
-    <div style="margin: 0 25px;">
-        <h4 style="margin-bottom: 3px;">C. HAL YANG PERLU DITINGKATKAN</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
-    </div>
-    <div style="margin: 0 25px;">
-        <h4 style="margin-bottom: 3px;">D. HAL YANG PERLU DIPERTAHANKAN</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum laborum rem ipsum nam blanditiis dolore beatae pariatur qui, temporibus eaque! Rerum cupiditate vel quisquam maxime sit nemo eligendi repellendus quos?</p>
-    </div> --}}
-    <table  class="table" style="margin:10px 20px; width: 100%;">
+
+    @if ($periode->catatan)
+        <div style="margin: 10px 0">
+            <h4 style="margin-bottom: 3px;">B. CATATAN</h4>
+            <p>{{ $periode->catatan }}</p>
+        </div>
+    @endif
+    @if ($periode->ditingkatkan)
+        <div style="margin: 10px 0">
+            <h4 style="margin-bottom: 3px;">C. HAL YANG PERLU DITINGKATKAN</h4>
+            <p>{{ $periode->ditingkatkan }}</p>
+        </div>
+    @endif
+    @if ($periode->dipertahankan)
+        <div style="margin: 10px 0">
+            <h4 style="margin-bottom: 3px;">D. HAL YANG PERLU DIPERTAHANKAN</h4>
+            <p>{{ $periode->dipertahankan }}</p>
+        </div>
+    @endif
+
+    <table class="table">
         <tr>
-            <td style="text-align: center; width: 50%; padding: 10px;">
-                <h4>PENILAI I</h4>
-                <p style="margin-top: 70px;">@for ($i = 1; $i < 40; $i++).@endfor</p>
-                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            <td class="text-center" style="padding: 15px;">
+                <h4 style="margin-bottom: 50px">PENILAI I</h4>
+                <p>@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
             </td>
-            <td style="text-align: center; width: 50%; padding: 10px;">
-                <h4>PEGAWAI</h4>
-                <p style="margin-top: 70px; text-decoration: underline; font-weight: bold;">{{ $periode->pegawai->nama }}</p>
-                <div style="margin-top:-17px;">NBM : {{ $periode->pegawai->nbm ?? '-' }}</div>
+            <td class="text-center" style="padding: 15px;">
+                <h4 style="margin-bottom: 50px">PEGAWAI</h4>
+                <p class="underline">{{ $periode->pegawai->nama }}</p>
+                <div>NBM : {{ $periode->pegawai->nbm ?? '-' }}</div>
             </td>
         </tr>
         <tr>
-            <td style="text-align: center; width: 50%; padding: 10px">
-                <h4>DIREKTUR/WAKIL DIREKTUR</h4>
-                <p style="margin-top: 70px;">@for ($i = 1; $i < 40; $i++).@endfor</p>
-                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            <td class="text-center" style="padding: 15px;">
+                <h4 style="margin-bottom: 50px">DIREKTUR/WAKIL DIREKTUR</h4>
+                <p>@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
             </td>
-            <td style="text-align: center; width: 50%; padding : 10px;">
-                <h4>PENILAI II</h4>
-                <p style="margin-top: 70px; font">@for ($i = 1; $i < 40; $i++).@endfor</p>
-                <div style="margin-top:-17px;">NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+            <td class="text-center" style="padding: 15px;">
+                <h4 style="margin-bottom: 50px">PENILAI II</h4>
+                <p>@for ($i = 1; $i < 40; $i++).@endfor</p>
+                <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
             </td>
         </tr>
     </table>
