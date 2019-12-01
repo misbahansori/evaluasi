@@ -43,8 +43,23 @@
                             :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
                         ></penilaian-form>
 
+                        @can('catatan penilaian')
+                            <div class="form-group mt-4">
+                                <label for="catatan" style="font-weight: 500">Catatan</label>
+                                <textarea name="catatan" id="catatan" rows="5" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->catatan }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="ditingkatkan" style="font-weight: 500">Hal yang perlu ditingkatkan</label>
+                                <textarea name="ditingkatkan" id="ditingkatkan" rows="3" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->ditingkatkan }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dipertahankan" style="font-weight: 500">Hal yang perlu dipertahankan</label>
+                                <textarea name="dipertahankan" id="dipertahankan" rows="3" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->dipertahankan }}</textarea>
+                            </div>
+                        @endcan
+
                         <div class="button-group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg">
+                            <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>
                                 <i class="ti-save"></i> Simpan
                             </button>
                         </div>

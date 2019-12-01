@@ -15,7 +15,7 @@ class PermissionsTableSeeder extends Seeder
     {
         $permissions = [
             'tambah pegawai', 'edit pegawai',
-            'tambah periode', 'hapus periode', 'cetak periode', 
+            'tambah periode', 'hapus periode', 'cetak periode', 'catatan penilaian',
             'verif wadir', 'verif kabag',
             'master aspek', 'master user', 'master group',
             'grafik pegawai', 'penilaian aik'
