@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Domain\Master\Models;
 
 use Tests\TestCase;
 use Illuminate\Support\Collection;

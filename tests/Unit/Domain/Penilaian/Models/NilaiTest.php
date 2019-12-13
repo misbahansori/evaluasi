@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit\Domain\Penilaian\Models;
 
 use Tests\TestCase;
 use App\Domain\Penilaian\Models\Nilai;
