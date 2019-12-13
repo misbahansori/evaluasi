@@ -3,9 +3,9 @@
 namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Aspek;
 use Tests\Setup\UserFactory;
+use App\Domain\User\Models\User;
+use App\Domain\Master\Models\Aspek;
 use App\Http\Requests\AspekRequest;
 use App\Http\Controllers\AspekController;
 use JMac\Testing\Traits\HttpTestAssertions;

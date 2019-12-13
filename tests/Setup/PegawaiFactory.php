@@ -2,9 +2,9 @@
 
 namespace Tests\Setup;
 
-use App\Models\Nilai;
-use App\Models\Pegawai;
-use App\Models\Periode;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 
 class PegawaiFactory 
 { 

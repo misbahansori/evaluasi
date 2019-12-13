@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Master\Models;
 
+use App\Domain\Pegawai\Models\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model

@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Models\Pegawai' => 'App\Policies\PegawaiPolicy',
+        'App\Domain\Pegawai\Models\Pegawai' => 'App\Domain\Pegawai\Policies\PegawaiPolicy',
     ];
 
     /**

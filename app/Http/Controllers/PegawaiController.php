@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bulan;
-use App\Models\Pegawai;
-use Illuminate\Http\Request;
-use App\ViewModels\PegawaiViewModel;
-use App\Charts\PenilaianPegawaiChart;
+use App\Domain\Master\Models\Bulan;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PegawaiRequest;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Pegawai\ViewModels\PegawaiViewModel;
+use App\Domain\Pegawai\Charts\PenilaianPegawaiChart;
 
 class PegawaiController extends Controller
 {
@@ -65,7 +65,7 @@ class PegawaiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function show(Pegawai $pegawai)
@@ -83,7 +83,7 @@ class PegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function edit(Pegawai $pegawai)
@@ -97,7 +97,7 @@ class PegawaiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function update(PegawaiRequest $request, Pegawai $pegawai)
@@ -114,7 +114,7 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
     public function destroy(Pegawai $pegawai)

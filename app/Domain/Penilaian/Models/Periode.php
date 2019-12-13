@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Penilaian\Models;
 
-use App\Models\Nilai;
 use Illuminate\Support\Carbon;
+use App\Domain\Master\Models\Bulan;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
 
 class Periode extends Model

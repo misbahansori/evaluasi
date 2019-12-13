@@ -1,8 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Domain\Master\Models\Bagian;
 
-$factory->define(App\Models\Bagian::class, function (Faker $faker) {
+$factory->define(Bagian::class, function (Faker $faker) {
     return [
         'nama' => $faker->word
     ];

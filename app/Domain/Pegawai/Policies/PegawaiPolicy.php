@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Domain\Pegawai\Policies;
 
-use App\Models\User;
-use App\Models\Pegawai;
+use App\Domain\User\Models\User;
+use App\Domain\Pegawai\Models\Pegawai;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PegawaiPolicy
@@ -13,8 +13,8 @@ class PegawaiPolicy
     /**
      * Determine whether the user can view the pegawai.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pegawai  $pegawai
+     * @param  \App\Domain\User\Models\User  $user
+     * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return mixed
      */
     public function view(User $user, Pegawai $pegawai)

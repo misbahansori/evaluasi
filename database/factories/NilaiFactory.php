@@ -1,11 +1,13 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 
-$factory->define(App\Models\Nilai::class, function (Faker $faker) {
+$factory->define(Nilai::class, function (Faker $faker) {
     return [
         'periode_id' => function() {
-            return factory(App\Models\Periode::class)->create();
+            return factory(Periode::class)->create();
         },
         'aspek' => $faker->sentence,
         'kategori' => $faker->word,

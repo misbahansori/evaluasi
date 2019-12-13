@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Penilaian\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Domain\Penilaian\Models\Periode;
 
 class Nilai extends Model
 {
@@ -30,7 +31,7 @@ class Nilai extends Model
     /**
      * Periode relationship
      *
-     * @return \App\Models\Periode
+     * @return \App\Domain\Penilaian\Models\Periode
      */
     public function periode()
     {

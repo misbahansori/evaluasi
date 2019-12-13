@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Master\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bulan extends Model
+class Unit extends Model
 {
     /**
     * The table associated with the model.
     *
     * @var string
     */
-    protected $table = 'bulan';
+    protected $table = 'roles';
 
     /**
     * The table associated with the model.
@@ -19,4 +19,11 @@ class Bulan extends Model
     * @var string
     */
     public $timestamps = false;
+
+    /**
+    * The table garded attribute
+    *
+    * @var string
+    */
+    protected $guarded = [];
 }

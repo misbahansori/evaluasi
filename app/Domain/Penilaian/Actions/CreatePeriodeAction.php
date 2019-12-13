@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions;
+namespace App\Domain\Penilaian\Actions;
 
-use App\Models\Bulan;
-use App\Models\Pegawai;
-use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Domain\Master\Models\Bulan;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Periode;
 
 class CreatePeriodeAction 
 {

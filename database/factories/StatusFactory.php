@@ -2,8 +2,8 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\Status;
 use Faker\Generator as Faker;
+use App\Domain\Master\Models\Status;
 
 $factory->define(Status::class, function (Faker $faker) {
     return [

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bulan;
-use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Domain\Penilaian\Models\Periode;
 
 class PenilaianController extends Controller
 {

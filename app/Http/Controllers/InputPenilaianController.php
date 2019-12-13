@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bulan;
-use App\Models\Pegawai;
 use Illuminate\Http\Request;
-use App\Actions\CreatePeriodeAction;
+use App\Domain\Master\Models\Bulan;
+use App\Http\Controllers\Controller;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Actions\CreatePeriodeAction;
 
 class InputPenilaianController extends Controller
 {

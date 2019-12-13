@@ -3,15 +3,15 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
-use App\Models\Unit;
-use App\Models\Bagian;
-use App\Models\Status;
-use App\Models\Formasi;
-use App\Models\Pegawai;
-use App\Models\Periode;
 use Tests\Setup\UserFactory;
 use Tests\Setup\PegawaiFactory;
+use App\Domain\Master\Models\Unit;
 use Illuminate\Support\Collection;
+use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Status;
+use App\Domain\Master\Models\Formasi;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Periode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PegawaiTest extends TestCase

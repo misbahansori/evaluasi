@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Reports;
+namespace App\Domain\Penilaian\Reports;
 
-use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Domain\Penilaian\Models\Periode;
 
 class HasilEvaluasi
 {

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Bagian;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AspekTableSeeder extends Seeder
 {

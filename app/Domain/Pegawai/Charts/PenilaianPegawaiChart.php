@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Charts;
+namespace App\Domain\Pegawai\Charts;
 
-use App\Models\Pegawai;
+use App\Domain\Pegawai\Models\Pegawai;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 class PenilaianPegawaiChart extends Chart

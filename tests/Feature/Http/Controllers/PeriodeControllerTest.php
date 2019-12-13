@@ -3,14 +3,14 @@
 namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Nilai;
 use BulanTableSeeder;
-use App\Models\Pegawai;
-use App\Models\Periode;
 use PermissionsTableSeeder;
 use Tests\Setup\UserFactory;
 use Tests\Setup\PegawaiFactory;
+use App\Domain\User\Models\User;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodeControllerTest extends TestCase

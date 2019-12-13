@@ -3,9 +3,9 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
-use App\Models\Aspek;
-use App\Models\Bagian;
 use Illuminate\Support\Collection;
+use App\Domain\Master\Models\Aspek;
+use App\Domain\Master\Models\Bagian;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BagianTest extends TestCase

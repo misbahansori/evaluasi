@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Periode;
+use App\Domain\Penilaian\Models\Periode;
+
 
 class VerifikasiController extends Controller
 {
     /**
     * Wakil direktur memverifikasi penilaian.
     *
-    * @param \App\Models\Periode $periode
+    * @param \App\Domain\Penilaian\Models\Periode $periode
     * @return \Illuminate\Http\Response
     */
     public function wadir(Periode $periode)
@@ -38,7 +39,7 @@ class VerifikasiController extends Controller
     /**
     * Kepala bagian memverifikasi penilaian.
     *
-    * @param \App\Models\Periode $periode
+    * @param \App\Domain\Penilaian\Models\Periode $periode
     * @return \Illuminate\Http\Response
     */
     public function kabag(Periode $periode)

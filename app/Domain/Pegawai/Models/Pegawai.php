@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Pegawai\Models;
 
-use Carbon\Carbon;
-use App\Models\Periode;
+use App\Domain\Master\Models\Unit;
+use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Status;
+use App\Domain\Master\Models\Formasi;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Presenters\TanggalPresenter;
+use App\Domain\Penilaian\Models\Periode;
+use App\Domain\Pegawai\Presenters\TanggalPresenter;
+
 
 class Pegawai extends Model
 {

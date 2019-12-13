@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Bulan;
 use Faker\Generator as Faker;
+use App\Domain\Master\Models\Bulan;
 
 $factory->define(Bulan::class, function (Faker $faker) {
     $bulan = [

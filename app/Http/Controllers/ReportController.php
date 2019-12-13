@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Reports\HasilEvaluasi;
+use App\Http\Controllers\Controller;
+use App\Domain\Penilaian\Reports\HasilEvaluasi;
 
 class ReportController extends Controller
 {

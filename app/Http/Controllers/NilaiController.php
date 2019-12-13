@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use Carbon\Carbon;
-use App\Models\Nilai;
-use App\Models\Periode;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 
 class NilaiController extends Controller
 {

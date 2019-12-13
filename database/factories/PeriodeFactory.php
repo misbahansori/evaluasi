@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Pegawai;
-use App\Models\Periode;
 use Faker\Generator as Faker;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Periode;
 
 $factory->define(Periode::class, function (Faker $faker) {
     return [

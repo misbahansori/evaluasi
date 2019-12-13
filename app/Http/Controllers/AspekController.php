@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aspek;
-use App\Models\Bagian;
 use Illuminate\Http\Request;
+use App\Domain\Master\Models\Aspek;
 use App\Http\Requests\AspekRequest;
+use App\Domain\Master\Models\Bagian;
+use App\Http\Controllers\Controller;
 
 class AspekController extends Controller
 {
@@ -63,7 +64,7 @@ class AspekController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Aspek  $aspek
+     * @param  \App\Domain\Master\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function edit(Aspek $aspek)
@@ -77,7 +78,7 @@ class AspekController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Aspek  $aspek
+     * @param  \App\Domain\Master\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function update(AspekRequest $request, Aspek $aspek)
@@ -91,7 +92,7 @@ class AspekController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Aspek  $aspek
+     * @param  \App\Domain\Master\Models\Aspek  $aspek
      * @return \Illuminate\Http\Response
      */
     public function destroy(Aspek $aspek)

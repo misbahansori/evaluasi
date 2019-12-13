@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Unit;
-use App\Models\Bagian;
-use App\Models\Status;
-use App\Models\Formasi;
-use App\Models\Pegawai;
+
 use Faker\Generator as Faker;
+use App\Domain\Master\Models\Unit;
+use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Status;
+use App\Domain\Master\Models\Formasi;
+use App\Domain\Pegawai\Models\Pegawai;
 
 $factory->define(Pegawai::class, function (Faker $faker) {
     return [

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\ViewModels;
+namespace App\Domain\Pegawai\ViewModels;
 
-use App\Models\Unit;
-use App\Models\Bagian;
-use App\Models\Status;
-use App\Models\Formasi;
-use App\Models\Pegawai;
 use Spatie\ViewModels\ViewModel;
+use App\Domain\Master\Models\Unit;
+use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Status;
+use App\Domain\Master\Models\Formasi;
+use App\Domain\Pegawai\Models\Pegawai;
+
 
 class PegawaiViewModel extends ViewModel
 {
@@ -19,7 +20,7 @@ class PegawaiViewModel extends ViewModel
     /**
      * pegawai
      *
-     * @return \App\Models\Pegawai
+     * @return \App\Domain\Pegawai\Models\Pegawai
      */
     public function pegawai()
     {

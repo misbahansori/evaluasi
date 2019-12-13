@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
-use App\Models\Periode;
-use Illuminate\Http\Request;
-use App\Actions\CreatePeriodeAction;
+use App\Http\Controllers\Controller;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Periode;
+use App\Domain\Penilaian\Actions\CreatePeriodeAction;
 
 class PeriodeController extends Controller
 {

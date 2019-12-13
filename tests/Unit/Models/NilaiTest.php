@@ -3,8 +3,8 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
-use App\Models\Nilai;
-use App\Models\Periode;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class NilaiTest extends TestCase

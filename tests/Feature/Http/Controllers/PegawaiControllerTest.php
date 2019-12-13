@@ -3,9 +3,8 @@
 namespace Tests\Feature\Http\Controller;
 
 use Tests\TestCase;
-use App\Models\Pegawai;
 use Tests\Setup\UserFactory;
-use Spatie\Permission\Models\Permission;
+use App\Domain\Pegawai\Models\Pegawai;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PegawaiControllerTest extends TestCase

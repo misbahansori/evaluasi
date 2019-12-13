@@ -3,7 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
-use App\Models\User;
+use App\Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class HomeControllerTest extends TestCase

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Master\Models;
 
+use App\Domain\Master\Models\Bagian;
 use Illuminate\Database\Eloquent\Model;
 
 class Aspek extends Model

@@ -3,18 +3,15 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Aspek;
-use App\Models\Bulan;
-use App\Models\Nilai;
-use App\Models\Bagian;
-use App\Models\Pegawai;
-use App\Models\Periode;
 use Tests\Setup\UserFactory;
 use Tests\Setup\PegawaiFactory;
 use Tests\Setup\PeriodeFactory;
+use App\Domain\User\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
+use App\Domain\Master\Models\Bulan;
+use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Nilai;
+use App\Domain\Penilaian\Models\Periode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PeriodeTest extends TestCase
