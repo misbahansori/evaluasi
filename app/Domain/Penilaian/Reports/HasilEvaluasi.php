@@ -30,7 +30,8 @@ class HasilEvaluasi
         
         $periode->load('pegawai', 'nilai');
 
-        $pdf = \PDF::loadView('admin.reports.hasil-evaluasi', compact('periode'));
+        $pdf = \PDF::loadView('admin.reports.hasil-evaluasi', compact('periode'))
+            ->setPaper([0, 0, 595.4, 935.5]);
         
         return $pdf->stream('invoice.pdf');
     }
