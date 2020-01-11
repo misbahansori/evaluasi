@@ -7,6 +7,7 @@ use App\Domain\Master\Models\Bulan;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
+use App\Domain\Penilaian\Models\Catatan;
 
 class Periode extends Model
 {
@@ -55,6 +56,11 @@ class Periode extends Model
     public function nilai()
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    public function catatan()
+    {
+        return $this->hasMany(Catatan::class);
     }
 
     /**

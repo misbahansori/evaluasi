@@ -24,6 +24,11 @@ class PegawaiFactory
         return $pegawai;
     }
 
+    public function withRole()
+    {   
+        
+    }
+
     public function withPeriode($count = 1)
     {
         $this->periodeCount = $count;

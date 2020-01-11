@@ -29,13 +29,6 @@ class NilaiController extends Controller
                 ->update(['nilai' => $value]);
         }
 
-        $periode->update([
-            'catatan'       => $request->catatan,
-            'ditingkatkan'  => $request->ditingkatkan,
-            'dipertahankan' => $request->dipertahankan,
-            'updated_at'    => Carbon::now()
-        ]);
-
         return back()
             ->with('success', 'Nilai berhasil disimpan.');
     }

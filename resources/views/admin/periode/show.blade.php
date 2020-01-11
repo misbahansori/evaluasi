@@ -33,7 +33,15 @@
                 <div class="card-body">
                     @include('admin.periode.pegawai-table')
                     {{-- @include('admin.periode.penilaian-form') --}}
-                    
+
+                    @can('catatan penilaian')
+                        <div class="float-right mb-3">
+                            <button type="button" class="btn btn-primary d-block" data-toggle="modal" data-target="#catatanModal">
+                                <i class="ti ti-pencil"></i> Tambah Catatan Penilaian
+                            </button>
+                        </div>
+                    @endcan
+
                     <form action="{{ route('nilai.update', $periode->id) }}" method="POST">
                         @csrf
                         @method('put')
@@ -43,27 +51,21 @@
                             :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
                         ></penilaian-form>
 
-                        @can('catatan penilaian')
-                            <div class="form-group mt-4">
-                                <label for="catatan" style="font-weight: 500">Catatan</label>
-                                <textarea name="catatan" id="catatan" rows="5" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->catatan }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="ditingkatkan" style="font-weight: 500">Hal yang perlu ditingkatkan</label>
-                                <textarea name="ditingkatkan" id="ditingkatkan" rows="3" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->ditingkatkan }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="dipertahankan" style="font-weight: 500">Hal yang perlu dipertahankan</label>
-                                <textarea name="dipertahankan" id="dipertahankan" rows="3" class="form-control" placeholder="Silahkan tulis..." {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>{{ $periode->dipertahankan }}</textarea>
-                            </div>
-                        @endcan
+                        <div class="mt-4 ml-3 mb-4">
+                            @foreach ($periode->catatan as $catatan)
+                                <h5>{{ $catatan->tipe }}</h5>
+                                <p>{{ $catatan->isi }} <span class="font-italic">({{ $catatan->user->name }})</span></p>
+                                <hr>
+                            @endforeach
+                        </div>
 
-                        <div class="button-group">
+                        <div class="button-group mt-3">
                             <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>
                                 <i class="ti-save"></i> Simpan
                             </button>
                         </div>
                     </form>
+                    @include('admin.periode.tambah-catatan-modal')
                 </div>
             </div>
         </div>
