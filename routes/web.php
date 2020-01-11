@@ -70,4 +70,5 @@ Route::middleware('auth')->group(function() {
     Route::post('/login-as', 'LoginAsController@store')->name('login-as.store');
 
     Route::post('/periode/{periode}/catatan', 'CatatanController@store')->name('catatan.store');
+    Route::delete('/periode/{periode}/catatan/{catatan}', 'CatatanController@destroy')->name('catatan.destroy');
 });

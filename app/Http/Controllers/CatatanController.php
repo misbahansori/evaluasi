@@ -30,7 +30,7 @@ class CatatanController extends Controller
 
         return redirect()
             ->back()
-            ->with('success', "Catatan $periode->tipe berhasil ditambahkan");
+            ->with('success', "$periode->tipe berhasil ditambahkan");
     }
 
     /**
@@ -70,11 +70,18 @@ class CatatanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Catatan  $catatan
+     * @param \App\Domain\Penilaian\Models\Periode $periode
+     * @param \App\Domain\Penilaian\Models\Catatan $catatan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catatan $catatan)
+    public function destroy(Periode $periode, Catatan $catatan)
     {
-        //
+        $this->authorize('delete', $catatan);
+        
+        abort_if($periode->id != $catatan->periode_id, 403);
+
+        $catatan->delete();
+
+        return redirect()->back()->with('success', "$catatan->tipe berhasil dihapus.");
     }
 }

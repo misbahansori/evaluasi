@@ -42,7 +42,7 @@
                         </div>
                     @endcan
 
-                    <form action="{{ route('nilai.update', $periode->id) }}" method="POST">
+                    <form class="mb-5" action="{{ route('nilai.update', $periode->id) }}" method="POST">
                         @csrf
                         @method('put')
 
@@ -51,20 +51,32 @@
                             :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
                         ></penilaian-form>
 
-                        <div class="mt-4 ml-3 mb-4">
-                            @foreach ($periode->catatan as $catatan)
-                                <h5>{{ $catatan->tipe }}</h5>
-                                <p>{{ $catatan->isi }} <span class="font-italic">({{ $catatan->user->name }})</span></p>
-                                <hr>
-                            @endforeach
-                        </div>
-
                         <div class="button-group mt-3">
                             <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>
                                 <i class="ti-save"></i> Simpan
                             </button>
                         </div>
                     </form>
+                    @foreach ($periode->catatan as $catatan)
+                        <div class="ml-3 d-flex justify-content-between">
+                            <div>
+                                <h5>{{ $catatan->tipe }}</h5>
+                                <p class="mb-1">{{ $catatan->isi }} <span class="font-italic">({{ $catatan->user->name }})</span></p>
+                            </div>
+                            <div>
+                                @can('delete', $catatan)
+                                    <form action="{{ route('catatan.destroy', [$periode, $catatan]) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <span class="ti-trash"></span>
+                                        </button>
+                                    </form> 
+                                @endcan
+                            </div>
+                        </div>
+                        <hr>
+                    @endforeach
                     @include('admin.periode.tambah-catatan-modal')
                 </div>
             </div>

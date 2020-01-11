@@ -80,4 +80,19 @@ class CatatanControllerTest extends TestCase
             'user_id' => $user->id
         ]);
     }
+
+    /** @test */
+    public function catatan_bisa_dihapus()
+    {
+        $this->withoutExceptionHandling();
+        $catatan = factory(Catatan::class)->create([
+            'user_id' => $user = factory(User::class)->create()
+        ]);
+
+        $this->actingAs($user)
+            ->delete(route('catatan.destroy', [$catatan->periode_id, $catatan->id]))
+            ->assertSessionHas('success');
+
+        $this->assertDeleted('catatan', $catatan->toArray());
+    }
 }
