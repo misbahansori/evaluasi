@@ -26,7 +26,7 @@ class AddTipeToAspekTable extends Migration
     public function down()
     {
         Schema::table('aspek', function (Blueprint $table) {
-            $table->removeColumn('tipe');
+            $table->dropColumn('tipe');
         });
     }
 }

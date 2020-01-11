@@ -29,7 +29,7 @@ class AddTipeToPeriodeTable extends Migration
     public function down()
     {
         Schema::table('periode', function (Blueprint $table) {
-            $table->removeColumn('tipe');
+            $table->dropColumn('tipe');
         });
     }
 }

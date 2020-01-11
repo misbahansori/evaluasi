@@ -28,9 +28,9 @@ class AddCatatanToPeriodeTable extends Migration
     public function down()
     {
         Schema::table('periode', function (Blueprint $table) {
-            $table->removeColumn('catatan');
-            $table->removeColumn('ditingkatkan');
-            $table->removeColumn('dipertahankan');
+            $table->dropColumn('catatan');
+            $table->dropColumn('ditingkatkan');
+            $table->dropColumn('dipertahankan');
         });
     }
 }
