@@ -96,10 +96,16 @@
             <tr>
                 <td colspan="2">Keterangan</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">
-                    @if ($periode->rataNilai() <= 3)
-                        TIDAK DISARANKAN
-                    @else
-                        DISARANKAN
+                    @if ($periode->rataNilai() >= 4.5)
+                        ISTIMEWA
+                    @elseif($periode->rataNilai() >= 3.5 && $periode->rataNilai() < 4.5)
+                        BAIK
+                    @elseif($periode->rataNilai() >= 2.5 && $periode->rataNilai() < 3.5)
+                        CUKUP
+                    @elseif($periode->rataNilai() >= 1.5 && $periode->rataNilai() < 2.5)
+                        KURANG
+                    @else 
+                        SANGAT KURANG
                     @endif
                 </td>
             </tr>
@@ -108,10 +114,11 @@
 
     <h4 style="margin-top: 10px;">B. KETENTUAN PENILAIAN</h4>
     <ol style="margin: 0 18px; padding: 0; line-height: 1;">
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 3 TIDAK DISARANKAN</li>
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3 DISARANKAN</li>
-        <li>Nilai rata-rata Kompetensi : <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 3 TIDAK DISARANKAN</li>
-        <li>Nilai rata-rata Kompetensi : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3 DISARANKAN</li>
+        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0 : ISTIMEWA</li>
+        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3,5 - 4,49 : BAIK</li>
+        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 2,5 - 3,49 : CUKUP</li>
+        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 1,5 - 2,49 : KURANG</li>
+        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 1,5 : SANGAT KURANG</li>
     </ol>
     
 
@@ -125,7 +132,7 @@
     <table class="table">
         <tr>
             <td class="text-center" style="padding: 10px;">
-                <h4 style="margin-bottom: 40px">PENILAI I</h4>
+                <h4 style="margin-bottom: 40px">ATASAN LANGSUNG</h4>
                 <p>@for ($i = 1; $i < 40; $i++).@endfor</p>
                 <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
             </td>
@@ -142,9 +149,9 @@
                 <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
             </td>
             <td class="text-center" style="padding: 10px;">
-                <h4 style="margin-bottom: 40px">PENILAI II</h4>
-                <p>@for ($i = 1; $i < 40; $i++).@endfor</p>
-                <div>NBM : @for ($i = 1; $i < 15; $i++) &nbsp; @endfor</div>
+                <h4 style="margin-bottom: 40px">WAKIL DIREKTUR BINDATRA</h4>
+                <p class="underline">Abdurrahim Hamdi, MA</p>
+                <div>NBM : 993421</div>
             </td>
         </tr>
     </table>

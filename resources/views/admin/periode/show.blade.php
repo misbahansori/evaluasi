@@ -68,7 +68,7 @@
                                     <form action="{{ route('catatan.destroy', [$periode, $catatan]) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('apakah anda yakin akan menghapus catatan?')">
                                             <span class="ti-trash"></span>
                                         </button>
                                     </form> 
