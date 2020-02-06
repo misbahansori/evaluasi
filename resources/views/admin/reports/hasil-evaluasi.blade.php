@@ -12,21 +12,21 @@
 <body>
     <table class="table">
         <tr>
-            <td style="width: 25%; height: 64px;">
-                <img src="{{ asset('/img/logo-rsumm.jpg') }}" height="64">
+            <td style="width: 25%; height: 52px;">
+                <img src="{{ asset('/img/logo-rsumm.jpg') }}" height="52">
             </td>
-            <td style="width: 50%" class="uppercase text-center leading-snug">
+            <td style="width: 50%" class="uppercase text-center leading-tight">
                 <h4>Hasil Penilaian Kinerja Karyawan</h4>
                 <h4>Rsu Muhammadiyah Metro</h4>
                 <h4>Periode {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h4>
             </td>
-            <td style="width: 25%; height: 64px; text-align: right">
-                <img src="{{ asset('/img/logo-kars.jpg') }}" height="48">
+            <td style="width: 25%; height: 52px; text-align: right">
+                <img src="{{ asset('/img/logo-kars.jpg') }}" height="46">
             </td>
         </tr>
     </table>
     <hr>
-    <table class="table leading-snug">
+    <table class="table">
         <tr>
             <td>Nama Karyawan</td>
             <td>:</td>
@@ -111,7 +111,6 @@
             </tr>
         </tbody>
     </table>
-
     <h4 style="margin-top: 10px;">B. KETENTUAN PENILAIAN</h4>
     <ol style="margin: 0 18px; padding: 0; line-height: 1;">
         <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0 : ISTIMEWA</li>
