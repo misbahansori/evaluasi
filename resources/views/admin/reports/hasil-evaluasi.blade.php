@@ -12,16 +12,16 @@
 <body>
     <table class="table">
         <tr>
-            <td style="width: 25%; height: 64px;">
-                <img src="{{ asset('/img/logo-rsumm.jpg') }}" height="64">
+            <td style="width: 25%; height: 52px;">
+                <img src="{{ asset('/img/logo-rsumm.jpg') }}" height="52">
             </td>
             <td style="width: 50%" class="uppercase text-center leading-tight">
                 <h4>Hasil Penilaian Kinerja Karyawan</h4>
                 <h4>Rsu Muhammadiyah Metro</h4>
                 <h4>Periode {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h4>
             </td>
-            <td style="width: 25%; height: 64px; text-align: right">
-                <img src="{{ asset('/img/logo-kars.jpg') }}" height="48">
+            <td style="width: 25%; height: 52px; text-align: right">
+                <img src="{{ asset('/img/logo-kars.jpg') }}" height="46">
             </td>
         </tr>
     </table>
