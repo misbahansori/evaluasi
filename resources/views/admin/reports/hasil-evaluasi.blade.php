@@ -15,7 +15,7 @@
             <td style="width: 25%; height: 64px;">
                 <img src="{{ asset('/img/logo-rsumm.jpg') }}" height="64">
             </td>
-            <td style="width: 50%" class="uppercase text-center leading-snug">
+            <td style="width: 50%" class="uppercase text-center leading-tight">
                 <h4>Hasil Penilaian Kinerja Karyawan</h4>
                 <h4>Rsu Muhammadiyah Metro</h4>
                 <h4>Periode {{ $periode->tipe }} {{ $periode->namaBulan }} {{ $periode->tahun }}</h4>
@@ -25,8 +25,8 @@
             </td>
         </tr>
     </table>
-    <hr>
-    <table class="table leading-snug">
+    <hr style="margin:0px;">
+    <table class="table leading-tight">
         <tr>
             <td>Nama Karyawan</td>
             <td>:</td>
@@ -47,32 +47,30 @@
         </tr>
     </table>
 
-    <h4>A. PENILAIAN</h4>
-
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="margin-top: 5px;">
         <thead>
             <tr>
-                <th rowspan="2" style="vertical-align: middle">No</th>
-                <th rowspan="2" style="vertical-align: middle; text-align: center;">Aspek Penilaian</th>
-                <th colspan="5" style="text-align: center">Nilai</th>
+                <th rowspan="2" style="vertical-align: middle" class="leading-none">No</th>
+                <th colspan="3" rowspan="2" style="vertical-align: middle; text-align: center;" class="leading-none">Aspek Penilaian</th>
+                <th colspan="5" style="text-align: center" class="leading-none">Nilai</th>
             </tr>
             <tr>
-                <th style="text-align: center;">1</th>
-                <th style="text-align: center;">2</th>
-                <th style="text-align: center;">3</th>
-                <th style="text-align: center;">4</th>
-                <th style="text-align: center;">5</th>
+                <th style="text-align: center;" class="leading-none">1</th>
+                <th style="text-align: center;" class="leading-none">2</th>
+                <th style="text-align: center;" class="leading-none">3</th>
+                <th style="text-align: center;" class="leading-none">4</th>
+                <th style="text-align: center;" class="leading-none">5</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($periode->nilai->groupBy('kategori')->sortKeys() as $grouped)
                 <tr>
-                    <th colspan="7">{{ $grouped->first()->kategori }}</th>
+                    <th colspan="9">{{ $grouped->first()->kategori }}</th>
                 </tr>
                 @foreach ($grouped as $key => $nilai)
                     <tr>
                         <td style="width: 20px; text-align:center;">{{ $loop->iteration }}</td>
-                        <td>{{ $nilai->aspek }}</td>
+                        <td colspan="3">{{ $nilai->aspek }}</td>
                         @for ($i = 1; $i <= 5; $i++)
                             <td style="font-family: DejaVu Sans, sans-serif; text-align:center; width: 25px;">
                                 {{ $nilai->nilai == $i ? '✔' : '' }}
@@ -82,19 +80,29 @@
                 @endforeach
             @endforeach
             <tr>
-                <td colspan="2">Element Penilaian</td>
+                <td rowspan="4" colspan="3" style="padding-left: 10px;">
+                    <div class="font-bold">KETERANGAN</div>
+                    <div style="margin:0; padding:0; line-height: .8em;">
+                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0  &nbsp;: ISTIMEWA</div>
+                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3,5 - 4,49 &nbsp;: BAIK</div>
+                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 2,5 - 3,49 &nbsp;: CUKUP</div>
+                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 1,5 - 2,49 &nbsp;: KURANG</div>
+                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 1,5        &nbsp;: SANGAT KURANG</div>
+                    <div>
+                </td>
+                <td style="width: 180px;">Element Penilaian</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->nilai->count() }}</td>
             </tr>
             <tr>
-                <td colspan="2">Total Nilai</td>
+                <td style="width: 180px;">Total Nilai</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->totalNilai() }}</td>
             </tr>
             <tr>
-                <td colspan="2">Rata-rata Nilai</td>
+                <td style="width: 180px;">Rata-rata Nilai</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilai() }}</td>
             </tr>
             <tr>
-                <td colspan="2">Keterangan</td>
+                <td style="width: 180px;">Keterangan</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">
                     @if ($periode->rataNilai() >= 4.5)
                         ISTIMEWA
@@ -110,17 +118,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
-
-    <h4 style="margin-top: 10px;">B. KETENTUAN PENILAIAN</h4>
-    <ol style="margin: 0 18px; padding: 0; line-height: 1;">
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0 : ISTIMEWA</li>
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3,5 - 4,49 : BAIK</li>
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 2,5 - 3,49 : CUKUP</li>
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 1,5 - 2,49 : KURANG</li>
-        <li>Nilai rata-rata Al-Islam & Kemuhammadiyahan : <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 1,5 : SANGAT KURANG</li>
-    </ol>
-    
+    </table>   
 
     @foreach($periode->catatan as $catatan)
         <div style="margin: 10px 0">
