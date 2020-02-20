@@ -82,20 +82,30 @@
             <tr>
                 <td rowspan="4" colspan="3" style="padding-left: 10px;">
                     <div class="font-bold">KETERANGAN</div>
-                    <div style="margin:0; padding:0; line-height: .8em;">
-                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0  &nbsp;: ISTIMEWA</div>
-                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3,5 - 4,49 &nbsp;: BAIK</div>
-                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 2,5 - 3,49 &nbsp;: CUKUP</div>
-                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 1,5 - 2,49 &nbsp;: KURANG</div>
-                        <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 1,5        &nbsp;: SANGAT KURANG</div>
-                    <div>
+                    {{-- jika status pegawai adalah pegawai kontrak --}}
+                    @if ($periode->pegawai->status_id == 2)
+                        <div style="margin:0; padding:0; line-height: .8em;">
+                            <div>Rata-rata Al-Islam & Kemuhammadiyahan <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 3 &nbsp;: TIDAK DISARANKAN</div>
+                            <div>Rata-rata Al-Islam & Kemuhammadiyahan <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3  &nbsp;: DISARANKAN</div>
+                            <div>Rata-rata Kompetensi <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 3 &nbsp;: TIDAK DISARANKAN</div>
+                            <div>Rata-rata Kompetensi <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3  &nbsp;: DISARANKAN</div>
+                        <div>
+                    @else
+                        <div style="margin:0; padding:0; line-height: .8em;">
+                            <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 4,5 - 5,0  &nbsp;: ISTIMEWA</div>
+                            <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3,5 - 4,49 &nbsp;: BAIK</div>
+                            <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 2,5 - 3,49 &nbsp;: CUKUP</div>
+                            <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 1,5 - 2,49 &nbsp;: KURANG</div>
+                            <div>Rata-rata <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 1,5        &nbsp;: SANGAT KURANG</div>
+                        <div>
+                    @endif
                 </td>
-                <td style="width: 180px;">Element Penilaian</td>
-                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->nilai->count() }}</td>
+                <td style="width: 180px;">Rata-rata AIK</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilaiAik() }}</td>
             </tr>
             <tr>
-                <td style="width: 180px;">Total Nilai</td>
-                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->totalNilai() }}</td>
+                <td style="width: 180px;">Rata-rata Kompetensi</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilaiBiasa() }}</td>
             </tr>
             <tr>
                 <td style="width: 180px;">Rata-rata Nilai</td>
@@ -104,6 +114,14 @@
             <tr>
                 <td style="width: 180px;">Keterangan</td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">
+                    {{-- jika status pegawai adalah pegawai kontrak --}}
+                    @if ($periode->pegawai->status_id == 2)
+                        @if ($periode->rataNilaiAik() < 3 || $periode->rataNilaiBiasa() < 3)
+                            TIDAK DISARANKAN
+                        @else 
+                            DISARANKAN
+                        @endif
+                    @else
                     @if ($periode->rataNilai() >= 4.5)
                         ISTIMEWA
                     @elseif($periode->rataNilai() >= 3.5 && $periode->rataNilai() < 4.5)
@@ -114,6 +132,7 @@
                         KURANG
                     @else 
                         SANGAT KURANG
+                    @endif
                     @endif
                 </td>
             </tr>

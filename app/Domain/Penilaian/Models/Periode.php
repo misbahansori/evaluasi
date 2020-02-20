@@ -103,11 +103,47 @@ class Periode extends Model
     }
 
     /**
+     * Total nilai per periode
+     */
+    public function totalNilaiAik()
+    {
+        return $this->nilai
+            ->whereIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan'])
+            ->sum('nilai');
+    }
+
+    /**
+     * Total nilai per periode
+     */
+    public function totalNilaiBiasa()
+    {
+        return $this->nilai
+            ->whereNotIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan'])
+            ->sum('nilai');
+    }
+
+    /**
      * Rata - rata nilai per periode
      */
     public function rataNilai()
     {
         return round($this->totalNilai() / $this->nilai->count(), 2);
+    }
+
+    /**
+     * Rata - rata nilai Aik per periode
+     */
+    public function rataNilaiAik()
+    {
+        return round($this->totalNilaiAik() / $this->nilaiAik()->count(), 2);
+    }
+
+    /**
+     * Rata - rata nilai Aik per periode
+     */
+    public function rataNilaiBiasa()
+    {
+        return round($this->totalNilaiBiasa() / $this->nilaiBiasa()->count(), 2);
     }
 
     /**
