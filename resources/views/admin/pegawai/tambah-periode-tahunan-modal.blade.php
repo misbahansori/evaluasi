@@ -18,6 +18,7 @@
                     <div class="col-md-6">
                         <select name="bulan" id="bulan" class="form-control{{ $errors->has('bulan') ? ' is-invalid' : '' }}">
                             <option value="2">Februari</option>
+                            <option value="3">Maret</option>
                             <option value="8">Agustus</option>
                             <option value="12">Desember</option>
                         </select>
