@@ -3,6 +3,7 @@
 namespace App\Domain\Pegawai\Charts;
 
 use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Periode;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 class PenilaianPegawaiChart extends Chart
@@ -16,11 +17,10 @@ class PenilaianPegawaiChart extends Chart
     {
         parent::__construct();
 
-        $pegawai->load('periode.nilai');
-
-        $periode = $pegawai->periode->filter(function($item) {
-            return $item->tahun == date('Y');
-        });
+        $periode = Periode::query()
+            ->wherePegawaiId($pegawai->id)
+            ->whereTahun(date('Y'))
+            ->get();
 
         $label = $periode->map(function($item) {
             return $item->bulan->nama_singkat . ' '.$item->tahun;
