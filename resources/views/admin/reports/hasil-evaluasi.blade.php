@@ -80,10 +80,10 @@
                 @endforeach
             @endforeach
             <tr>
-                <td rowspan="4" colspan="3" style="padding-left: 10px;">
+                <td rowspan="3" colspan="3" style="padding-left: 10px;">
                     <div class="font-bold">KETERANGAN</div>
                     {{-- jika status pegawai adalah pegawai kontrak --}}
-                    @if ($periode->pegawai->status_id == 2)
+                    @if ($periode->pegawai->status_id == 3)
                         <div style="margin:0; padding:0; line-height: .8em;">
                             <div>Rata-rata Al-Islam & Kemuhammadiyahan <span style="font-family: DejaVu Sans, sans-serif">&lt;</span> 3 &nbsp;: TIDAK DISARANKAN</div>
                             <div>Rata-rata Al-Islam & Kemuhammadiyahan <span style="font-family: DejaVu Sans, sans-serif">&ge;</span> 3  &nbsp;: DISARANKAN</div>
@@ -108,16 +108,18 @@
                 <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilaiBiasa() }}</td>
             </tr>
             <tr>
-                <td style="width: 180px;">Rata-rata Nilai</td>
-                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilai() }}</td>
-            </tr>
-            <tr>
-                <td style="width: 180px;">Keterangan</td>
+                <td style="width: 180px;">
+                    @if ($periode->pegawai->status_id == 3)
+                        Rekomendasi
+                    @else
+                        Keterangan
+                    @endif
+                </td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">
                     {{-- jika status pegawai adalah pegawai kontrak --}}
-                    @if ($periode->pegawai->status_id == 2)
+                    @if ($periode->pegawai->status_id == 3)
                         @if ($periode->rataNilaiAik() < 3 || $periode->rataNilaiBiasa() < 3)
-                            TIDAK DISARANKAN
+                            TIDAK DISARANKAN 
                         @else 
                             DISARANKAN
                         @endif

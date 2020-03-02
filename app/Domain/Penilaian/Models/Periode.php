@@ -135,6 +135,9 @@ class Periode extends Model
      */
     public function rataNilaiAik()
     {
+        // if ($this->nilaiAik() > 0) {
+        //     return 0;
+        // }
         return round($this->totalNilaiAik() / $this->nilaiAik()->count(), 2);
     }
 
