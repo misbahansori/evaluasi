@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Domain\Master\Models\Bulan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PegawaiRequest;
@@ -68,14 +69,14 @@ class PegawaiController extends Controller
      * @param  \App\Domain\Pegawai\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show(Request $request, Pegawai $pegawai)
     {
         $this->authorize('view', $pegawai);
 
         $listBulan = Bulan::all();
         $tahunIni  = date('Y');
 
-        $chart = new PenilaianPegawaiChart($pegawai);
+        $chart = new PenilaianPegawaiChart($request, $pegawai);
 
         return view('admin.pegawai.show', compact('pegawai', 'listBulan', 'tahunIni', 'pegawai', 'chart'));
     }
