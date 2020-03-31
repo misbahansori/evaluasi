@@ -49,6 +49,10 @@
                                     <option {{ old('kategori') == 'Profesi'? 'selected' : '' }}>Profesi</option>
                                     <option {{ old('kategori') == 'Prestasi Kerja'? 'selected' : '' }}>Prestasi Kerja</option>
                                     <option {{ old('kategori') == 'Sikap Kerja'? 'selected' : '' }}>Sikap Kerja</option>
+                                    <option {{ old('kategori') == 'Ke-islaman'? 'selected' : '' }}>Ke-islaman</option>
+                                    <option {{ old('kategori') == 'Ke-muhammadiyahan'? 'selected' : '' }}>Ke-muhammadiyahan</option>
+                                    <option {{ old('kategori') == 'Kinerja Pelayanan'? 'selected' : '' }}>Kinerja Pelayanan</option>
+                                    <option {{ old('kategori') == 'Mutu Pelayanan'? 'selected' : '' }}>Mutu Pelayanan</option>
                                 </select>
                                 @if ($errors->has('kategori'))
                                     <span class="invalid-feedback" role="alert">
