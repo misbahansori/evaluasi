@@ -17,6 +17,7 @@ class AspekController extends Controller
     {
        $this->middleware('permission:master aspek');
     }
+    
     /**
      * Display a listing of the resource.
      *

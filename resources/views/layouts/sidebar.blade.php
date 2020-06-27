@@ -38,14 +38,14 @@
                     <ul aria-expanded="false" class="collapse{{ Request::is( 'master/*') ? ' in' : '' }}">
                         @can('master aspek')
                             <li>
-                                <a class="waves-effect waves-dark{{ Request::is( 'master/aspek*') ? ' active' : '' }}" href="{{ route('aspek.index') }}" aria-expanded="false">
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/aspek-penilaian*') ? ' active' : '' }}" href="{{ route('aspek.index') }}" aria-expanded="false">
                                     <i class="ti-agenda"></i>
                                     <span class="hide-menu">Aspek Penilaian</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/aspek-komite*') ? ' active' : '' }}" href="{{ route('aspek-komite.index') }}" aria-expanded="false">
-                                    <i class="ti-agenda"></i>
+                                    <i class="ti-receipt"></i>
                                     <span class="hide-menu">Aspek Komite</span>
                                 </a>
                             </li>
@@ -69,7 +69,7 @@
                         @can('master komite')
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/komite*') ? ' active' : '' }}" href="{{ route('komite.index') }}" aria-expanded="false">
-                                    <i class="ti ti-menu-alt"></i>
+                                    <i class="ti ti-write"></i>
                                     <span class="hide-menu">Komite</span>
                                 </a>
                             </li>

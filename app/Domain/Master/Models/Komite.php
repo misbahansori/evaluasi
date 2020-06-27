@@ -26,4 +26,12 @@ class Komite extends Model
      * @var array
      */
     protected $fillable = ['nama'];
+
+    /**
+     * Get the relation of the aspekKomite
+     */
+    public function aspekKomite()
+    {
+        return $this->hasMany(AspekKomite::class);
+    }
 }
