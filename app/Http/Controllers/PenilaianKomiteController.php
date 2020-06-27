@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Domain\Master\Models\Bulan;
 use App\Domain\Master\Models\Komite;
 use App\Http\Controllers\Controller;
+use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Periode;
 
 class PenilaianKomiteController extends Controller
@@ -38,5 +40,33 @@ class PenilaianKomiteController extends Controller
             ->get();
 
         return view('admin.penilaian-komite.index', compact('listPeriode', 'listKomite'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $listPegawai = Pegawai::query()
+            ->whereNotNull('komite_id')
+            ->with('bagian', 'unit', 'formasi', 'komite')
+            ->get();
+
+        $listBulan = Bulan::all();
+        
+        return view('admin.penilaian-komite.create', compact('listPegawai', 'listBulan'));
+    }
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store()
+    {
+        
     }
 }

@@ -4,6 +4,7 @@ namespace App\Domain\Pegawai\Models;
 
 use App\Domain\Master\Models\Unit;
 use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Komite;
 use App\Domain\Master\Models\Status;
 use App\Domain\Master\Models\Formasi;
 use Illuminate\Database\Eloquent\Model;
@@ -58,6 +59,14 @@ class Pegawai extends Model
     public function status()
     {
        return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * Setiap Pegawai bisa memiliki komite
+     */
+    public function komite()
+    {
+       return $this->belongsTo(Komite::class);
     }
 
     /**
