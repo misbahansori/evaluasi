@@ -12,6 +12,17 @@ use App\Domain\Penilaian\Models\Periode;
 class PenilaianKomiteController extends Controller
 {
     /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('permission:tambah penilaian komite');
+    }
+    
+    /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,7 +44,6 @@ class PenilaianKomiteController extends Controller
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->whereTipe(Periode::PENILAIAN_KOMITE)
-            ->milikUser()
             ->when(auth()->user()->hasPermissionTo('verif wadir') && $request->terverifikasiKabag, function ($query) {
                 return $query->terverifikasiKabag();
             })
