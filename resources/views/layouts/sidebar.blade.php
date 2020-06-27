@@ -36,15 +36,21 @@
                         <i class="ti-settings"></i> <span class="hide-menu"> Master Data</span>
                     </a>
                     <ul aria-expanded="false" class="collapse{{ Request::is( 'master/*') ? ' in' : '' }}">
-                        @can('master user')
+                        @can('master aspek')
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/aspek*') ? ' active' : '' }}" href="{{ route('aspek.index') }}" aria-expanded="false">
                                     <i class="ti-agenda"></i>
                                     <span class="hide-menu">Aspek Penilaian</span>
                                 </a>
                             </li>
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/aspek-komite*') ? ' active' : '' }}" href="{{ route('aspek-komite.index') }}" aria-expanded="false">
+                                    <i class="ti-agenda"></i>
+                                    <span class="hide-menu">Aspek Komite</span>
+                                </a>
+                            </li>
                         @endcan
-                        @can('master user')
+                        @can('master aspek')
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/user*') ? ' active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
                                     <i class="ti ti-id-badge"></i>
@@ -57,6 +63,14 @@
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/group*') ? ' active' : '' }}" href="{{ route('role.index') }}" aria-expanded="false">
                                     <i class="ti ti-menu-alt"></i>
                                     <span class="hide-menu">Group/Unit</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('master komite')
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/komite*') ? ' active' : '' }}" href="{{ route('komite.index') }}" aria-expanded="false">
+                                    <i class="ti ti-menu-alt"></i>
+                                    <span class="hide-menu">Komite</span>
                                 </a>
                             </li>
                         @endcan

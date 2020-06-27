@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function() {
     Route::put('/master/aspek/{aspek}', 'AspekController@update')->name('aspek.update');
     Route::delete('/master/aspek/{aspek}', 'AspekController@destroy')->name('aspek.destroy');
 
+    Route::resource('/master/aspek-komite', 'AspekKomiteController');
+    Route::resource('/master/komite', 'KomiteController');
+
     Route::post('/master/bagian', 'BagianController@store')->name('bagian.store');
 
     Route::get('/master/user', 'UsersController@index')->name('user.index');

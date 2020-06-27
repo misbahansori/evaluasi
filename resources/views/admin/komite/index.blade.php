@@ -1,0 +1,70 @@
+@extends('layouts.master')
+
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between">
+                    <h4>Daftar Komite</h4>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#komiteModal">
+                        <i class="ti ti-pencil"></i> Tambah Komite
+                    </button>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width:20px">No</th>
+                                <th>Nama Komite</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($listKomite as $komite)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="d-flex justify-content-between">
+                                        {{ $komite->nama }}
+                                        <a href="{{ route('komite.edit', $komite) }}" class="btn btn-info btn-xs">
+                                            <i class="ti-pencil-alt"></i> Edit
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Tambah Group/Unit -->
+        <div class="modal fade" id="komiteModal" tabindex="-1" role="dialog" aria-labelledby="komiteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('komite.store') }}" method="POST" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="komiteModalLabel">Tambahkan Komite</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name" class="">Nama Komite</label>    
+                            <input id="name" type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" value="{{ old('nama') }}" required placeholder="Tuliskan nama komite">
+                            @error ('nama')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="ti ti-save"></i> Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
