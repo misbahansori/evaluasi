@@ -31,12 +31,12 @@ Route::middleware('auth')->group(function() {
 
     Route::put('/nilai/{periode}', 'NilaiController@update')->name('nilai.update');
 
-    Route::get('/master/aspek', 'AspekController@index')->name('aspek.index');
-    Route::get('/master/aspek/create', 'AspekController@create')->name('aspek.create');
-    Route::post('/master/aspek', 'AspekController@store')->name('aspek.store');
-    Route::get('/master/aspek/{aspek}', 'AspekController@edit')->name('aspek.edit');
-    Route::put('/master/aspek/{aspek}', 'AspekController@update')->name('aspek.update');
-    Route::delete('/master/aspek/{aspek}', 'AspekController@destroy')->name('aspek.destroy');
+    Route::get('/master/aspek-penilaian', 'AspekController@index')->name('aspek.index');
+    Route::get('/master/aspek-penilaian/create', 'AspekController@create')->name('aspek.create');
+    Route::post('/master/aspek-penilaian', 'AspekController@store')->name('aspek.store');
+    Route::get('/master/aspek-penilaian/{aspek}', 'AspekController@edit')->name('aspek.edit');
+    Route::put('/master/aspek-penilaian/{aspek}', 'AspekController@update')->name('aspek.update');
+    Route::delete('/master/aspek-penilaian/{aspek}', 'AspekController@destroy')->name('aspek.destroy');
 
     Route::resource('/master/aspek-komite', 'AspekKomiteController');
     Route::resource('/master/komite', 'KomiteController');
