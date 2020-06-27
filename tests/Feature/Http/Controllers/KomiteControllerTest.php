@@ -4,8 +4,10 @@ namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
 use Tests\Setup\UserFactory;
+use Barryvdh\Debugbar\Facade;
 use App\Domain\User\Models\User;
 use App\Domain\Master\Models\Komite;
+use App\Domain\Master\Models\AspekKomite;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -80,5 +82,23 @@ class KomiteControllerTest extends TestCase
 
         $this->assertDatabaseMissing('komite', $komite->toArray());
         $this->assertDatabaseHas('komite', $attribute);
+    }
+
+    /** @test */
+    public function user_bisa_menghapus_komite()
+    {
+        $this->withoutExceptionHandling();
+        $komite = factory(Komite::class)->create();
+        $aspekKomite = factory(AspekKomite::class, 10)->create(['komite_id' => $komite->id]);
+
+        $user = app(UserFactory::class)->withPermission('master komite')->create();
+
+        $this->actingAs($user)
+            ->delete(route('komite.destroy', $komite))
+            ->assertRedirect(route('komite.index'))
+            ->assertSessionHas('success');
+
+        $this->assertDatabaseMissing('komite', $komite->toArray());
+        $this->assertTrue(AspekKomite::all()->isEmpty());
     }
 }

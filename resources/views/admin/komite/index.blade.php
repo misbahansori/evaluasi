@@ -11,7 +11,7 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th style="width:20px">No</th>
@@ -24,9 +24,18 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="d-flex justify-content-between">
                                         {{ $komite->nama }}
-                                        <a href="{{ route('komite.edit', $komite) }}" class="btn btn-info btn-xs">
-                                            <i class="ti-pencil-alt"></i> Edit
-                                        </a>
+                                        <form action="{{ route('komite.destroy', $komite) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+
+                                            <a href="{{ route('komite.edit', $komite) }}" class="btn btn-info btn-sm">
+                                                <i class="ti ti-pencil-alt"></i> Edit
+                                            </a>
+                                            
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus?');">
+                                                <i class="ti ti-trash"></i> Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -108,6 +108,10 @@ class KomiteController extends Controller
      */
     public function destroy(Komite $komite)
     {
-        //
+        $komite->aspekKomite->each->delete();
+        $komite->delete();
+
+        return redirect()->route('komite.index')
+            ->with('success', "Komite $komite->name berhasil dihapus");
     }
 }
