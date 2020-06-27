@@ -10,6 +10,16 @@ use App\Http\Controllers\Controller;
 class BagianController extends Controller
 {
     /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('permission:master bagian');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

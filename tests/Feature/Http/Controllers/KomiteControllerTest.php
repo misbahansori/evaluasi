@@ -4,11 +4,9 @@ namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
 use Tests\Setup\UserFactory;
-use Barryvdh\Debugbar\Facade;
 use App\Domain\User\Models\User;
 use App\Domain\Master\Models\Komite;
 use App\Domain\Master\Models\AspekKomite;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class KomiteControllerTest extends TestCase
