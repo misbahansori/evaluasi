@@ -42,8 +42,7 @@ Route::middleware('auth')->group(function() {
 
     Route::resource('/master/aspek-komite', 'AspekKomiteController');
     Route::resource('/master/komite', 'KomiteController');
-
-    Route::post('/master/bagian', 'BagianController@store')->name('bagian.store');
+    Route::resource('/master/bagian', 'BagianController');
 
     Route::get('/master/user', 'UsersController@index')->name('user.index');
     Route::get('/master/user/create', 'UsersController@create')->name('user.create');

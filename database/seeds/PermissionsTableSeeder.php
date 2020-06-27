@@ -18,7 +18,7 @@ class PermissionsTableSeeder extends Seeder
             'verif wadir', 'verif kabag',
             'master aspek', 'master user', 'master group',
             'grafik pegawai', 'penilaian aik', 'catatan penilain', 'master komite',
-            'tambah penilaian komite'
+            'tambah penilaian komite', 'master bagian'
         ];
 
         foreach ($permissions as $permission) {

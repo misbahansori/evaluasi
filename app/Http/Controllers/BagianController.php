@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Bagian;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Domain\Master\Models\Bagian;
+use App\Http\Controllers\Controller;
 
 class BagianController extends Controller
 {
@@ -14,7 +16,9 @@ class BagianController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.bagian.index', [
+            'listBagian' => Bagian::orderBy('nama')->get()
+        ]);
     }
 
     /**
@@ -39,9 +43,10 @@ class BagianController extends Controller
             'nama' => 'required|string|min:3|max:255',
         ]);
 
-        Bagian::create($validated);
+        $bagian = Bagian::create($validated);
 
-        return redirect()->back();
+        return redirect()->route('bagian.index')
+            ->with('success', "Komite $bagian->nama berhasil ditambahkan");
     }
 
     /**
@@ -63,7 +68,9 @@ class BagianController extends Controller
      */
     public function edit(Bagian $bagian)
     {
-        //
+        return view('admin.bagian.edit', [
+            'bagian' => $bagian
+        ]);
     }
 
     /**
@@ -75,7 +82,14 @@ class BagianController extends Controller
      */
     public function update(Request $request, Bagian $bagian)
     {
-        //
+        $validated = $request->validate([
+            'nama' => ['required', 'string', 'max:255', Rule::unique('bagian')->ignore($bagian->id)],
+        ]);
+
+        $bagian->update($validated);
+
+        return redirect()->route('bagian.index')
+            ->with('success', "Komite $bagian->nama berhasil diubah");
     }
 
     /**
@@ -86,6 +100,10 @@ class BagianController extends Controller
      */
     public function destroy(Bagian $bagian)
     {
-        //
+        $bagian->aspek->each->delete();
+        $bagian->delete();
+
+        return redirect()->route('bagian.index')
+            ->with('success', "Komite $bagian->nama berhasil dihapus");
     }
 }

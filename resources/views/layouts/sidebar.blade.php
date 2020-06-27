@@ -72,6 +72,14 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('master bagian')
+                            <li>
+                                <a class="waves-effect waves-dark{{ Request::is( 'master/bagian*') ? ' active' : '' }}" href="{{ route('bagian.index') }}" aria-expanded="false">
+                                    <i class="ti ti-layout-column3"></i>
+                                    <span class="hide-menu">Bagian</span>
+                                </a>
+                            </li>
+                        @endcan
                         @can('master komite')
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/komite*') ? ' active' : '' }}" href="{{ route('komite.index') }}" aria-expanded="false">

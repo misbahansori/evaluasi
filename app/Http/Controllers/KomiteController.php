@@ -56,7 +56,7 @@ class KomiteController extends Controller
         $komite = Komite::create($validated);
 
         return redirect()->route('komite.index')
-            ->with('success', "Komite $komite->name berhasil ditambahkan");
+            ->with('success', "Komite $komite->nama berhasil ditambahkan");
     }
 
     /**
@@ -97,7 +97,7 @@ class KomiteController extends Controller
         $komite->update($validated);
 
         return redirect()->route('komite.index')
-            ->with('success', "Komite $komite->name berhasil diubah");
+            ->with('success', "Komite $komite->nama berhasil diubah");
     }
 
     /**
@@ -112,6 +112,6 @@ class KomiteController extends Controller
         $komite->delete();
 
         return redirect()->route('komite.index')
-            ->with('success', "Komite $komite->name berhasil dihapus");
+            ->with('success', "Komite $komite->nama berhasil dihapus");
     }
 }

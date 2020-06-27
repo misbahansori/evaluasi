@@ -22,6 +22,13 @@ class Bagian extends Model
     public $timestamps = false;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['nama'];
+
+    /**
     * aspek relationship
     */
     public function aspek()
