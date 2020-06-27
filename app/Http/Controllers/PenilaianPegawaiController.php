@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Domain\Penilaian\Models\Periode;
 
-class PenilaianController extends Controller
+class PenilaianPegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,6 +35,6 @@ class PenilaianController extends Controller
             })
             ->get();
 
-        return view('admin.penilaian.index', compact('listPeriode'));
+        return view('admin.penilaian-pegawai.index', compact('listPeriode'));
     }
 }

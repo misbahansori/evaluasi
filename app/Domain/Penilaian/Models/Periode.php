@@ -11,6 +11,10 @@ use App\Domain\Penilaian\Models\Catatan;
 
 class Periode extends Model
 {
+    const PENILAIAN_BULANAN = 'bulanan';
+    const PENILAIAN_TAHUNAN = 'tahunan';
+    const PENILAIAN_KOMITE = 'komite';
+    
     /**
      * The table associated with the model.
      *

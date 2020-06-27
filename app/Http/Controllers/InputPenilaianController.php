@@ -47,6 +47,6 @@ class InputPenilaianController extends Controller
         }
 
         return redirect()
-            ->route('penilaian.index');
+            ->route('penilaian-pegawai.index');
     }
 }

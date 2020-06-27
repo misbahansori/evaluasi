@@ -46,7 +46,7 @@ class InputPenilaianControllerTest extends TestCase
                 'tipe' => 'bulanan',
                 'pegawai' => $listPegawai->pluck('id')->toArray(),
             ]))
-            ->assertRedirect(route('penilaian.index'));
+            ->assertRedirect(route('penilaian-pegawai.index'));
             
         $this->assertEquals(2, Periode::count());
         $this->assertEquals(8, Nilai::count());

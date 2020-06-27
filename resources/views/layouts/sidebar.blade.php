@@ -12,14 +12,20 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li{{ Request::is( 'dashboard') ? ' class=selected' : '' }}>
+                <li{{ Request::is('dashboard') ? ' class=selected' : '' }}>
                     <a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false">
                         <i class="ti-panel"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
-                <li{{ Request::is( 'penilaian*') ? ' class=selected' : '' }}>
-                    <a class="waves-effect waves-dark" href="{{ route('penilaian.index') }}" aria-expanded="false">
+                <li{{ Request::is('penilaian-pegawai*') ? ' class=selected' : '' }}>
+                    <a class="waves-effect waves-dark" href="{{ route('penilaian-pegawai.index') }}" aria-expanded="false">
+                        <i class="ti-bar-chart"></i>
+                        <span class="hide-menu">Penilaian Pegawai</span>
+                    </a>
+                </li>
+                <li{{ Request::is('penilaian-komite*') ? ' class=selected' : '' }}>
+                    <a class="waves-effect waves-dark" href="{{ route('penilaian-komite.index') }}" aria-expanded="false">
                         <i class="ti-bar-chart"></i>
                         <span class="hide-menu">Penilaian Pegawai</span>
                     </a>

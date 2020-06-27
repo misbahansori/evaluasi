@@ -18,7 +18,8 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/penilaian', 'PenilaianController@index')->name('penilaian.index');
+    Route::get('/penilaian-pegawai', 'PenilaianPegawaiController@index')->name('penilaian-pegawai.index');
+    Route::get('/penilaian-komite', 'PenilaianKomiteController@index')->name('penilaian-komite.index');
 
     Route::resource('/pegawai', 'PegawaiController');
 
