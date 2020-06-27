@@ -26,8 +26,8 @@
                 </li>
                 <li{{ Request::is('penilaian-komite*') ? ' class=selected' : '' }}>
                     <a class="waves-effect waves-dark" href="{{ route('penilaian-komite.index') }}" aria-expanded="false">
-                        <i class="ti-bar-chart"></i>
-                        <span class="hide-menu">Penilaian Pegawai</span>
+                        <i class="ti-bar-chart-alt"></i>
+                        <span class="hide-menu">Penilaian Komite</span>
                     </a>
                 </li>
                 <li{{ Request::is( 'pegawai*') ? ' class=selected' : '' }}>

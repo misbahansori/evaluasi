@@ -19,7 +19,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/penilaian-pegawai', 'PenilaianPegawaiController@index')->name('penilaian-pegawai.index');
+
     Route::get('/penilaian-komite', 'PenilaianKomiteController@index')->name('penilaian-komite.index');
+    Route::get('/penilaian-komite/create', 'PenilaianKomiteController@create')->name('penilaian-komite.create');
 
     Route::resource('/pegawai', 'PegawaiController');
 

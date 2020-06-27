@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Domain\Master\Models\Komite;
+use App\Http\Controllers\Controller;
+use App\Domain\Penilaian\Models\Periode;
 
 class PenilaianKomiteController extends Controller
 {
@@ -11,74 +14,29 @@ class PenilaianKomiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        if (!$request->bulan && !$request->tahun && !$request->tipe) {
+            $request->request->add([
+                'bulan' => date('n', strtotime("-1 month")),
+                'tahun' => date('Y'),
+                'tipe' => 'bulanan'
+            ]);
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $listKomite = Komite::orderBy('nama')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $listPeriode = Periode::query()
+            ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
+            ->whereBulanId($request->bulan)
+            ->whereTahun($request->tahun)
+            ->whereTipe(Periode::PENILAIAN_KOMITE)
+            ->milikUser()
+            ->when(auth()->user()->hasPermissionTo('verif wadir') && $request->terverifikasiKabag, function ($query) {
+                return $query->terverifikasiKabag();
+            })
+            ->get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('admin.penilaian-komite.index', compact('listPeriode', 'listKomite'));
     }
 }
