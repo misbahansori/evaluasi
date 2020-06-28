@@ -104,4 +104,62 @@ class PenilaianKomiteControllerTest extends TestCase
         }
         $this->assertEquals(15, Nilai::count());
     }
+
+    /** @test */
+    public function menampilkan_pesan_error_jika_aspek_komite_masih_kosong()
+    {
+        $komite = factory(Komite::class)->create(['nama' => 'PPI']);
+        $pegawai = factory(Pegawai::class)->create(['komite_id' => $komite->id]);
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->post(route('penilaian-komite.store'), [
+                'bulan' => date('n'),
+                'tahun' => date('Y'),
+                'pegawai' => [$pegawai->id]
+            ])->assertSessionHas('danger');
+
+        $this->assertDatabaseMissing('periode', [
+            'bulan' => date('n'),
+            'tahun' => date('Y'),
+            'pegawai' => $pegawai->id,
+            'tipe' => Periode::PENILAIAN_KOMITE
+        ]);
+    }
+
+    /** @test */
+    public function menampilkan_error_jika_pegawai_tidak_ditemukan()
+    {
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->post(route('penilaian-komite.store'), [
+                'bulan' => date('n'),
+                'tahun' => date('Y'),
+                'pegawai' => [1]
+            ])->assertNotFound();
+    }
+
+    /** @test */
+    public function menampilkan_error_jika_sudah_ada_periode_dengan_bulan_dan_tahun_yang_sama()
+    {
+        $this->withoutExceptionHandling();
+        $komite = factory(Komite::class)->create(['nama' => 'PPI']);
+        $pegawai = factory(Pegawai::class)->create(['komite_id' => $komite->id]);
+        $periode = factory(Periode::class)->create([
+            'bulan' => date('n'),
+            'tahun' => date('Y'),
+            'pegawai_id' => $pegawai->id,
+            'tipe' => Periode::PENILAIAN_KOMITE
+        ]);
+        
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->post(route('penilaian-komite.store'), [
+                'bulan' => date('n'),
+                'tahun' => date('Y'),
+                'pegawai' => [$periode->pegawai_id]
+            ])->assertSessionHas('danger');
+    }
 }

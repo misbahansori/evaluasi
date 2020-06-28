@@ -9,21 +9,21 @@ use App\Domain\Master\Models\Komite;
 use App\Http\Controllers\Controller;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
+use Illuminate\Database\QueryException;
 use App\Domain\Penilaian\Models\Periode;
-use App\Domain\Master\Models\AspekKomite;
 
 class PenilaianKomiteController extends Controller
 {
     /**
-    * Instantiate a new controller instance.
-    *
-    * @return void
-    */
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('permission:tambah penilaian komite');
     }
-    
+
     /**
      * 
      * Display a listing of the resource.
@@ -68,10 +68,10 @@ class PenilaianKomiteController extends Controller
             ->get();
 
         $listBulan = Bulan::all();
-        
+
         return view('admin.penilaian-komite.create', compact('listPegawai', 'listBulan'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -80,21 +80,27 @@ class PenilaianKomiteController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $listPegawai = Pegawai::findOrFail($request->pegawai);
 
-        $listPegawai = Pegawai::find($request->pegawai);
+        foreach ($listPegawai as $pegawai) {
+            if ($pegawai->komite->aspekKomite->isEmpty()) {
+                session()->flash('danger', 'Aspek komite ' . $pegawai->komite->nama . ' masih kosong.');
+                return redirect()->back();
+            }
 
-        foreach($listPegawai as $pegawai) {
-            $periode = Periode::create([
-                'pegawai_id' => $pegawai->id,
-                'bulan_id' => $request->bulan,
-                'tahun' => $request->tahun,
-                'tipe' => Periode::PENILAIAN_KOMITE,
-            ]);
+            try {
+                $periode = Periode::create([
+                    'pegawai_id' => $pegawai->id,
+                    'bulan_id' => $request->bulan,
+                    'tahun' => $request->tahun,
+                    'tipe' => Periode::PENILAIAN_KOMITE,
+                ]);
+            } catch (QueryException $e) {
+                session()->flash('danger', 'Periode bulan ' . $request->bulan .' tahun ' . $request->tahun . ' ' . $pegawai->nama . ' sudah ada.');
+                return redirect()->back();
+            }
 
-            $aspekKomite = AspekKomite::whereKomiteId($pegawai->komite_id)->get();
-
-            foreach ($aspekKomite as $aspek) {
+            foreach ($pegawai->komite->aspekKomite as $aspek) {
                 Nilai::create([
                     'periode_id' => $periode->id,
                     'aspek' => $aspek->nama,

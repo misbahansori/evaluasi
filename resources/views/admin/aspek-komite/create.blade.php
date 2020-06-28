@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="nama" class="col-sm-4 col-form-label text-md-right">Nama Aspek Penilaian</label>
+                            <label for="nama" class="col-sm-4 col-form-label text-md-right">Nama Aspek Komite</label>
 
                             <div class="col-md-6">
                                 <textarea id="nama" type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" rows="3" required placeholder="Ketikan nama aspek">{{ old('nama') }}</textarea>
