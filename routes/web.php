@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('/master/aspek-komite', 'AspekKomiteController');
     Route::resource('/master/komite', 'KomiteController');
     Route::resource('/master/bagian', 'BagianController');
+    Route::resource('/login-as', 'LoginAsController')->only('index', 'store');
 
     Route::get('/master/user', 'UsersController@index')->name('user.index');
     Route::get('/master/user/create', 'UsersController@create')->name('user.create');
@@ -71,9 +72,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/verif/wadir/{periode}', 'VerifikasiController@wadir')->name('verif.wadir');
 
     Route::post('/report/{tipe}', 'ReportController')->name('report');
-
-    Route::get('/login-as', 'LoginAsController@index')->name('login-as.index');
-    Route::post('/login-as', 'LoginAsController@store')->name('login-as.store');
 
     Route::post('/periode/{periode}/catatan', 'CatatanController@store')->name('catatan.store');
     Route::delete('/periode/{periode}/catatan/{catatan}', 'CatatanController@destroy')->name('catatan.destroy');

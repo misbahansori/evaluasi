@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class LoginAsController extends Controller
 {
     /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
+    public function __construct()
+    {
+        $this->middleware('permission:login-as');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
