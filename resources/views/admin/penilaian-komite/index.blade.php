@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-end">
                 @can('tambah penilaian komite')
-                    <a href="{{ route('penilaian-komite.create') }}" class="btn btn-success btn-sm mr-4 mb-4">
+                    <a href="{{ route('penilaian-komite.create') }}" class="btn btn-success btn-sm mb-4">
                         <i class="ti-bar-chart-alt"></i> Tambah Penilaian Komite
                     </a>
                 @endcan

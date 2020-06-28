@@ -23,7 +23,7 @@
                             
                             <select name="bulan" id="bulan" class="form-control mr-2">
                                 @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                    <option {{ date('m') == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                    <option {{ date('m', strtotime("-1 month")) == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
                                 @endfor
                             </select>
                             

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Domain\Master\Models\Aspek;
 use App\Domain\Master\Models\Bulan;
 use App\Domain\Master\Models\Komite;
 use App\Http\Controllers\Controller;
 use App\Domain\Pegawai\Models\Pegawai;
+use App\Domain\Penilaian\Models\Nilai;
 use App\Domain\Penilaian\Models\Periode;
+use App\Domain\Master\Models\AspekKomite;
 
 class PenilaianKomiteController extends Controller
 {
@@ -75,8 +78,33 @@ class PenilaianKomiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        
+        // dd($request->all());
+
+        $listPegawai = Pegawai::find($request->pegawai);
+
+        foreach($listPegawai as $pegawai) {
+            $periode = Periode::create([
+                'pegawai_id' => $pegawai->id,
+                'bulan_id' => $request->bulan,
+                'tahun' => $request->tahun,
+                'tipe' => Periode::PENILAIAN_KOMITE,
+            ]);
+
+            $aspekKomite = AspekKomite::whereKomiteId($pegawai->komite_id)->get();
+
+            foreach ($aspekKomite as $aspek) {
+                Nilai::create([
+                    'periode_id' => $periode->id,
+                    'aspek' => $aspek->nama,
+                    'kategori' => $aspek->kategori,
+                ]);
+            }
+        }
+
+        return redirect()
+            ->route('penilaian-komite.index')
+            ->with('success', 'Penilaian Komite berhasil ditambahkan');
     }
 }

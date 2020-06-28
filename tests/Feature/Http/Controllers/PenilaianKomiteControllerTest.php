@@ -6,16 +6,18 @@ use Tests\TestCase;
 use Tests\Setup\UserFactory;
 use App\Domain\User\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Domain\Master\Models\Komite;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
 use App\Domain\Penilaian\Models\Periode;
+use App\Domain\Master\Models\AspekKomite;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PenilaianKomiteControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +31,7 @@ class PenilaianKomiteControllerTest extends TestCase
     public function hanya_admin_yang_bisa_menambah_penilaian_komite()
     {
         $this->actingAs(factory(User::class)->create());
-        
+
         $this->get(route('penilaian-komite.index'))
             ->assertForbidden();
         $this->get(route('penilaian-komite.create'))
@@ -59,7 +61,7 @@ class PenilaianKomiteControllerTest extends TestCase
     }
 
     /** @test */
-    public function admin_bisa_menambahkan_penilaian_komite()
+    public function admin_bisa_melihat_halaman_untuk_menambahkan_penilaian_komite()
     {
         $listPegawai = factory(Pegawai::class, 5)->create();
         $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
@@ -72,5 +74,34 @@ class PenilaianKomiteControllerTest extends TestCase
             ->assertSee($listPegawai[2]->nama)
             ->assertSee($listPegawai[3]->nama)
             ->assertSee($listPegawai[4]->nama);
+    }
+
+    /** @test */
+    public function user_bisa_menambahkan_penilaian_komite()
+    {
+        $this->withoutExceptionHandling();
+
+        $komite = factory(Komite::class)->create(['nama' => 'PPI']);
+        $aspekKomite = factory(AspekKomite::class, 5)->create(['komite_id' => $komite->id]);
+        $listPegawai = factory(Pegawai::class, 3)->create(['komite_id' => $komite->id]);
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->post(route('penilaian-komite.store'), [
+                'bulan' => date('n'),
+                'tahun' => date('Y'),
+                'pegawai' => $listPegawai->pluck('id')->toArray()
+            ])
+            ->assertSessionHas('success');
+
+        foreach ($listPegawai as $pegawai) {
+            $this->assertDatabaseHas('periode', [
+                'bulan_id' => date('n'),
+                'tahun' => date('Y'),
+                'tipe' => Periode::PENILAIAN_KOMITE,
+                'pegawai_id' => $pegawai->id
+            ]);
+        }
+        $this->assertEquals(15, Nilai::count());
     }
 }
