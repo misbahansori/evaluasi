@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
         <table class="table">
-            @forelse ($pegawai->periode as $periode)
+            @forelse ($pegawai->periodeBulanan as $periode)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $periode->namaBulan }} {{ $periode->tahun }}</td>
