@@ -23,13 +23,13 @@
                             
                             <select name="bulan" id="bulan" class="form-control mr-2">
                                 @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                    <option {{ date('m', strtotime("-1 month")) == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                    <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
                                 @endfor
                             </select>
                             
                             <select name="tahun" id="tahun" class="form-control mr-2">
                                 @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
-                                    <option {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                    <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
                         </div>

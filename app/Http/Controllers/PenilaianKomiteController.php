@@ -67,7 +67,7 @@ class PenilaianKomiteController extends Controller
     {
         if (!$request->bulan) {
             $request->request->add([
-                'bulan' => date('n', strtotime("-1 month")),
+                'bulan' => date('n'),
             ]);
         }
         if ( !$request->tahun) {
