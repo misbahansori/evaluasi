@@ -111,8 +111,9 @@ class PenilaianKomiteControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $listPegawai = factory(Pegawai::class, 3)->create();
         $pegawaiDenganPeriode = factory(Pegawai::class)->create();
+        
         factory(Periode::class)->create([
-            'bulan_id' => date('n') - 1,
+            'bulan_id' => date('n'),
             'tahun' => date('Y'),
             'tipe' => Periode::PENILAIAN_KOMITE,
             'pegawai_id' => $pegawaiDenganPeriode->id
