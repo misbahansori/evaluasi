@@ -32,18 +32,21 @@ class PenilaianKomiteController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->bulan && !$request->tahun && !$request->tipe) {
+        if (!$request->bulan) {
             $request->request->add([
                 'bulan' => date('n', strtotime("-1 month")),
+            ]);
+        }
+        if ( !$request->tahun) {
+            $request->request->add([
                 'tahun' => date('Y'),
-                'tipe' => 'bulanan'
             ]);
         }
 
         $listKomite = Komite::orderBy('nama')->get();
 
         $listPeriode = Periode::query()
-            ->with('pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
+            ->with('pegawai.komite', 'pegawai.unit', 'pegawai.formasi', 'nilai', 'bulan')
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->whereTipe(Periode::PENILAIAN_KOMITE)
@@ -60,13 +63,29 @@ class PenilaianKomiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (!$request->bulan) {
+            $request->request->add([
+                'bulan' => date('n', strtotime("-1 month")),
+            ]);
+        }
+        if ( !$request->tahun) {
+            $request->request->add([
+                'tahun' => date('Y'),
+            ]);
+        }
+
         $listPegawai = Pegawai::query()
             ->whereNotNull('komite_id')
+            ->whereDoesntHave('periode', function($query) use ($request) {
+                $query->whereBulanId($request->bulan)
+                    ->whereTahun($request->tahun)
+                    ->whereTipe(Periode::PENILAIAN_KOMITE);
+            })
             ->with('bagian', 'unit', 'formasi', 'komite')
             ->get();
-
+        
         $listBulan = Bulan::all();
 
         return view('admin.penilaian-komite.create', compact('listPegawai', 'listBulan'));

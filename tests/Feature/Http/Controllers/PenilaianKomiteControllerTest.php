@@ -106,6 +106,29 @@ class PenilaianKomiteControllerTest extends TestCase
     }
 
     /** @test */
+    public function pegawai_yang_sudah_memiliki_periode_tidak_ditampikan_di_halaman_input()
+    {
+        $this->withoutExceptionHandling();
+        $listPegawai = factory(Pegawai::class, 3)->create();
+        $pegawaiDenganPeriode = factory(Pegawai::class)->create();
+        factory(Periode::class)->create([
+            'bulan_id' => date('n') - 1,
+            'tahun' => date('Y'),
+            'tipe' => Periode::PENILAIAN_KOMITE,
+            'pegawai_id' => $pegawaiDenganPeriode->id
+        ]);
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->get(route('penilaian-komite.create'))
+            ->assertOk()
+            ->assertSee($listPegawai[0]->nama)
+            ->assertSee($listPegawai[1]->nama)
+            ->assertSee($listPegawai[1]->nama)
+            ->assertDontSee($pegawaiDenganPeriode->nama);
+    }
+
+    /** @test */
     public function menampilkan_pesan_error_jika_aspek_komite_masih_kosong()
     {
         $komite = factory(Komite::class)->create(['nama' => 'PPI']);
@@ -152,7 +175,7 @@ class PenilaianKomiteControllerTest extends TestCase
             'pegawai_id' => $pegawai->id,
             'tipe' => Periode::PENILAIAN_KOMITE
         ]);
-        
+
         $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
 
         $this->actingAs($user)

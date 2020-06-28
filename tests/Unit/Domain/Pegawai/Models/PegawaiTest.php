@@ -67,7 +67,7 @@ class PegawaiTest extends TestCase
         factory(Periode::class, 3)->create(['tipe' => 'bulanan', 'pegawai_id' => $pegawai->id]);
         factory(Periode::class, 1)->create(['tipe' => 'tahunan', 'pegawai_id' => $pegawai->id]);
         
-        $this->assertCount(3, $pegawai->periode);
+        $this->assertCount(3, $pegawai->periodeBulanan);
     }
 
     /** @test */

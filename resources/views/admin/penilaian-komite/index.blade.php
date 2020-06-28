@@ -50,9 +50,9 @@
                             <tr>
                                 <th>NO</th>
                                 <th>Nama</th>
+                                <th>Komite</th>
                                 <th>Unit</th>
                                 <th>Formasi</th>
-                                <th>Periode</th>
                                 <th>Nilai</th>
                                 <th>Verif Kabag</th>
                                 <th>Verif Wadir</th>
@@ -68,9 +68,9 @@
                                             {{ $periode->pegawai->nama }}
                                         </a>
                                     </td>
+                                    <td>{{ $periode->pegawai->komite->nama }}</td>
                                     <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
-                                    <td>{{ $periode->namaBulan}} {{ $periode->tahun }}</td>
                                     <td>{{ $periode->rataNilai() }}</td>
                                     <td>
                                         <verifikasi-component 
