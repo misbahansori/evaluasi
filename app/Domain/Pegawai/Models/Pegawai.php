@@ -75,22 +75,29 @@ class Pegawai extends Model
     public function periode()
     {
         return $this->hasMany(Periode::class)
-            ->whereTipe('bulanan')
             ->with('bulan')
             ->orderBy('tahun')
             ->orderBy('bulan_id');
     }
+
+    /**
+     * 
+     * Pegawai punya banyak Periode penilaian
+     */
+    public function periodeBulanan()
+    {
+        return $this->periode()
+            ->whereTipe('bulanan');
+    }
+
     /**
      * 
      * Pegawai punya banyak Periode penilaian
      */
     public function periodeTahunan()
     {
-        return $this->hasMany(Periode::class)
-            ->whereTipe('tahunan')
-            ->with('bulan')
-            ->orderBy('tahun')
-            ->orderBy('bulan_id');
+        return $this->periode()
+            ->whereTipe('tahunan');
     }
 
     /**
