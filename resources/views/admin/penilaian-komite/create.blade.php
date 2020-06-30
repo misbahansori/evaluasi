@@ -36,6 +36,8 @@
                 <div class="card-body">
                     <form action="{{ route('penilaian-komite.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="bulan" value="{{ request()->bulan }}">
+                        <input type="hidden" name="tahun" value="{{ request()->tahun }}">
                         <table class="table" id="datatable">
                             <thead>
                                 <tr>

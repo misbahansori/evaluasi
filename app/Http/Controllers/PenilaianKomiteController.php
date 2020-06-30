@@ -107,17 +107,12 @@ class PenilaianKomiteController extends Controller
                 return redirect()->back();
             }
 
-            try {
-                $periode = Periode::create([
-                    'pegawai_id' => $pegawai->id,
-                    'bulan_id' => $request->bulan,
-                    'tahun' => $request->tahun,
-                    'tipe' => Periode::PENILAIAN_KOMITE,
-                ]);
-            } catch (QueryException $e) {
-                session()->flash('danger', 'Periode bulan ' . $request->bulan .' tahun ' . $request->tahun . ' ' . $pegawai->nama . ' sudah ada.');
-                return redirect()->back();
-            }
+            $periode = Periode::create([
+                'pegawai_id' => $pegawai->id,
+                'bulan_id' => $request->bulan,
+                'tahun' => $request->tahun,
+                'tipe' => Periode::PENILAIAN_KOMITE,
+            ]);
 
             foreach ($pegawai->komite->aspekKomite as $aspek) {
                 Nilai::create([
