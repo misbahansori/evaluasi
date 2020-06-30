@@ -2139,8 +2139,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['action', 'verifikasi', 'canVerif'],
+  props: ["action", "verifikasi", "canVerif"],
   data: function data() {
     return {
       terverifikasi: this.verifikasi
@@ -2150,11 +2156,13 @@ __webpack_require__.r(__webpack_exports__);
     submitVerifikasi: function submitVerifikasi() {
       var _this = this;
 
-      axios.post(this.action).then(function (res) {
-        if (res.data.success) {
-          _this.terverifikasi = true;
-        }
-      });
+      if (confirm("Apakah anda yakin untuk mem-verifikasi nilai?")) {
+        axios.post(this.action).then(function (res) {
+          if (res.data.success) {
+            _this.terverifikasi = true;
+          }
+        });
+      }
     }
   }
 });
@@ -6165,7 +6173,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.badge-warning[data-v-dd3d3766] {\n    cursor: pointer;\n}\n.disabled[data-v-dd3d3766] {\n    cursor: default;\n    pointer-events: none;\n}\n", ""]);
+exports.push([module.i, "\n.badge-warning[data-v-dd3d3766] {\r\n  cursor: pointer;\n}\n.disabled[data-v-dd3d3766] {\r\n  cursor: default;\r\n  pointer-events: none;\n}\r\n", ""]);
 
 // exports
 
@@ -20627,10 +20635,6 @@ var render = function() {
           {
             staticClass: "badge badge-warning",
             class: { disabled: !_vm.canVerif },
-            attrs: {
-              onclick:
-                "return confirm('Apakah anda yakin untuk mem-verifikasi nilai?')"
-            },
             on: {
               click: function($event) {
                 $event.preventDefault()
