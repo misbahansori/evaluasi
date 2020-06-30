@@ -77,6 +77,17 @@ class PenilaianKomiteControllerTest extends TestCase
     }
 
     /** @test */
+    public function halaman_tambah_penilaian_menampilkan_bulan_dan_tahun_sekarang()
+    {
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->get(route('penilaian-komite.create'))
+            ->assertSee('<input type="hidden" name="bulan" value="' . date('n') .'">')
+            ->assertSee('<input type="hidden" name="tahun" value="' . date('Y') .'">');
+    }
+
+    /** @test */
     public function user_bisa_menambahkan_penilaian_komite()
     {
         $this->withoutExceptionHandling();

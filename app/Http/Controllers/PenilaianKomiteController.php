@@ -32,13 +32,9 @@ class PenilaianKomiteController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->bulan) {
+        if (!$request->bulan && !$request->tahun) {
             $request->request->add([
                 'bulan' => date('n', strtotime("-1 month")),
-            ]);
-        }
-        if ( !$request->tahun) {
-            $request->request->add([
                 'tahun' => date('Y'),
             ]);
         }
@@ -65,13 +61,9 @@ class PenilaianKomiteController extends Controller
      */
     public function create(Request $request)
     {
-        if (!$request->bulan) {
+        if (!$request->bulan && !$request->tahun) {
             $request->request->add([
                 'bulan' => date('n'),
-            ]);
-        }
-        if ( !$request->tahun) {
-            $request->request->add([
                 'tahun' => date('Y'),
             ]);
         }
