@@ -2084,8 +2084,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['grouped', 'disabled'],
+  props: ["grouped", "disabled"],
   data: function data() {
     return {
       penilaian: this.grouped
@@ -2101,13 +2105,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       return nilai;
     },
-    totalNilai: function totalNilai() {
-      return this.elemenPenilaian.reduce(function (acc, curr) {
-        return acc + curr.nilai;
-      }, 0);
+    dikerjakan: function dikerjakan() {
+      return this.elemenPenilaian.filter(function (nilai) {
+        return nilai.nilai === true;
+      }).length;
     },
-    rataRataNilai: function rataRataNilai() {
-      return (this.totalNilai / this.elemenPenilaian.length).toFixed(2);
+    tidakDikerjakan: function tidakDikerjakan() {
+      return this.elemenPenilaian.filter(function (nilai) {
+        return nilai.nilai === null || nilai.nilai === false;
+      }).length;
+    },
+    persentase: function persentase() {
+      return (this.dikerjakan / this.tidakDikerjakan * 100).toFixed(2);
     }
   }
 });
@@ -6137,7 +6146,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.custom-control-label[data-v-1a1d7a2a]::after, .custom-control-label[data-v-1a1d7a2a]::before {\n    width: 1.3rem;\n    height: 1.3rem;\n}\n", ""]);
+exports.push([module.i, "\n.custom-control-label[data-v-1a1d7a2a]::after,\r\n.custom-control-label[data-v-1a1d7a2a]::before {\r\n  width: 1.3rem;\r\n  height: 1.3rem;\n}\r\n", ""]);
 
 // exports
 
@@ -20432,24 +20441,25 @@ var render = function() {
           return [
             _c("tr", [
               _c("th", { attrs: { colspan: "9" } }, [
-                _vm._v(" " + _vm._s(group[0].kategori))
+                _vm._v(_vm._s(group[0].kategori))
               ])
             ]),
             _vm._v(" "),
             _vm._l(group, function(nilai, index) {
               return [
-                _c(
-                  "tr",
-                  [
-                    _c("td", [_vm._v(_vm._s(index + 1))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(nilai.aspek))]),
-                    _vm._v(" "),
-                    _vm._l(2, function(i) {
-                      return _c("td", { staticStyle: { width: "50px" } }, [
+                _c("tr", [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(nilai.aspek))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "div",
+                      { staticClass: "d-flex justify-content-center" },
+                      [
                         _c(
                           "div",
-                          { staticClass: "custom-control custom-radio " },
+                          { staticClass: "custom-control custom-checkbox " },
                           [
                             _c("input", {
                               directives: [
@@ -20462,59 +20472,94 @@ var render = function() {
                               ],
                               staticClass: "custom-control-input",
                               attrs: {
-                                type: "radio",
+                                type: "checkbox",
                                 name: nilai.id,
-                                id: nilai.id.toString() + i.toString(),
+                                id: nilai.id,
                                 disabled: _vm.disabled
                               },
                               domProps: {
-                                value: i,
-                                checked: nilai.nilai == i,
-                                checked: _vm._q(nilai.nilai, i)
+                                value: 1,
+                                checked: Array.isArray(nilai.nilai)
+                                  ? _vm._i(nilai.nilai, 1) > -1
+                                  : nilai.nilai
                               },
                               on: {
                                 change: function($event) {
-                                  return _vm.$set(nilai, "nilai", i)
+                                  var $$a = nilai.nilai,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = 1,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          nilai,
+                                          "nilai",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          nilai,
+                                          "nilai",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(nilai, "nilai", $$c)
+                                  }
                                 }
                               }
                             }),
                             _vm._v(" "),
                             _c("label", {
                               staticClass: "custom-control-label",
-                              attrs: { for: nilai.id.toString() + i.toString() }
+                              attrs: { for: nilai.id }
                             })
                           ]
                         )
-                      ])
-                    })
-                  ],
-                  2
-                )
+                      ]
+                    )
+                  ])
+                ])
               ]
             })
           ]
         }),
         _vm._v(" "),
         _c("tr", [
-          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Total Nilai")]),
+          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Dikerjakan")]),
           _vm._v(" "),
-          _c("td", { attrs: { colspan: "6" } }, [
-            _vm._v(_vm._s(_vm.totalNilai))
+          _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+            _vm._v(_vm._s(_vm.dikerjakan))
           ])
         ]),
         _vm._v(" "),
         _c("tr", [
-          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Rata-rata Nilai")]),
+          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Tidak Dikerjakan")]),
           _vm._v(" "),
-          _c("td", { attrs: { colspan: "6" } }, [
-            _vm._v(_vm._s(_vm.rataRataNilai))
+          _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+            _vm._v(_vm._s(_vm.tidakDikerjakan))
           ])
         ]),
         _vm._v(" "),
         _c("tr", [
-          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Element Penilaian")]),
+          _c("td", { attrs: { colspan: "2" } }, [_vm._v("Persentase")]),
           _vm._v(" "),
-          _c("td", { attrs: { colspan: "6" } }, [
+          _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+            _vm._v(_vm._s(_vm.persentase) + " %")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", { attrs: { colspan: "2" } }, [
+            _vm._v("Total Element Penilaian")
+          ]),
+          _vm._v(" "),
+          _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
             _vm._v(_vm._s(_vm.elemenPenilaian.length))
           ])
         ])
@@ -20530,32 +20575,24 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c(
-          "th",
-          {
-            staticStyle: { "vertical-align": "middle" },
-            attrs: { rowspan: "2" }
-          },
-          [_vm._v("No")]
-        ),
+        _c("th", { staticStyle: { "vertical-align": "middle" } }, [
+          _vm._v("No")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "vertical-align": "middle" } }, [
+          _vm._v("\n        Aspek Penilaian Komite\n      ")
+        ]),
         _vm._v(" "),
         _c(
           "th",
           {
-            staticStyle: { "vertical-align": "middle" },
-            attrs: { rowspan: "2" }
+            staticClass: "text-center",
+            staticStyle: { width: "60px" },
+            attrs: { colspan: "4" }
           },
-          [_vm._v("Aspek Penilaian Komite")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          { staticStyle: { "text-align": "center" }, attrs: { colspan: "5" } },
-          [_vm._v("Nilai")]
+          [_vm._v("Checklist")]
         )
-      ]),
-      _vm._v(" "),
-      _c("tr", [_c("th", [_vm._v("0")]), _vm._v(" "), _c("th", [_vm._v("1")])])
+      ])
     ])
   }
 ]
@@ -32745,9 +32782,13 @@ module.exports = g;
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -32755,17 +32796,17 @@ module.exports = g;
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('penilaian-form', __webpack_require__(/*! ./components/PenilaianForm.vue */ "./resources/js/components/PenilaianForm.vue"));
-Vue.component('penilaian-komite-form', __webpack_require__(/*! ./components/PenilaianKomiteForm.vue */ "./resources/js/components/PenilaianKomiteForm.vue"));
-Vue.component('verifikasi-component', __webpack_require__(/*! ./components/VerifikasiComponent.vue */ "./resources/js/components/VerifikasiComponent.vue"));
-var app = new Vue({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('penilaian-form', __webpack_require__(/*! ./components/PenilaianForm.vue */ "./resources/js/components/PenilaianForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('penilaian-komite-form', __webpack_require__(/*! ./components/PenilaianKomiteForm.vue */ "./resources/js/components/PenilaianKomiteForm.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('verifikasi-component', __webpack_require__(/*! ./components/VerifikasiComponent.vue */ "./resources/js/components/VerifikasiComponent.vue")["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#main-wrapper'
 });
 

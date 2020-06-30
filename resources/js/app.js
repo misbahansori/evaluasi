@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,9 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('penilaian-form', require('./components/PenilaianForm.vue'));
-Vue.component('penilaian-komite-form', require('./components/PenilaianKomiteForm.vue'));
-Vue.component('verifikasi-component', require('./components/VerifikasiComponent.vue'));
+Vue.component('penilaian-form', require('./components/PenilaianForm.vue').default);
+Vue.component('penilaian-komite-form', require('./components/PenilaianKomiteForm.vue').default);
+Vue.component('verifikasi-component', require('./components/VerifikasiComponent.vue').default);
 
 const app = new Vue({
     el: '#main-wrapper',

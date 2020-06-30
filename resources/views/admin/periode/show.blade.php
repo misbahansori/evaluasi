@@ -46,10 +46,17 @@
                         @csrf
                         @method('put')
 
-                        <penilaian-form
-                            :grouped="{{ $penilaian }}"
-                            :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
-                        ></penilaian-form>
+                        @if ($periode->tipe === App\Domain\Penilaian\Models\Periode::PENILAIAN_KOMITE)
+                            <penilaian-komite-form
+                                :grouped="{{ $penilaian }}"
+                                :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
+                            ></penilaian-komite-form>
+                        @else
+                            <penilaian-form
+                                :grouped="{{ $penilaian }}"
+                                :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
+                            ></penilaian-form>
+                        @endif
 
                         <div class="button-group mt-3">
                             <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>
