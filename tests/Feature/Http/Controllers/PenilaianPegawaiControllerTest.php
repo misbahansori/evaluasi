@@ -5,24 +5,37 @@ namespace Tests\Feature\Http\Controllers;
 use Tests\TestCase;
 use BulanTableSeeder;
 use App\Domain\User\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Domain\Master\Models\Aspek;
 use App\Domain\Master\Models\Bagian;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
 use App\Domain\Penilaian\Models\Periode;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class InputPenilaianControllerTest extends TestCase
+class PenilaianPegawaiControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp() : void
+    {
+        parent::setUp();
+        
+        DB::table('permissions')->insert([
+            ['name' => 'verif kabag', 'guard_name' => 'web'],
+            ['name' => 'verif wadir', 'guard_name' => 'web'],
+        ]);
+    }
+    
     /** @test */
     public function input_pegawai_index_menampilkan_semua_pegawai()
     {
+        $this->withoutExceptionHandling();
         $this->actingAs(factory(User::class)->create())
-            ->get(route('input.penilaian.index'))
+            ->get(route('penilaian-pegawai.create'))
             ->assertOk()
-            ->assertViewIs('admin.input-penilaian.index')
+            ->assertViewIs('admin.penilaian-pegawai.create')
             ->assertViewHas([
                 'listPegawai',
                 'listBulan',
@@ -40,7 +53,7 @@ class InputPenilaianControllerTest extends TestCase
         $listPegawai = factory(Pegawai::class, 2)->create(['bagian_id' => $bagian->id]);
 
         $this->actingAs(factory(User::class)->create())
-            ->post(route('input.penilaian.store', [
+            ->post(route('penilaian-pegawai.store', [
                 'bulan' => 12,
                 'tahun' => 2019,
                 'tipe' => 'bulanan',

@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <form action="{{ route('input.penilaian.store') }}" method="POST">
+            <form action="{{ route('penilaian-pegawai.store') }}" method="POST">
                 @csrf
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)

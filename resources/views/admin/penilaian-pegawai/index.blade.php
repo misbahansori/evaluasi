@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="d-flex justify-content-end">
                 @can('tambah periode')
-                    <a href="{{ route('input.penilaian.index') }}" class="btn btn-success btn-sm mr-4 mb-4">
+                    <a href="{{ route('penilaian-pegawai.create') }}" class="btn btn-success btn-sm mr-4 mb-4">
                         <i class="ti-bar-chart"></i> Tambah Penilaian Pegawai
                     </a>
                 @endcan

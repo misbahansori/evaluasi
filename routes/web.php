@@ -18,18 +18,17 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/penilaian-pegawai', 'PenilaianPegawaiController@index')->name('penilaian-pegawai.index');
-
+    Route::resource('/penilaian-pegawai', 'PenilaianPegawaiController')->only('index','create', 'store');
     Route::resource('/penilaian-komite', 'PenilaianKomiteController')->only('index','create', 'store');
-
     Route::resource('/pegawai', 'PegawaiController');
+    Route::resource('/master/aspek-komite', 'AspekKomiteController');
+    Route::resource('/master/komite', 'KomiteController');
+    Route::resource('/master/bagian', 'BagianController');
+    Route::resource('/login-as', 'LoginAsController')->only('index', 'store');
 
     Route::post('/pegawai/{pegawai}/periode', 'PeriodeController@store')->name('periode.store');
     Route::get('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@show')->name('periode.show');
     Route::delete('/pegawai/{pegawai}/periode/{periode}', 'PeriodeController@destroy')->name('periode.destroy');
-
-    Route::get('/input-penilaian', 'InputPenilaianController@index')->name('input.penilaian.index');
-    Route::post('/input-penilaian', 'InputPenilaianController@store')->name('input.penilaian.store');
 
     Route::put('/nilai/{periode}', 'NilaiController@update')->name('nilai.update');
 
@@ -39,11 +38,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/master/aspek-penilaian/{aspek}', 'AspekController@edit')->name('aspek.edit');
     Route::put('/master/aspek-penilaian/{aspek}', 'AspekController@update')->name('aspek.update');
     Route::delete('/master/aspek-penilaian/{aspek}', 'AspekController@destroy')->name('aspek.destroy');
-
-    Route::resource('/master/aspek-komite', 'AspekKomiteController');
-    Route::resource('/master/komite', 'KomiteController');
-    Route::resource('/master/bagian', 'BagianController');
-    Route::resource('/login-as', 'LoginAsController')->only('index', 'store');
 
     Route::get('/master/user', 'UsersController@index')->name('user.index');
     Route::get('/master/user/create', 'UsersController@create')->name('user.create');
