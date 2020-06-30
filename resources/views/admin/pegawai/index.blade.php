@@ -3,16 +3,16 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <div class="d-flex justify-content-end">
+                @can('tambah pegawai')
+                    <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm mb-4">
+                        <i class="ti-pencil"></i> Tambah Pegawai
+                    </a>
+                @endcan
+            </div>
             <div class="card">
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Daftar Pegawai</h4>
-                    <div>
-                        @can('tambah pegawai')
-                            <a href="{{ route('pegawai.create') }}" class="btn btn-primary btn-sm">
-                                <i class="ti-pencil"></i> Tambah Pegawai
-                            </a>
-                        @endcan
-                    </div>
                 </div>
 
                 <div class="card-body">
