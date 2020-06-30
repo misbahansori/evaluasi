@@ -2116,7 +2116,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }).length;
     },
     persentase: function persentase() {
-      return (this.dikerjakan / this.tidakDikerjakan * 100).toFixed(2);
+      return (this.dikerjakan / this.elemenPenilaian.length * 100).toFixed(2);
     }
   }
 });

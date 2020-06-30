@@ -84,7 +84,7 @@ export default {
       ).length;
     },
     persentase() {
-      return ((this.dikerjakan / this.tidakDikerjakan) * 100).toFixed(2);
+      return ((this.dikerjakan / this.elemenPenilaian.length) * 100).toFixed(2);
     }
   }
 };
