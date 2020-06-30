@@ -186,4 +186,27 @@ class PenilaianKomiteControllerTest extends TestCase
                 'pegawai' => [$periode->pegawai_id]
             ])->assertSessionHas('danger');
     }
+
+    /** @test */
+    public function menampilkan_pesan_sukses_nama_nama_pegawai_yang_telah_ditambahkan()
+    {
+        $this->withoutExceptionHandling();
+
+        $komite = factory(Komite::class)->create(['nama' => 'PPI']);
+        $aspekKomite = factory(AspekKomite::class, 5)->create(['komite_id' => $komite->id]);
+        $listPegawai = factory(Pegawai::class, 3)->create(['komite_id' => $komite->id]);
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->post(route('penilaian-komite.store'), [
+                'bulan' => $bulan = date('n'),
+                'tahun' => $tahun = date('Y'),
+                'pegawai' => $listPegawai->pluck('id')->toArray()
+            ])
+            ->assertSessionHas('success', [
+                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[0]->nama . " berhasil ditambahkan.",
+                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[1]->nama . " berhasil ditambahkan.",
+                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[2]->nama . " berhasil ditambahkan.",
+            ]);
+    }
 }

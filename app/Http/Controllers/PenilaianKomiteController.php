@@ -121,10 +121,17 @@ class PenilaianKomiteController extends Controller
                     'kategori' => $aspek->kategori,
                 ]);
             }
+
+            session()->flash(
+                'success', 
+                array_merge(
+                    (array) session()->get('success'), 
+                    ["Penilaian bulan $request->bulan tahun $request->tahun $pegawai->nama berhasil ditambahkan."]
+                )
+            );
         }
 
         return redirect()
-            ->route('penilaian-komite.index')
-            ->with('success', 'Penilaian Komite berhasil ditambahkan');
+            ->route('penilaian-komite.index');
     }
 }
