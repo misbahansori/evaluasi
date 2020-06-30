@@ -2107,12 +2107,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     dikerjakan: function dikerjakan() {
       return this.elemenPenilaian.filter(function (nilai) {
-        return nilai.nilai === true;
+        return nilai.nilai;
       }).length;
     },
     tidakDikerjakan: function tidakDikerjakan() {
       return this.elemenPenilaian.filter(function (nilai) {
-        return nilai.nilai === null || nilai.nilai === false;
+        return !nilai.nilai;
       }).length;
     },
     persentase: function persentase() {

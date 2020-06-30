@@ -53,7 +53,7 @@
                                 <th>Komite</th>
                                 <th>Unit</th>
                                 <th>Formasi</th>
-                                <th>Nilai</th>
+                                <th>Persentase</th>
                                 <th>Verif Kabag</th>
                                 <th>Verif Wadir</th>
                                 <th>Aksi</th>
@@ -71,7 +71,7 @@
                                     <td>{{ $periode->pegawai->komite->nama }}</td>
                                     <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
-                                    <td>{{ $periode->rataNilai() }}</td>
+                                    <td>{{ $periode->persentase() }} %</td>
                                     <td>
                                         <verifikasi-component 
                                             :can-verif="{{ auth()->user()->hasPermissionTo('verif kabag') ? 'true' : 'false' }}"

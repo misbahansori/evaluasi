@@ -76,12 +76,10 @@ export default {
       return nilai;
     },
     dikerjakan() {
-      return this.elemenPenilaian.filter(nilai => nilai.nilai === true).length;
+      return this.elemenPenilaian.filter(nilai => nilai.nilai).length;
     },
     tidakDikerjakan() {
-      return this.elemenPenilaian.filter(
-        nilai => nilai.nilai === null || nilai.nilai === false
-      ).length;
+      return this.elemenPenilaian.filter(nilai => !nilai.nilai).length;
     },
     persentase() {
       return ((this.dikerjakan / this.elemenPenilaian.length) * 100).toFixed(2);

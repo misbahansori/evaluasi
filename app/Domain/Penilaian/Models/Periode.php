@@ -157,6 +157,14 @@ class Periode extends Model
     }
 
     /**
+     * Rata - rata nilai Aik per periode
+     */
+    public function persentase()
+    {
+        return round($this->totalNilai() / $this->nilai()->count(), 2);
+    }
+
+    /**
      * Set verif_kabag field to now()
      */
     public function verifKabag()
