@@ -161,6 +161,9 @@ class Periode extends Model
      */
     public function persentase()
     {
+        if ($this->nilai->count() === 0) {
+            return 0;
+        }
         return round($this->totalNilai() / $this->nilai->count(), 2);
     }
 

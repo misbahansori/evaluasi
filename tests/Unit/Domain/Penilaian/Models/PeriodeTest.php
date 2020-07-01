@@ -181,4 +181,12 @@ class PeriodeTest extends TestCase
         $this->actingAs($user);
         $this->assertTrue($periode->tidakBisaDiedit());
     }
+
+    /** @test */
+    public function tidak_terjadi_error_division_by_zero()
+    {
+        $periode = factory(Periode::class)->create();
+    
+        $this->assertEquals(0, $periode->persentase());
+    }
 }
