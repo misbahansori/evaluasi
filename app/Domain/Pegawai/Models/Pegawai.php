@@ -87,7 +87,7 @@ class Pegawai extends Model
     public function periodeBulanan()
     {
         return $this->periode()
-            ->whereTipe('bulanan');
+            ->whereTipe(Periode::PENILAIAN_BULANAN);
     }
 
     /**
@@ -97,7 +97,17 @@ class Pegawai extends Model
     public function periodeTahunan()
     {
         return $this->periode()
-            ->whereTipe('tahunan');
+            ->whereTipe(Periode::PENILAIAN_TAHUNAN);
+    }
+
+    /**
+     * 
+     * Pegawai punya banyak Periode penilaian
+     */
+    public function periodeKomite()
+    {
+        return $this->periode()
+            ->whereTipe(Periode::PENILAIAN_KOMITE);
     }
 
     /**

@@ -82,6 +82,17 @@ class PegawaiTest extends TestCase
     }
 
     /** @test */
+    public function periode_hanya_menampilkan_tipe_komite()
+    {
+        $pegawai = factory(Pegawai::class)->create();
+
+        factory(Periode::class, 3)->create(['tipe' => 'bulanan', 'pegawai_id' => $pegawai->id]);
+        factory(Periode::class, 1)->create(['tipe' => 'komite', 'pegawai_id' => $pegawai->id]);
+        
+        $this->assertCount(1, $pegawai->periodeKomite);
+    }
+
+    /** @test */
     public function scope_milik_user()
     {
         $user = app(UserFactory::class)->withRole('Ruang IT')->create();
