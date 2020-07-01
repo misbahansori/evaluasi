@@ -233,6 +233,19 @@ class Periode extends Model
         $query->whereNotNull('verif_wadir');
     }
 
+    /**
+     * Memfilter Periode yang sudah terverifikasi Wakil direktur
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereKomiteId($query, $komite_id)
+    {
+        $query->whereHas('pegawai', function($query) use ($komite_id) {
+            $query->whereKomiteId($komite_id);
+        });
+    }
+
     public function tidakBisaDiedit()
     {
         // Jika sudah di verifikasi kabag dan user bukan kabag atau wadir

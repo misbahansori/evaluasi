@@ -45,6 +45,9 @@ class PenilaianKomiteController extends Controller
             ->whereBulanId($request->bulan)
             ->whereTahun($request->tahun)
             ->whereTipe(Periode::PENILAIAN_KOMITE)
+            ->when($request->komite_id && $request->komite_id !== 'all', function($query) use ($request) {
+                $query->whereKomiteId($request->komite_id);
+            })
             ->when(auth()->user()->hasPermissionTo('verif wadir') && $request->terverifikasiKabag, function ($query) {
                 return $query->terverifikasiKabag();
             })

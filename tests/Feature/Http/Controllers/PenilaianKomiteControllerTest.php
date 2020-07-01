@@ -61,6 +61,45 @@ class PenilaianKomiteControllerTest extends TestCase
     }
 
     /** @test */
+    public function filter_penilaian_komite_berdasarkan_nama_komite()
+    {
+        $this->withoutExceptionHandling();
+        
+        $periode = factory(Periode::class)->create([
+            'bulan' => date('n') - 1,
+            'tahun' => date('Y'),
+            'tipe' => Periode::PENILAIAN_KOMITE
+        ]);
+
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->get(route('penilaian-komite.index', ['komite_id' => $periode->pegawai->komite_id]))
+            ->assertOk()
+            ->assertSee($periode->pegawai->nama);
+    }
+
+    /** @test */
+    public function filter_penilaian_komite_semua_komite()
+    {
+        $this->withoutExceptionHandling();
+        
+        $periode = factory(Periode::class, 2)->create([
+            'bulan' => date('n') - 1,
+            'tahun' => date('Y'),
+            'tipe' => Periode::PENILAIAN_KOMITE
+        ]);
+
+        $user = app(UserFactory::class)->withPermission('tambah penilaian komite')->create();
+
+        $this->actingAs($user)
+            ->get(route('penilaian-komite.index', ['komite_id' => 'all']))
+            ->assertOk()
+            ->assertSee($periode[0]->pegawai->nama)
+            ->assertSee($periode[1]->pegawai->nama);
+    }
+
+    /** @test */
     public function admin_bisa_melihat_halaman_untuk_menambahkan_penilaian_komite()
     {
         $listPegawai = factory(Pegawai::class, 5)->create();
@@ -83,8 +122,8 @@ class PenilaianKomiteControllerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('penilaian-komite.create'))
-            ->assertSee('<input type="hidden" name="bulan" value="' . date('n') .'">')
-            ->assertSee('<input type="hidden" name="tahun" value="' . date('Y') .'">');
+            ->assertSee('<input type="hidden" name="bulan" value="' . date('n') . '">')
+            ->assertSee('<input type="hidden" name="tahun" value="' . date('Y') . '">');
     }
 
     /** @test */
@@ -122,7 +161,7 @@ class PenilaianKomiteControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $listPegawai = factory(Pegawai::class, 3)->create();
         $pegawaiDenganPeriode = factory(Pegawai::class)->create();
-        
+
         factory(Periode::class)->create([
             'bulan_id' => date('n'),
             'tahun' => date('Y'),
@@ -215,9 +254,9 @@ class PenilaianKomiteControllerTest extends TestCase
                 'pegawai' => $listPegawai->pluck('id')->toArray()
             ])
             ->assertSessionHas('success', [
-                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[0]->nama . " berhasil ditambahkan.",
-                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[1]->nama . " berhasil ditambahkan.",
-                "Penilaian bulan $bulan tahun $tahun ". $listPegawai[2]->nama . " berhasil ditambahkan.",
+                "Penilaian bulan $bulan tahun $tahun " . $listPegawai[0]->nama . " berhasil ditambahkan.",
+                "Penilaian bulan $bulan tahun $tahun " . $listPegawai[1]->nama . " berhasil ditambahkan.",
+                "Penilaian bulan $bulan tahun $tahun " . $listPegawai[2]->nama . " berhasil ditambahkan.",
             ]);
     }
 }
