@@ -1,9 +1,9 @@
 <!-- Modal Tambah Penilaian -->
-<div class="modal fade" id="periodeModal" tabindex="-1" role="dialog" aria-labelledby="periodeModalLabel" aria-hidden="false">
+<div class="modal fade" id="periodeKomiteModal" tabindex="-1" role="dialog" aria-labelledby="periodeKomiteModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
         <form action="{{ route('periode.store', $pegawai->id) }}" method="POST" class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="periodeModalLabel">Tambahkan Penilaian</h5>
+                <h5 class="modal-title" id="periodeKomiteModalLabel">Tambahkan Penilaian</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,6 +40,7 @@
                         @endif
                     </div>
                 </div>
+                <input type="hidden" name="tipe" value="{{ App\Domain\Penilaian\Models\Periode::PENILAIAN_KOMITE }}">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

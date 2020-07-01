@@ -48,13 +48,21 @@ class CreatePeriodeAction
             $query->whereTipe($this->getTipe());
         }]);
 
-        // Copy aspek penilaian ke periode 
-        $pegawai->bagian->aspek->each(function ($item) use ($periode) {
-            $periode->nilai()->create([
-                'aspek' => $item->nama, 
-                'kategori' => $item->kategori
-            ]);
-        });        
+        if ($this->getTipe() === Periode::PENILAIAN_KOMITE) {
+            $pegawai->komite->aspekKomite->each(function($aspek) use ($periode) {
+                $periode->nilai()->create([
+                    'aspek' => $aspek->nama,
+                    'kategori' => $aspek->kategori,
+                ]);
+            });
+        } else {
+            $pegawai->bagian->aspek->each(function ($item) use ($periode) {
+                $periode->nilai()->create([
+                    'aspek' => $item->nama, 
+                    'kategori' => $item->kategori
+                ]);
+            });        
+        }
 
         $this->flash('success', "Pegawai $pegawai->nama, Periode $bulan->nama " . $this->request->tahun . " berhasil ditambahkan");
         
@@ -63,7 +71,7 @@ class CreatePeriodeAction
 
     public function getTipe()
     {
-        return $this->request->tipe ?? 'bulanan';
+        return $this->request->tipe ?? Periode::PENILAIAN_BULANAN;
     }
 
     public function flash($type, $message)

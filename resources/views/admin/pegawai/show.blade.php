@@ -6,48 +6,6 @@
             {{-- Chart js --}}
             <div class="col-md-12">
                 <div class="card">
-                    {{-- <div class="card-header bg-white">
-                       <div class="row">
-                           <div class="col-md-6">
-                               <h4>Grafik penilaian</h4>
-                           </div>
-                            <div class="col-md-6">
-                                <form action="{{ url()->current() }}" method="GET" class="form-inline align-items-center justify-content-end">
-                                    <div class="form-group">
-                                        <select name="bulan_mulai" id="bulan_mulai" class="form-control{{ $errors->has('bulan_mulai') ? ' is-invalid' : '' }}">
-                                            @foreach ($listBulan as $bulan)
-                                                <option {{ old('bulan_mulai', date('m') - 3) == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        <select name="tahun_mulai" class="form-control ml-1{{ $errors->has('tahun_mulai') ? ' is-invalid' : '' }}">
-                                            @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
-                                                <option {{ old('tahun_mulai', $tahunIni) == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                    <span class="mx-1">-</span>
-                                    <div class="form-group">
-                                        <select name="bulan_selesai" id="bulan_selesai" class="form-control{{ $errors->has('bulan_selesai') ? ' is-invalid' : '' }}">
-                                            @foreach ($listBulan as $bulan)
-                                                <option {{ old('bulan_selesai', date('m')) == $bulan->id ? 'selected' : '' }} value="{{ $bulan->id }}">{{ $bulan->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        <select name="tahun_selesai" class="form-control ml-1{{ $errors->has('tahun_selesai') ? ' is-invalid' : '' }}">
-                                            @for ($i = $tahunIni - 2; $i < $tahunIni + 5; $i++)
-                                                <option {{ old('tahun_selesai', $tahunIni) == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary ml-1">
-                                            <i class="ti ti-filter"></i> 
-                                            Filter
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                       </div>
-                    </div> --}}
                     <div class="card-body">
                         <div>{!! $chart->container() !!}</div>
                     </div>
@@ -55,16 +13,39 @@
             </div>
         @endcan
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-7">
+    <div class="row">
+        <div class="col-md-8">
             @include('admin.pegawai.biodata-card')
         </div>
-        <div class="col-md-5">
-            @include('admin.pegawai.periode-tahunan-card')
-            @include('admin.pegawai.periode-card')
+        <div class="col-md-4">
+            <div class="card">
+                <ul class="nav nav-tabs customtab" role="tablist">
+                    <li class="nav-item"> 
+                        <a class="nav-link active" data-toggle="tab" href="#bulanan" role="tab" aria-selected="false"><span>Bulanan</span></a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" data-toggle="tab" href="#tahunan" role="tab" aria-selected="false"><span>Tahunan</span></a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link" data-toggle="tab" href="#komite" role="tab" aria-selected="true"><span>Komite</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="bulanan" role="tabpanel">
+                        @include('admin.pegawai.periode-card')
+                    </div>
+                    <div class="tab-pane" id="tahunan" role="tabpanel">
+                        @include('admin.pegawai.periode-tahunan-card')
+                    </div>
+                    <div class="tab-pane" id="komite" role="tabpanel">
+                        @include('admin.pegawai.periode-komite-card')
+                    </div>
+                </div>
+            </div>
         </div>
         @include('admin.pegawai.tambah-periode-modal')
         @include('admin.pegawai.tambah-periode-tahunan-modal')
+        @include('admin.pegawai.tambah-periode-komite-modal')
     </div>
 @endsection
 

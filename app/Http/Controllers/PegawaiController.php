@@ -72,7 +72,7 @@ class PegawaiController extends Controller
     public function show(Request $request, Pegawai $pegawai)
     {
         $this->authorize('view', $pegawai);
-
+        
         $listBulan = Bulan::all();
         $tahunIni  = date('Y');
 
