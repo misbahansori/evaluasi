@@ -66,6 +66,17 @@
                 <td>{{ optional($pegawai->status)->nama }}</td>
             </tr>
             <tr>
+                <td>Komite</td>
+                <td>:</td>
+                <td>
+                    @if ($pegawai->komite)
+                        {{ $pegawai->komite->nama }}
+                    @else
+                        <i>Tidak dalam komite</i>
+                    @endif
+                </td>
+            </tr>
+            <tr>
                 <td>Tanggal Masuk</td>
                 <td>:</td>
                 <td>{{ $pegawai->tanggal_masuk }}</td>

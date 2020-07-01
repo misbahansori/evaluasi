@@ -35,7 +35,9 @@ trait TanggalPresenter
      */
     public function getTanggalMasukAttribute()
     {
-        return Carbon::parse($this->attributes['tanggal_masuk'])->format('d-m-Y');
+        if (array_key_exists('tanggal_lahir', $this->attributes)) {
+            return Carbon::parse($this->attributes['tanggal_masuk'])->format('d-m-Y');
+        }
     }
 
     /**
@@ -45,6 +47,8 @@ trait TanggalPresenter
      */
     public function getTanggalLahirAttribute()
     {
-        return Carbon::parse($this->attributes['tanggal_lahir'])->format('d-m-Y');
+        if (array_key_exists('tanggal_lahir', $this->attributes)) {
+            return Carbon::parse($this->attributes['tanggal_lahir'])->format('d-m-Y');
+        }
     }
 }

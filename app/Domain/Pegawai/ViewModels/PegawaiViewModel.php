@@ -5,6 +5,7 @@ namespace App\Domain\Pegawai\ViewModels;
 use Spatie\ViewModels\ViewModel;
 use App\Domain\Master\Models\Unit;
 use App\Domain\Master\Models\Bagian;
+use App\Domain\Master\Models\Komite;
 use App\Domain\Master\Models\Status;
 use App\Domain\Master\Models\Formasi;
 use App\Domain\Pegawai\Models\Pegawai;
@@ -12,19 +13,11 @@ use App\Domain\Pegawai\Models\Pegawai;
 
 class PegawaiViewModel extends ViewModel
 {
-    public function __construct(Pegawai $pegawai = null)
+    public $pegawai;
+    
+    public function __construct(Pegawai $pegawai)
     {
         $this->pegawai = $pegawai;
-    }
-
-    /**
-     * pegawai
-     *
-     * @return \App\Domain\Pegawai\Models\Pegawai
-     */
-    public function pegawai()
-    {
-        return $this->pegawai ?? new Pegawai;
     }
     
     /**
@@ -65,5 +58,15 @@ class PegawaiViewModel extends ViewModel
     public function listStatus()
     {
         return Status::all();
+    }
+
+    /**
+     * listStatus
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function listKomite()
+    {
+        return Komite::all();
     }
 }

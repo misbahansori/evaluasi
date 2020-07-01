@@ -38,6 +38,7 @@ class PegawaiRequest extends FormRequest
             'formasi_id'    => 'required|integer|exists:formasi,id',
             'bagian_id'     => 'required|integer|exists:bagian,id',
             'status_id'     => 'required|integer|exists:status,id',
+            'komite_id'     => 'nullable|sometimes|exists:komite,id'
         ];
 
         if ($this->isMethod('put')) {

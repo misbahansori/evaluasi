@@ -45,7 +45,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin.pegawai.create', new PegawaiViewModel);
+        return view('admin.pegawai.create', new PegawaiViewModel(new Pegawai()));
     }
 
     /**
