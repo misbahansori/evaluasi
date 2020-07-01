@@ -131,7 +131,7 @@ class Periode extends Model
      */
     public function rataNilai()
     {
-        if ($this->nilai->count() <= 0) {
+        if ($this->nilai->count() === 0) {
             return 0;
         }
         return round($this->totalNilai() / $this->nilai->count(), 2);
@@ -142,10 +142,10 @@ class Periode extends Model
      */
     public function rataNilaiAik()
     {
-        // if ($this->nilaiAik() > 0) {
-        //     return 0;
-        // }
-        return round($this->totalNilaiAik() / $this->nilaiAik()->count(), 2);
+        if ($this->nilaiAik->count() === 0) {
+            return 0;
+        }
+        return round($this->totalNilaiAik() / $this->nilaiAik->count(), 2);
     }
 
     /**
@@ -153,7 +153,7 @@ class Periode extends Model
      */
     public function rataNilaiBiasa()
     {
-        return round($this->totalNilaiBiasa() / $this->nilaiBiasa()->count(), 2);
+        return round($this->totalNilaiBiasa() / $this->nilaiBiasa->count(), 2);
     }
 
     /**
