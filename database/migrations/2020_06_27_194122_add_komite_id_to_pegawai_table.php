@@ -14,7 +14,7 @@ class AddKomiteIdToPegawaiTable extends Migration
     public function up()
     {
         Schema::table('pegawai', function (Blueprint $table) {
-            $table->unsignedInteger('komite_id')->nullable();
+            $table->unsignedInteger('komite_id')->nullable()->after('unit_id');
         });
     }
 
