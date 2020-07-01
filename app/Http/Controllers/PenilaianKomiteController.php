@@ -106,13 +106,13 @@ class PenilaianKomiteController extends Controller
                 'tipe' => Periode::PENILAIAN_KOMITE,
             ]);
 
-            foreach ($pegawai->komite->aspekKomite as $aspek) {
+            $pegawai->komite->aspekKomite->each(function($aspek) use ($periode) {
                 Nilai::create([
                     'periode_id' => $periode->id,
                     'aspek' => $aspek->nama,
                     'kategori' => $aspek->kategori,
                 ]);
-            }
+            });
 
             session()->flash(
                 'success', 
