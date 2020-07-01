@@ -9,7 +9,6 @@ use App\Domain\Master\Models\Komite;
 use App\Http\Controllers\Controller;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
-use Illuminate\Database\QueryException;
 use App\Domain\Penilaian\Models\Periode;
 
 class PenilaianKomiteController extends Controller
