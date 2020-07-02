@@ -157,6 +157,31 @@ class Periode extends Model
     }
 
     /**
+     * Jumlah yang dikerjakan jika periode adalah penilaian komite.
+     */
+    public function jumlahDikerjakan()
+    {
+        if ($this->nilai->count() === 0) {
+            return 0;
+        }
+        return $this->nilai->filter(function($nilai) {
+            return $nilai->nilai;
+        })->count();
+    }
+    /**
+     * umlah yang dikerjakan jika periode adalah penilaian komite.
+     */
+    public function jumlahTidakDikerjakan()
+    {
+        if ($this->nilai->count() === 0) {
+            return 0;
+        }
+        return $this->nilai->filter(function($nilai) {
+            return !$nilai->nilai;
+        })->count();
+    }
+
+    /**
      * Rata - rata nilai Aik per periode
      */
     public function persentase()
@@ -164,7 +189,7 @@ class Periode extends Model
         if ($this->nilai->count() === 0) {
             return 0;
         }
-        return round($this->totalNilai() / $this->nilai->count(), 2);
+        return round($this->totalNilai() / $this->nilai->count(), 2) * 100;
     }
 
     /**

@@ -17,7 +17,7 @@
                         <i class="ti-view-list-alt"></i>
                     </a>
                     @can('cetak periode')
-                        <form action="{{ route('report', 'hasil-evaluasi') }}" method="POST" target="__blank" class="d-inline-block">
+                        <form action="{{ route('report', 'komite') }}" method="POST" target="__blank" class="d-inline-block">
                             @csrf
                             <input type="hidden" name="periode_id" value="{{ $periode->id }}">
                             <button class="mr-1 btn btn-info btn-sm d-inline-block" type="submit" data-toggle="tooltip" title="Cetak">
