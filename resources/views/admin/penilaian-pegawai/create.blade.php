@@ -25,7 +25,7 @@
                                 <label class="custom-control-label" for="bulanan">Bulanan</label>
                             </div>
                             <div class="custom-control custom-radio mr-3">
-                                <input type="radio" id="tahunan" name="tipe" value="tahunan" class="custom-control-input" {{ request('tipe') == 'tahunan' ? 'checked' : '' }} onchange="this.form.submit()">
+                                <input type="radio" id="tahunan" name="tipe" value="tahunan" class="custom-control-input" {{ request()->tipe == 'tahunan' ? 'checked' : '' }} onchange="this.form.submit()">
                                 <label class="custom-control-label" for="tahunan">Tahunan</label>
                             </div>
                         </div>
@@ -39,14 +39,14 @@
                         @else
                             <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
                                 @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                    <option {{ date('m') == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                                    <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
                                 @endfor
                             </select>
                         @endif
                         
                         <select name="tahun" id="tahun" class="form-control mr-2" onchange="this.form.submit()">
                             @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
-                                <option {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                <option {{ request()->tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                             @endfor
                         </select>
                     </form>
@@ -54,6 +54,9 @@
                 <div class="card-body">
                     <form action="{{ route('penilaian-pegawai.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="bulan" value="{{ request()->bulan }}">
+                        <input type="hidden" name="tahun" value="{{ request()->tahun }}">
+                        <input type="hidden" name="tipe" value="{{ request()->tipe }}">
                         <table class="table" id="datatable">
                             <thead>
                                 <tr>

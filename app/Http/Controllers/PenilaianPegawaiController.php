@@ -48,14 +48,22 @@ class PenilaianPegawaiController extends Controller
      */
     public function create(Request $request)
     {
+        if (!$request->bulan && !$request->tahun && !$request->tipe) {
+            $request->request->add([
+                'bulan' => date('n'),
+                'tahun' => date('Y'),
+                'tipe' => 'bulanan'
+            ]);
+        }
+
         $listPegawai = Pegawai::query()
+            ->select('id', 'nama', 'unit_id', 'bagian_id', 'formasi_id', 'status_id')
             ->with('bagian', 'unit', 'formasi', 'status')
             ->get();
 
         $listBulan = Bulan::all();
-        $tahunIni = date('Y');
 
-        return view('admin.penilaian-pegawai.create', compact('listPegawai', 'listBulan', 'tahunIni'));
+        return view('admin.penilaian-pegawai.create', compact('listPegawai', 'listBulan'));
     }
 
     /**
@@ -66,6 +74,7 @@ class PenilaianPegawaiController extends Controller
      */
     public function store(Request $request, CreatePeriodeAction $createPeriodeAction)
     {
+
         $request->validate([
             'bulan'   => 'required|integer|min:1|max:12',
             'tahun'   => 'required|integer',

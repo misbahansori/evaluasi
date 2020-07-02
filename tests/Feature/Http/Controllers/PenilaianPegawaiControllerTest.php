@@ -39,8 +39,35 @@ class PenilaianPegawaiControllerTest extends TestCase
             ->assertViewHas([
                 'listPegawai',
                 'listBulan',
-                'tahunIni'
             ]);
+    }
+
+    /** @test */
+    public function input_pegawai_index_menampilkan_bulan_tahun_dan_tipe_di_dalam_form()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(factory(User::class)->create())
+            ->get(route('penilaian-pegawai.create'))
+            ->assertOk()
+            ->assertSee('<input type="hidden" name="bulan" value="'.date('n').'">')
+            ->assertSee('<input type="hidden" name="tahun" value="'.date('Y').'">')
+            ->assertSee('<input type="hidden" name="tipe" value="bulanan">');
+    }
+
+    /** @test */
+    public function input_pegawai_index_menampilkan_bulan_tahun_dan_tipe_di_dalam_form_sesuai_request()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(factory(User::class)->create())
+            ->get(route('penilaian-pegawai.create', [
+                'bulan' => 7,
+                'tahun' => 2022,
+                'tipe' => Periode::PENILAIAN_TAHUNAN,
+            ]))
+            ->assertOk()
+            ->assertSee('<input type="hidden" name="bulan" value="7">')
+            ->assertSee('<input type="hidden" name="tahun" value="2022">')
+            ->assertSee('<input type="hidden" name="tipe" value="tahunan">');
     }
     
     /** @test */
