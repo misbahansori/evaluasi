@@ -46,6 +46,10 @@
         <td>Bagian</td>
         <td>:</td>
         <td>{{ optional($pegawai->bagian)->nama }}</td>
+
+        <td>Komite</td>
+        <td>:</td>
+        <td>{{ optional($pegawai->komite)->nama }}</td>
     </tr>
     <tr>
         <td>Satus Kepegawaian</td>
