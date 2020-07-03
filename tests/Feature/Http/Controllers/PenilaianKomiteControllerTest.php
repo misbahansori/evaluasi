@@ -122,8 +122,8 @@ class PenilaianKomiteControllerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('penilaian-komite.create'))
-            ->assertSee('<input type="hidden" name="bulan" value="' . date('n') . '">')
-            ->assertSee('<input type="hidden" name="tahun" value="' . date('Y') . '">');
+            ->assertSee('<input type="hidden" name="bulan" value="' . date('n') . '">', false)
+            ->assertSee('<input type="hidden" name="tahun" value="' . date('Y') . '">', false);
     }
 
     /** @test */

@@ -49,9 +49,9 @@ class PenilaianPegawaiControllerTest extends TestCase
         $this->actingAs(factory(User::class)->create())
             ->get(route('penilaian-pegawai.create'))
             ->assertOk()
-            ->assertSee('<input type="hidden" name="bulan" value="'.date('n').'">')
-            ->assertSee('<input type="hidden" name="tahun" value="'.date('Y').'">')
-            ->assertSee('<input type="hidden" name="tipe" value="bulanan">');
+            ->assertSee('<input type="hidden" name="bulan" value="'.date('n').'">', false)
+            ->assertSee('<input type="hidden" name="tahun" value="'.date('Y').'">', false)
+            ->assertSee('<input type="hidden" name="tipe" value="bulanan">', false);
     }
 
     /** @test */
@@ -65,9 +65,9 @@ class PenilaianPegawaiControllerTest extends TestCase
                 'tipe' => Periode::PENILAIAN_TAHUNAN,
             ]))
             ->assertOk()
-            ->assertSee('<input type="hidden" name="bulan" value="7">')
-            ->assertSee('<input type="hidden" name="tahun" value="2022">')
-            ->assertSee('<input type="hidden" name="tipe" value="tahunan">');
+            ->assertSee('<input type="hidden" name="bulan" value="7">', false)
+            ->assertSee('<input type="hidden" name="tahun" value="2022">', false)
+            ->assertSee('<input type="hidden" name="tipe" value="tahunan">', false);
     }
     
     /** @test */
