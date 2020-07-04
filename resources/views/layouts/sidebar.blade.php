@@ -58,7 +58,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('master aspek')
+                        @can('master user')
                             <li>
                                 <a class="waves-effect waves-dark{{ Request::is( 'master/user*') ? ' active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
                                     <i class="ti ti-id-badge"></i>
