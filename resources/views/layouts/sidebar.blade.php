@@ -24,12 +24,14 @@
                         <span class="hide-menu">Penilaian Pegawai</span>
                     </a>
                 </li>
-                <li{{ Request::is('penilaian-komite*') ? ' class=selected' : '' }}>
-                    <a class="waves-effect waves-dark" href="{{ route('penilaian-komite.index') }}" aria-expanded="false">
-                        <i class="ti-bar-chart-alt"></i>
-                        <span class="hide-menu">Penilaian Komite</span>
-                    </a>
-                </li>
+                @can('tambah penilaian komite')
+                    <li{{ Request::is('penilaian-komite*') ? ' class=selected' : '' }}>
+                        <a class="waves-effect waves-dark" href="{{ route('penilaian-komite.index') }}" aria-expanded="false">
+                            <i class="ti-bar-chart-alt"></i>
+                            <span class="hide-menu">Penilaian Komite</span>
+                        </a>
+                    </li>
+                @endcan
                 <li{{ Request::is( 'pegawai*') ? ' class=selected' : '' }}>
                     <a class="waves-effect waves-dark" href="{{ route('pegawai.index') }}" aria-expanded="false">
                         <i class="ti-user"></i>

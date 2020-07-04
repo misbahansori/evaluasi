@@ -41,6 +41,17 @@ class PenilaianKomiteControllerTest extends TestCase
     }
 
     /** @test */
+    public function user_yang_tidak_memeiliki_akses_tidak_bisa_melihat_menu_penilaian_komite()
+    {
+        $user = app(UserFactory::class)->create();
+
+        $this->actingAs($user)
+            ->get(route('home'))
+            ->assertOk()
+            ->assertDontSee('Penilaian Komite');
+    }
+
+    /** @test */
     public function user_bisa_melihat_daftar_penilaian_komite()
     {
         $this->withoutExceptionHandling();
