@@ -140,7 +140,7 @@ class PeriodeTest extends TestCase
         $periode = factory(Periode::class)->create();
         
         $this->actingAs($user);
-        $this->assertFalse($periode->tidakBisaDiedit());
+        $this->assertTrue($periode->bisaDiedit());
     }
     /** @test */
     public function periode_tidak_bisa_diedit_jika_sudah_di_verif_kabag_dan_user_bukan_kabag()
@@ -149,7 +149,7 @@ class PeriodeTest extends TestCase
         $periode = factory(Periode::class)->create(['verif_kabag' => now()]);
         
         $this->actingAs($user);
-        $this->assertTrue($periode->tidakBisaDiedit());
+        $this->assertFalse($periode->bisaDiedit());
     }
 
     /** @test */
@@ -159,7 +159,7 @@ class PeriodeTest extends TestCase
         $periode = factory(Periode::class)->create(['verif_kabag' => now()]);
         
         $this->actingAs($user);
-        $this->assertFalse($periode->tidakBisaDiedit());
+        $this->assertTrue($periode->bisaDiedit());
     }
 
     /** @test */
@@ -169,7 +169,7 @@ class PeriodeTest extends TestCase
         $periode = factory(Periode::class)->create(['verif_wadir' => now()]);
         
         $this->actingAs($user);
-        $this->assertTrue($periode->tidakBisaDiedit());
+        $this->assertFalse($periode->bisaDiedit());
     }
 
     /** @test */
@@ -179,7 +179,7 @@ class PeriodeTest extends TestCase
         $periode = factory(Periode::class)->create();
         
         $this->actingAs($user);
-        $this->assertTrue($periode->tidakBisaDiedit());
+        $this->assertFalse($periode->bisaDiedit());
     }
 
     /** @test */

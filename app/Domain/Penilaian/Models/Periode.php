@@ -271,20 +271,20 @@ class Periode extends Model
         });
     }
 
-    public function tidakBisaDiedit()
+    public function bisaDiedit()
     {
         // Jika sudah di verifikasi kabag dan user bukan kabag atau wadir
         if ($this->verif_kabag && ! auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
-            return true;
+            return false;
         }
         // jika sudah di verif wadir dan user bukan wadir
         if ($this->verif_wadir && ! auth()->user()->hasPermissionTo('verif wadir')) {
-            return true;
+            return false;
         } 
         // jika belum di verif kabag dan user adalah wadir
         if (! $this->verif_kabag && auth()->user()->hasPermissionTo('verif wadir')) {
-            return true;
+            return false;
         } 
-        return false;
+        return true;
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    @if ($periode->tidakBisaDiedit())
+    @if (!$periode->bisaDiedit())
         <div class="alert badge-danger text-white fade show" role="alert" style="border-radius:0">
             <strong>Peringatan!</strong> Tidak Bisa mengisi nilai
         </div>
@@ -49,17 +49,17 @@
                         @if ($periode->tipe === App\Domain\Penilaian\Models\Periode::PENILAIAN_KOMITE)
                             <penilaian-komite-form
                                 :grouped="{{ $penilaian }}"
-                                :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
+                                :disabled="{{ $periode->bisaDiedit() ? 'false' : 'true'}}"
                             ></penilaian-komite-form>
                         @else
                             <penilaian-form
                                 :grouped="{{ $penilaian }}"
-                                :disabled="{{ $periode->tidakBisaDiedit() ? 'true' : 'false'}}"
+                                :disabled="{{ $periode->bisaDiedit() ? 'false' : 'true'}}"
                             ></penilaian-form>
                         @endif
 
                         <div class="button-group mt-3">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->tidakBisaDiedit() ? 'disabled' : ''}}>
+                            <button type="submit" class="btn btn-success btn-block btn-lg" {{ $periode->bisaDiedit() ? '' : 'disabled'}}>
                                 <i class="ti-save"></i> Simpan
                             </button>
                         </div>

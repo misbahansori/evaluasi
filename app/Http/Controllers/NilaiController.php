@@ -19,7 +19,7 @@ class NilaiController extends Controller
      */
     public function update(Request $request, Periode $periode)
     {
-        if ($periode->tidakBisaDiedit()) {
+        if (!$periode->bisaDiedit()) {
             return back()
             ->with('danger', 'Nilai tidak bisa diedit');
         }

@@ -33,7 +33,7 @@
                                     name="{{ $nilai->id }}" id="{{ $nilai->id }}{{ $i }}" 
                                     value="{{ $i }}" 
                                     {{ $nilai->nilai == $i ? 'checked=checked' : '' }} 
-                                    {{ $periode->tidakBisaDiedit() ? 'disabled=disabled' : '' }}
+                                    {{ $periode->bisaDiedit() ? '' : 'disabled=disabled' }}
                                 >
                                 <label for="{{ $nilai->id }}{{ $i }}" class="custom-control-label"></label>
                                 </div>
