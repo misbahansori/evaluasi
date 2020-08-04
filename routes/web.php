@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/master/user/{user}/edit', 'UsersController@edit')->name('user.edit');
     Route::put('/master/user/{user}', 'UsersController@update')->name('user.update');
     Route::post('/master/user', 'UsersController@store')->name('user.store');
+    Route::delete('/master/user/{user}', 'UsersController@destroy')->name('user.destroy');
 
     Route::get('/master/group', 'RoleController@index')->name('role.index');
     Route::post('/master/group', 'RoleController@store')->name('role.store');

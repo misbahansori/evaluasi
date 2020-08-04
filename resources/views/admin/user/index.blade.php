@@ -25,13 +25,18 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <th>
+                                    <th class="d-flex">
                                         <a href="{{ route('user.show', $user->id) }}" class="btn btn-success btn-sm">
                                             <i class="ti ti-write"></i> Detail
                                         </a>
-                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm ml-1">
                                             <i class="ti ti-pencil-alt"></i> Edit
                                         </a>
+                                        <form action="{{ route('user.destroy', $user) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm ml-1">Hapus</button>
+                                        </form>
                                     </th>
                                 </tr>
                             @endforeach
