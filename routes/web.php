@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function() {
     
     Route::post('/verif/kabag/{periode}', 'VerifikasiController@kabag')->name('verif.kabag');
     Route::post('/verif/wadir/{periode}', 'VerifikasiController@wadir')->name('verif.wadir');
+    Route::post('/verif/direktur/{periode}', 'VerifikasiController@direktur')->name('verif.direktur');
 
     Route::post('/report/{tipe}', 'ReportController')->name('report');
 

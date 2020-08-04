@@ -183,6 +183,16 @@ class PeriodeTest extends TestCase
     }
 
     /** @test */
+    public function periode_tidak_bisa_diedit_jika_sudah_diverifikasi_oleh_direktur()
+    {
+        $user = app(UserFactory::class)->withPermission('verif wadir')->create();
+        $periode = factory(Periode::class)->create(['verif_direktur' => now()]);
+        
+        $this->actingAs($user);
+        $this->assertFalse($periode->bisaDiedit());
+    }
+
+    /** @test */
     public function tidak_terjadi_error_division_by_zero()
     {
         $periode = factory(Periode::class)->create();

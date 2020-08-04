@@ -16,13 +16,11 @@
         <td>Verifikasi Kabag / Kabid</td>
         <td>:</td>
         <td>
-            @if ($periode->verif_kabag)
-                <span class="badge badge-primary">Terverifikasi</span> 
-                <br>
-                <small>{{ $periode->verif_kabag->formatLocalized('%A, %d %B %Y') }}</small>
-            @else
-                <span class="badge badge-warning">Belum Diverifikasi</span>
-            @endif
+            <verifikasi-component 
+                :can-verif="{{ auth()->user()->hasPermissionTo('verif kabag') ? 'true' : 'false' }}"
+                verifikasi="{{ $periode->verif_kabag }}" 
+                action="{{ route('verif.kabag', $periode->id) }}"
+            ></verifikasi-component>
         </td>
     </tr>
     <tr>
@@ -33,13 +31,11 @@
         <td>Verifikasi Wakil Direktur</td>
         <td>:</td>
         <td>
-            @if ($periode->verif_wadir)
-                <span class="badge badge-primary">Terverifikasi</span>
-                <br>
-                <small>{{ $periode->verif_wadir->formatLocalized('%A, %d %B %Y') }}</small>
-            @else
-                <span class="badge badge-warning">Belum Diverifikasi</span>
-            @endif
+            <verifikasi-component 
+                :can-verif="{{ auth()->user()->hasPermissionTo('verif wadir') ? 'true' : 'false' }}"
+                verifikasi="{{ $periode->verif_wadir }}" 
+                action="{{ route('verif.wadir', $periode->id) }}"
+            ></verifikasi-component>
         </td>
     </tr>
     <tr>
@@ -47,13 +43,23 @@
         <td>:</td>
         <td>{{ optional($pegawai->bagian)->nama }}</td>
 
-        <td>Komite</td>
+        <td>Verifikasi Direktur</td>
         <td>:</td>
-        <td>{{ optional($pegawai->komite)->nama }}</td>
+        <td>
+            <verifikasi-component 
+                :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
+                verifikasi="{{ $periode->verif_direktur }}" 
+                action="{{ route('verif.direktur', $periode->id) }}"
+            ></verifikasi-component>
+        </td>
     </tr>
     <tr>
         <td>Satus Kepegawaian</td>
         <td>:</td>
         <td>{{ optional($pegawai->status)->nama }}</td>
+
+        <td>Komite</td>
+        <td>:</td>
+        <td>{{ optional($pegawai->komite)->nama }}</td>
     </tr>
 </table>

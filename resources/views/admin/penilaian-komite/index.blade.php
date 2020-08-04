@@ -56,6 +56,7 @@
                                 <th>Persentase</th>
                                 <th>Verif Kabag</th>
                                 <th>Verif Wadir</th>
+                                <th>Verif Direktur</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -84,6 +85,13 @@
                                             :can-verif="{{ auth()->user()->hasPermissionTo('verif wadir') ? 'true' : 'false' }}"
                                             verifikasi="{{ $periode->verif_wadir }}" 
                                             action="{{ route('verif.wadir', $periode->id) }}"
+                                        ></verifikasi-component>
+                                    </td>
+                                    <td>
+                                        <verifikasi-component 
+                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
+                                            verifikasi="{{ $periode->verif_direktur }}" 
+                                            action="{{ route('verif.direktur', $periode->id) }}"
                                         ></verifikasi-component>
                                     </td>
                                     <th>

@@ -207,6 +207,14 @@ class Periode extends Model
     {
         $this->update(['verif_wadir' => Carbon::now()]);
     }
+    
+    /**
+     * Set verif_wadir field to now()
+     */
+    public function verifDirektur()
+    {
+        $this->update(['verif_direktur' => Carbon::now()]);
+    }
 
     /**
      * Mengecek Periode apakah unik dengan kombinasi empat kolom
@@ -259,6 +267,17 @@ class Periode extends Model
     }
 
     /**
+     * Memfilter Periode yang sudah terverifikasi direktur
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTerverifikasiDirektur($query)
+    {
+        $query->whereNotNull('verif_direktur');
+    }
+
+    /**
      * Memfilter Periode yang sudah terverifikasi Wakil direktur
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -277,14 +296,22 @@ class Periode extends Model
         if ($this->verif_kabag && ! auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
             return false;
         }
-        // jika sudah di verif wadir dan user bukan wadir
-        if ($this->verif_wadir && ! auth()->user()->hasPermissionTo('verif wadir')) {
-            return false;
-        } 
         // jika belum di verif kabag dan user adalah wadir
         if (! $this->verif_kabag && auth()->user()->hasPermissionTo('verif wadir')) {
             return false;
         } 
+        // jika sudah di verif wadir dan user bukan wadir
+        if ($this->verif_wadir && ! auth()->user()->hasPermissionTo('verif wadir')) {
+            return false;
+        } 
+        // jika belum di verif wadir dan adalah direktur
+        if (! $this->verif_wadir && auth()->user()->hasPermissionTo('verif direktur')) {
+            return false;
+        } 
+        // jika sudah di verif wadir dan user bukan wadir
+        if ($this->verif_direktur) {
+            return false;
+        }
         return true;
     }
 }

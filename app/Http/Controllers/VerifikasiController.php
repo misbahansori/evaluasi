@@ -58,4 +58,27 @@ class VerifikasiController extends Controller
         return back()
             ->with('success', 'Berhasil di verifikasi');
     }
+
+    /**
+    * Direktur memverifikasi penilaian.
+    *
+    * @param \App\Domain\Penilaian\Models\Periode $periode
+    * @return \Illuminate\Http\Response
+    */
+    public function direktur(Periode $periode)
+    {
+        $this->authorize('verif direktur');
+
+        $periode->verifDirektur();
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'success' => true, 
+                'message' => $periode->pegawai->nama . ' berhasil diverifikasi'
+            ]);
+        }
+        
+        return back()
+            ->with('success', 'Berhasil di verifikasi');
+    }
 }
