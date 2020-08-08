@@ -17,10 +17,9 @@
                     <label for="bulan" class="col-sm-4 col-form-label text-md-right">Bulan</label>
                     <div class="col-md-6">
                         <select name="bulan" id="bulan" class="form-control{{ $errors->has('bulan') ? ' is-invalid' : '' }}">
-                            <option value="2">Februari</option>
-                            <option value="3">Maret</option>
-                            <option value="8">Agustus</option>
-                            <option value="12">Desember</option>
+                            @for ($bulan = 1; $bulan <= 12; $bulan++)
+                                <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                            @endfor
                         </select>
                         @if ($errors->has('bulan'))
                             <span class="invalid-feedback" role="alert">

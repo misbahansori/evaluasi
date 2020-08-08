@@ -30,19 +30,11 @@
                             </div>
                         </div>
                         
-                        @if (request()->tipe == 'tahunan')
-                            <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
-                                <option {{ request()->bulan == 2 ? 'selected' : '' }} value="2">Februari</option>
-                                <option {{ request()->bulan == 8 ? 'selected' : '' }} value="8">Agustus</option>
-                                <option {{ request()->bulan == 12 ? 'selected' : '' }} value="12">Desember</option>
-                            </select>
-                        @else
-                            <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
-                                @for ($bulan = 1; $bulan <= 12; $bulan++)
-                                    <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
-                                @endfor
-                            </select>
-                        @endif
+                        <select name="bulan" id="bulan" class="form-control mr-2" onchange="this.form.submit()">
+                            @for ($bulan = 1; $bulan <= 12; $bulan++)
+                                <option {{ request()->bulan == $bulan ? 'selected' : '' }} value="{{ $bulan }}">{{ \Carbon\Carbon::createFromFormat('m', $bulan)->formatLocalized('%B') }}</option>
+                            @endfor
+                        </select>
                         
                         <select name="tahun" id="tahun" class="form-control mr-2" onchange="this.form.submit()">
                             @for ($i = date('Y') - 2; $i < date('Y') + 5; $i++)
