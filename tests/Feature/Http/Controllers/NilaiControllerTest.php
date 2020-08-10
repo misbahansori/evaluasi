@@ -19,10 +19,7 @@ class NilaiControllerTest extends TestCase
     {
         parent::setUp();
         
-        DB::table('permissions')->insert([
-            ['name' => 'verif kabag', 'guard_name' => 'web'],
-            ['name' => 'verif wadir', 'guard_name' => 'web'],
-        ]);
+        (new \PermissionsTableSeeder())->run();
     }
 
     /** @test */

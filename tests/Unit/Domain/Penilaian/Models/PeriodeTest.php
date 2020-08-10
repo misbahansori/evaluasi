@@ -22,13 +22,8 @@ class PeriodeTest extends TestCase
     {
         parent::setUp();
         
-        \DB::table('permissions')->insert([
-            ['name' => 'verif kabag', 'guard_name' => 'web'],
-            ['name' => 'verif wadir', 'guard_name' => 'web'],
-        ]);
-
-       (new \BulanTableSeeder())->run();
-
+        (new \PermissionsTableSeeder())->run();
+        (new \BulanTableSeeder())->run();
     }
     /** @test */
     public function it_has_bulan()
