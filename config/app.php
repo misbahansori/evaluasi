@@ -213,6 +213,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Str' => Illuminate\Support\Str::class,
         'Periode' => \App\Domain\Penilaian\Models\Periode::class,
+        'Role' => \App\Domain\Master\Models\Role::class,
     ],
 
 ];

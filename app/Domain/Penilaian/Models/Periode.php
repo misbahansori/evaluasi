@@ -3,6 +3,7 @@
 namespace App\Domain\Penilaian\Models;
 
 use Illuminate\Support\Carbon;
+use App\Domain\Master\Models\Role;
 use App\Domain\Master\Models\Bulan;
 use App\Domain\Pegawai\Models\Pegawai;
 use App\Domain\Penilaian\Models\Nilai;
@@ -311,8 +312,8 @@ class Periode extends Model
         if (! $this->verif_wadir && auth()->user()->hasPermissionTo('verif direktur')) {
             return false;
         } 
-        // jika sudah di verif wadir dan user bukan wadir
-        if ($this->verif_direktur) {
+        // jika sudah di verif wadir dan user bukan direktur atau admin
+        if ($this->verif_direktur && ! auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
             return false;
         }
         return true;
