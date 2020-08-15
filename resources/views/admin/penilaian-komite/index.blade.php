@@ -54,9 +54,9 @@
                                 <th>Unit</th>
                                 <th>Formasi</th>
                                 <th>Persentase</th>
-                                <th>Verif Kabag</th>
-                                <th>Verif Wadir</th>
-                                <th>Verif Direktur</th>
+                                @if (auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR]))                                        
+                                    <th>Verif Direktur</th>
+                                @endif
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -73,27 +73,15 @@
                                     <td>{{ $periode->pegawai->unit->name }}</td>
                                     <td>{{ $periode->pegawai->formasi->nama }}</td>
                                     <td>{{ $periode->persentase() }} %</td>
-                                    <td>
-                                        <verifikasi-component 
-                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif kabag') ? 'true' : 'false' }}"
-                                            verifikasi="{{ $periode->verif_kabag }}" 
-                                            action="{{ route('verif.kabag', $periode->id) }}"
-                                        ></verifikasi-component>
-                                    </td>
-                                    <td>
-                                        <verifikasi-component 
-                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif wadir') ? 'true' : 'false' }}"
-                                            verifikasi="{{ $periode->verif_wadir }}" 
-                                            action="{{ route('verif.wadir', $periode->id) }}"
-                                        ></verifikasi-component>
-                                    </td>
-                                    <td>
-                                        <verifikasi-component 
-                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
-                                            verifikasi="{{ $periode->verif_direktur }}" 
-                                            action="{{ route('verif.direktur', $periode->id) }}"
-                                        ></verifikasi-component>
-                                    </td>
+                                    @if (auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR]))                                        
+                                        <td>
+                                            <verifikasi-component 
+                                                :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
+                                                verifikasi="{{ $periode->verif_direktur }}" 
+                                                action="{{ route('verif.direktur', $periode->id) }}"
+                                            ></verifikasi-component>
+                                        </td>
+                                    @endif
                                     <th>
                                         <a href="{{ route('periode.show', [ $periode->pegawai->id,  $periode->id]) }}" class="btn btn-success btn-sm">
                                             <i class="ti-view-list-alt"></i> Detail

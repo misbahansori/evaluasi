@@ -59,7 +59,9 @@
                                 <th>Nilai</th>
                                 <th>Verif Kabag</th>
                                 <th>Verif Wadir</th>
-                                <th>Verif Direktur</th>
+                                @if (auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR]))                                        
+                                    <th>Verif Direktur</th>
+                                @endif
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -90,13 +92,15 @@
                                             action="{{ route('verif.wadir', $periode->id) }}"
                                         ></verifikasi-component>
                                     </td>
-                                    <td>
-                                        <verifikasi-component 
-                                            :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
-                                            verifikasi="{{ $periode->verif_direktur }}" 
-                                            action="{{ route('verif.direktur', $periode->id) }}"
-                                        ></verifikasi-component>
-                                    </td>
+                                    @if (auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR]))                                        
+                                        <td>
+                                            <verifikasi-component 
+                                                :can-verif="{{ auth()->user()->hasPermissionTo('verif direktur') ? 'true' : 'false' }}"
+                                                verifikasi="{{ $periode->verif_direktur }}" 
+                                                action="{{ route('verif.direktur', $periode->id) }}"
+                                            ></verifikasi-component>
+                                        </td>
+                                    @endif
                                     <th>
                                         <a href="{{ route('periode.show', [ $periode->pegawai->id,  $periode->id]) }}" class="btn btn-success btn-sm">
                                             <i class="ti-view-list-alt"></i> Detail
