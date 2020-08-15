@@ -73,7 +73,7 @@
                 <div class="card-header bg-white d-flex justify-content-between">
                     <h4>Hak Akses</h4>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#permissionModal">
-                        <i class="ti ti-plus"></i> Tambah Group
+                        <i class="ti ti-plus"></i> Tambah Hak Akses
                     </button>
                 </div>
                 <div class="card-body">
