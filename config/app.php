@@ -211,7 +211,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Str' => Illuminate\Support\Str::class
+        'Str' => Illuminate\Support\Str::class,
+        'Periode' => \App\Domain\Penilaian\Models\Periode::class,
     ],
 
 ];

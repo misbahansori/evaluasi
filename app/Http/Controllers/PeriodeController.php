@@ -46,7 +46,9 @@ class PeriodeController extends Controller
         
         $this->authorize('view', $pegawai);
 
-        if (auth()->user()->hasPermissionTo('penilaian aik')) {
+        if (auth()->user()->hasPermissionTo('penilaian biasa dan aik')) {
+            $penilaian = $periode->nilai;
+        } else if (auth()->user()->hasPermissionTo('penilaian aik')) {
             $penilaian = $periode->nilaiAik->groupBy('kategori')->sortKeys();
         } else {
             $penilaian = $periode->nilaiBiasa->groupBy('kategori')->sortKeys();

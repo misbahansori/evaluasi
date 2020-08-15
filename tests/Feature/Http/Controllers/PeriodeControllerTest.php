@@ -46,6 +46,7 @@ class PeriodeControllerTest extends TestCase
     {
         $this->seed(BulanTableSeeder::class);
         $this->seed(PermissionsTableSeeder::class);
+        
         $user = app(UserFactory::class)->withRole('Ruang IT')->create();
         $pegawai = app(PegawaiFactory::class)->withPeriode()->create(['unit_id' => $user->roles[0]->id]);
         
@@ -118,5 +119,100 @@ class PeriodeControllerTest extends TestCase
             
         $this->assertDatabaseMissing('periode', $pegawai->periode->first()->getAttributes());
         $this->assertTrue(Nilai::all()->isEmpty());
+    }
+
+    /** @test */
+    public function user_yang_memiliki_akses_penilaian_aik_hanya_bisa_melihat_kategori_aik()
+    {
+        $this->seed(BulanTableSeeder::class);
+        $this->seed(PermissionsTableSeeder::class);
+        
+        $user = app(UserFactory::class)
+            ->withRole('Ruang IT')
+            ->withPermission('penilaian aik')
+            ->create();
+
+        $pegawai = app(PegawaiFactory::class)
+            ->withPeriode()
+            ->create(['unit_id' => $user->roles[0]->id]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => Periode::KATEGORI_KEMUHAMMADIYAHAN,
+        ]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => 'Prestasi Kerja',
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('periode.show', [$pegawai, $pegawai->periode[0]]))
+            ->assertOk()
+            ->assertDontSee('Prestasi Kerja')
+            ->assertSee(Periode::KATEGORI_KEMUHAMMADIYAHAN);
+    }
+
+    /** @test */
+    public function user_yang_tidak_memiliki_akses_penilaian_aik_hanya_bisa_melihat_penilaian_biasa()
+    {
+        $this->seed(BulanTableSeeder::class);
+        $this->seed(PermissionsTableSeeder::class);
+        
+        $user = app(UserFactory::class)
+            ->withRole('Ruang IT')
+            ->create();
+
+        $pegawai = app(PegawaiFactory::class)
+            ->withPeriode()
+            ->create(['unit_id' => $user->roles[0]->id]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => Periode::KATEGORI_KEMUHAMMADIYAHAN,
+        ]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => 'Prestasi Kerja',
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('periode.show', [$pegawai, $pegawai->periode[0]]))
+            ->assertOk()
+            ->assertSee('Prestasi Kerja')
+            ->assertDontSee(Periode::KATEGORI_KEMUHAMMADIYAHAN);
+    }
+
+    /** @test */
+    public function user_yang_memiliki_akses_bisa_melihat_semua_nilai()
+    {
+        $this->seed(BulanTableSeeder::class);
+        $this->seed(PermissionsTableSeeder::class);
+        
+        $user = app(UserFactory::class)
+            ->withRole('Ruang IT')
+            ->withPermission('penilaian biasa dan aik')
+            ->create();
+
+        $pegawai = app(PegawaiFactory::class)
+            ->withPeriode()
+            ->create(['unit_id' => $user->roles[0]->id]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => Periode::KATEGORI_KEMUHAMMADIYAHAN,
+        ]);
+
+        factory(Nilai::class)->create([
+            'periode_id' => $pegawai->periode[0]->id,
+            'kategori' => 'Prestasi Kerja',
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('periode.show', [$pegawai, $pegawai->periode[0]]))
+            ->assertOk()
+            ->assertSee('Prestasi Kerja')
+            ->assertSee(Periode::KATEGORI_KEMUHAMMADIYAHAN);
     }
 }

@@ -28,7 +28,7 @@
                         @csrf
                         @method('put')
 
-                        @if ($periode->tipe === App\Domain\Penilaian\Models\Periode::PENILAIAN_KOMITE)
+                        @if ($periode->tipe === Periode::PENILAIAN_KOMITE)
                             <penilaian-komite-form
                                 :grouped="{{ $penilaian }}"
                                 :disabled="{{ $periode->bisaDiedit() ? 'false' : 'true'}}"

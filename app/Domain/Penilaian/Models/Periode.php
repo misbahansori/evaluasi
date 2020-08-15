@@ -14,6 +14,9 @@ class Periode extends Model
     const PENILAIAN_BULANAN = 'bulanan';
     const PENILAIAN_TAHUNAN = 'tahunan';
     const PENILAIAN_KOMITE = 'komite';
+
+    const KATEGORI_KEISLAMAN = 'Ke-islaman';
+    const KATEGORI_KEMUHAMMADIYAHAN = 'Ke-muhammadiyahan';
     
     /**
      * The table associated with the model.
@@ -73,13 +76,13 @@ class Periode extends Model
     public function nilaiAik()
     {
         return $this->hasMany(Nilai::class)
-            ->whereIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan']);
+            ->whereIn('kategori', [Periode::KATEGORI_KEISLAMAN, Periode::KATEGORI_KEMUHAMMADIYAHAN]);
     }
 
     public function nilaiBiasa()
     {
         return $this->hasMany(Nilai::class)
-            ->whereNotIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan']);
+            ->whereNotIn('kategori', [Periode::KATEGORI_KEISLAMAN, Periode::KATEGORI_KEMUHAMMADIYAHAN]);
     }
 
     /**
