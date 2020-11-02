@@ -15,6 +15,7 @@ use App\Domain\Pegawai\Presenters\TanggalPresenter;
 class Pegawai extends Model
 {
     use TanggalPresenter;
+    
     /**
      * The attributes that aren't mass assignable.
      *

@@ -214,6 +214,8 @@ return [
         'Str' => Illuminate\Support\Str::class,
         'Periode' => \App\Domain\Penilaian\Models\Periode::class,
         'Role' => \App\Domain\Master\Models\Role::class,
+
+        'Status' => \App\Domain\Master\Models\Status::class,
     ],
 
 ];
