@@ -53,7 +53,7 @@ class PenilaianKomiteControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $periode = factory(Periode::class)->create([
-            'bulan' => date('n') - 1,
+            'bulan' => date('n', strtotime("-1 month")),
             'tahun' => date('Y'),
             'tipe' => Periode::PENILAIAN_KOMITE
         ]);
@@ -72,9 +72,9 @@ class PenilaianKomiteControllerTest extends TestCase
     public function filter_penilaian_komite_berdasarkan_nama_komite()
     {
         $this->withoutExceptionHandling();
-        
+
         $periode = factory(Periode::class)->create([
-            'bulan' => date('n') - 1,
+            'bulan' => date('n', strtotime("-1 month")),
             'tahun' => date('Y'),
             'tipe' => Periode::PENILAIAN_KOMITE
         ]);
@@ -91,9 +91,9 @@ class PenilaianKomiteControllerTest extends TestCase
     public function filter_penilaian_komite_semua_komite()
     {
         $this->withoutExceptionHandling();
-        
+
         $periode = factory(Periode::class, 2)->create([
-            'bulan' => date('n') - 1,
+            'bulan' => date('n', strtotime("-1 month")),
             'tahun' => date('Y'),
             'tipe' => Periode::PENILAIAN_KOMITE
         ]);

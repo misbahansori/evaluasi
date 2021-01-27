@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+
+    /** @test */
+    public function user_bisa_login_dengan_user_name_dan_password()
+    {
+        $user = factory(User::class)->create();
+
+        $this->get('/login')
+            ->assertStatus(200);
+
+        
+    }
     
     /** @test */
     public function admin_can_delete_user()

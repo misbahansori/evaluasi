@@ -296,6 +296,9 @@ class Periode extends Model
 
     public function bisaDiedit()
     {
+        if(auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
+            return true;
+        }
         // Jika sudah di verifikasi kabag dan user bukan kabag atau wadir
         if ($this->verif_kabag && ! auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
             return false;
@@ -312,7 +315,7 @@ class Periode extends Model
         if (! $this->verif_wadir && auth()->user()->hasPermissionTo('verif direktur')) {
             return false;
         } 
-        // jika sudah di verif wadir dan user bukan direktur atau admin
+        // jika sudah di verif direktur dan user bukan direktur atau admin
         if ($this->verif_direktur && ! auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
             return false;
         }
