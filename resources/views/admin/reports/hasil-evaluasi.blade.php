@@ -80,7 +80,7 @@
                 @endforeach
             @endforeach
             <tr>
-                <td rowspan="3" colspan="3" style="padding-left: 10px;">
+                <td rowspan="4" colspan="3" style="padding-left: 10px;">
                     <div class="font-bold">KETERANGAN</div>
                     @if (in_array($periode->pegawai->status_id, [Status::PEGAWAI_KONTRAK, Status::PEGAWAI_MAGANG]))
                         <div style="margin:0; padding:0; line-height: .8em;">
@@ -104,7 +104,11 @@
             </tr>
             <tr>
                 <td style="width: 180px;">Rata-rata Kompetensi</td>
-                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilaiBiasa() }}</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilaiKompetensi() }}</td>
+            </tr>
+            <tr>
+                <td style="width: 180px;">Rata-rata Nilai</td>
+                <td colspan="5" style="text-align: center; font-weight: bold;">{{ $periode->rataNilai() }}</td>
             </tr>
             <tr>
                 <td style="width: 180px;">
@@ -116,7 +120,7 @@
                 </td>
                 <td colspan="5" style="text-align: center; font-weight: bold;">
                     @if (in_array($periode->pegawai->status_id, [Status::PEGAWAI_KONTRAK, Status::PEGAWAI_MAGANG]))
-                        @if ($periode->rataNilaiAik() < 3 || $periode->rataNilaiBiasa() < 3)
+                        @if ($periode->rataNilaiAik() < 3 || $periode->rataNilaiKompetensi() < 3)
                             TIDAK DISARANKAN 
                         @else 
                             DISARANKAN

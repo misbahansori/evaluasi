@@ -51,7 +51,7 @@ class PeriodeController extends Controller
         } else if (auth()->user()->hasPermissionTo('penilaian aik')) {
             $penilaian = $periode->nilaiAik->groupBy('kategori')->sortKeys();
         } else {
-            $penilaian = $periode->nilaiBiasa->groupBy('kategori')->sortKeys();
+            $penilaian = $periode->nilaiKompetensi->groupBy('kategori')->sortKeys();
         }
         
         return view('admin.periode.show', compact('pegawai', 'periode', 'penilaian'));

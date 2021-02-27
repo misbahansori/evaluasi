@@ -80,7 +80,7 @@ class Periode extends Model
             ->whereIn('kategori', [Periode::KATEGORI_KEISLAMAN, Periode::KATEGORI_KEMUHAMMADIYAHAN]);
     }
 
-    public function nilaiBiasa()
+    public function nilaiKompetensi()
     {
         return $this->hasMany(Nilai::class)
             ->whereNotIn('kategori', [Periode::KATEGORI_KEISLAMAN, Periode::KATEGORI_KEMUHAMMADIYAHAN]);
@@ -123,7 +123,7 @@ class Periode extends Model
     /**
      * Total nilai per periode
      */
-    public function totalNilaiBiasa()
+    public function totalNilaiKompetensi()
     {
         return $this->nilai
             ->whereNotIn('kategori', ['Ke-islaman', 'Ke-muhammadiyahan'])
@@ -155,9 +155,9 @@ class Periode extends Model
     /**
      * Rata - rata nilai Aik per periode
      */
-    public function rataNilaiBiasa()
+    public function rataNilaiKompetensi()
     {
-        return round($this->totalNilaiBiasa() / $this->nilaiBiasa->count(), 2);
+        return round($this->totalNilaiKompetensi() / $this->nilaiKompetensi->count(), 2);
     }
 
     /**
