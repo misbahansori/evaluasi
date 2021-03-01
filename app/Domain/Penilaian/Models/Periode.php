@@ -18,7 +18,7 @@ class Periode extends Model
 
     const KATEGORI_KEISLAMAN = 'Ke-islaman';
     const KATEGORI_KEMUHAMMADIYAHAN = 'Ke-muhammadiyahan';
-    
+
     /**
      * The table associated with the model.
      *
@@ -101,7 +101,7 @@ class Periode extends Model
     {
         return Carbon::createFromFormat('m', $this->bulan_id)->formatLocalized('%B');
     }
-    
+
     /**
      * Total nilai per periode
      */
@@ -138,6 +138,11 @@ class Periode extends Model
         if ($this->nilai->count() === 0) {
             return 0;
         }
+
+        if ($this->tipe === self::PENILAIAN_TAHUNAN) {
+            return round($this->rataNilaiAik() + $this->rataNilaiKompetensi() / 2, 2);
+        }
+
         return round($this->totalNilai() / $this->nilai->count(), 2);
     }
 
@@ -168,7 +173,7 @@ class Periode extends Model
         if ($this->nilai->count() === 0) {
             return 0;
         }
-        return $this->nilai->filter(function($nilai) {
+        return $this->nilai->filter(function ($nilai) {
             return $nilai->nilai;
         })->count();
     }
@@ -180,7 +185,7 @@ class Periode extends Model
         if ($this->nilai->count() === 0) {
             return 0;
         }
-        return $this->nilai->filter(function($nilai) {
+        return $this->nilai->filter(function ($nilai) {
             return !$nilai->nilai;
         })->count();
     }
@@ -203,7 +208,7 @@ class Periode extends Model
     {
         $this->update(['verif_kabag' => Carbon::now()]);
     }
-    
+
     /**
      * Set verif_wadir field to now()
      */
@@ -211,7 +216,7 @@ class Periode extends Model
     {
         $this->update(['verif_wadir' => Carbon::now()]);
     }
-    
+
     /**
      * Set verif_wadir field to now()
      */
@@ -243,7 +248,7 @@ class Periode extends Model
      */
     public function scopeMilikUser($query)
     {
-        $query->whereHas('pegawai.unit', function($q) {
+        $query->whereHas('pegawai.unit', function ($q) {
             $q->whereIn('name', auth()->user()->getRoleNames());
         });
     }
@@ -289,34 +294,34 @@ class Periode extends Model
      */
     public function scopeWhereKomiteId($query, $komite_id)
     {
-        $query->whereHas('pegawai', function($query) use ($komite_id) {
+        $query->whereHas('pegawai', function ($query) use ($komite_id) {
             $query->whereKomiteId($komite_id);
         });
     }
 
     public function bisaDiedit()
     {
-        if(auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
+        if (auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
             return true;
         }
         // Jika sudah di verifikasi kabag dan user bukan kabag atau wadir
-        if ($this->verif_kabag && ! auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
+        if ($this->verif_kabag && !auth()->user()->hasAnyPermission(['verif kabag', 'verif wadir'])) {
             return false;
         }
         // jika belum di verif kabag dan user adalah wadir
-        if (! $this->verif_kabag && auth()->user()->hasPermissionTo('verif wadir')) {
+        if (!$this->verif_kabag && auth()->user()->hasPermissionTo('verif wadir')) {
             return false;
-        } 
+        }
         // jika sudah di verif wadir dan user bukan wadir
-        if ($this->verif_wadir && ! auth()->user()->hasPermissionTo('verif wadir')) {
+        if ($this->verif_wadir && !auth()->user()->hasPermissionTo('verif wadir')) {
             return false;
-        } 
+        }
         // jika belum di verif wadir dan adalah direktur
-        if (! $this->verif_wadir && auth()->user()->hasPermissionTo('verif direktur')) {
+        if (!$this->verif_wadir && auth()->user()->hasPermissionTo('verif direktur')) {
             return false;
-        } 
+        }
         // jika sudah di verif direktur dan user bukan direktur atau admin
-        if ($this->verif_direktur && ! auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
+        if ($this->verif_direktur && !auth()->user()->hasRole([Role::ADMIN, Role::DIREKTUR])) {
             return false;
         }
         return true;
