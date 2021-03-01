@@ -140,7 +140,7 @@ class Periode extends Model
         }
 
         if ($this->tipe === self::PENILAIAN_TAHUNAN) {
-            return round($this->rataNilaiAik() + $this->rataNilaiKompetensi() / 2, 2);
+            return round(($this->rataNilaiAik() + $this->rataNilaiKompetensi()) / 2, 2);
         }
 
         return round($this->totalNilai() / $this->nilai->count(), 2);
