@@ -126,17 +126,17 @@
                             DISARANKAN
                         @endif
                     @else
-                    @if ($periode->rataNilai() >= 4.5)
-                        ISTIMEWA
-                    @elseif($periode->rataNilai() >= 3.5 && $periode->rataNilai() < 4.5)
-                        BAIK
-                    @elseif($periode->rataNilai() >= 2.5 && $periode->rataNilai() < 3.5)
-                        CUKUP
-                    @elseif($periode->rataNilai() >= 1.5 && $periode->rataNilai() < 2.5)
-                        KURANG
-                    @else 
-                        SANGAT KURANG
-                    @endif
+                        @if ($periode->rataNilai() >= 4.5)
+                            ISTIMEWA
+                        @elseif($periode->rataNilai() >= 3.5 && $periode->rataNilai() < 4.5)
+                            BAIK
+                        @elseif($periode->rataNilai() >= 2.5 && $periode->rataNilai() < 3.5)
+                            CUKUP
+                        @elseif($periode->rataNilai() >= 1.5 && $periode->rataNilai() < 2.5)
+                            KURANG
+                        @else 
+                            SANGAT KURANG
+                        @endif
                     @endif
                 </td>
             </tr>
